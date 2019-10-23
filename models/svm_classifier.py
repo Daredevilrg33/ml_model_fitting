@@ -7,9 +7,14 @@ DEFAULT_C = 1.0
 class SvmClassifier():
 	
 	def __init__(self):
-		self.svm = SVC(kernel=DEFAULT_KERNEL, C=DEFAULT_C, gamma='auto', random_state=0) 
+		self.svm = SVC(kernel=DEFAULT_KERNEL, C=DEFAULT_C, gamma='auto', random_state=0)
+		print("""
+			**********************
+			SVM
+			**********************
+		""")
 	
-	def train(self, X, y, X_test):
+	def train_and_predict(self, X, y, X_test):
 		'''
 		fit training dataset and predict values for test dataset 
 		'''
@@ -20,20 +25,23 @@ class SvmClassifier():
 		'''
 		Returns the score of knn by fitting training data
 		'''
-		self.train(X, y, X_test)
+		self.train_and_predict(X, y, X_test)
 		return self.svm.score(X_test, y_test)
 
-	def create_new_instance(self, with_default_values=True):
+	def create_new_instance(self, values, with_default_values=True):
 		if with_default_values:
 			return SVC(kernel=DEFAULT_KERNEL, C=DEFAULT_C, gamma='auto', random_state=0)
 		else:
-			return SVC(random_state=0, gamma='auto')
+			return SVC(**{**values, 'random_state': 0})
 
 	def param_grid(self):
 		'''
 		dictionary of hyper-parameters to get good values for each one of them
 		'''
-		return {'kernel': ['linear', 'rbf'], 'C': np.arange(1,3)}
+		return [
+			# {'C': [1, 10, 100, 1000], 'kernel': ['linear','poly']}, 
+			{'C': [1, 10, 100, 1000], 'kernel': ['rbf','sigmoid'], 'gamma': [0.01, 0.10, 1.0, 10]},
+		]
 
 	def __str__(self):
 		return "SVM"
