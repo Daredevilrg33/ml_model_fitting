@@ -33,10 +33,11 @@ class KnnClassifier():
 		else:
 			return KNeighborsClassifier(**values)
 
-	def param_grid(self):
+	def param_grid(self, is_random=False):
 		'''
 		dictionary of hyper-parameters to get good values for each one of them
 		'''
+		# random search only accepts a dict for params whereas gridsearch can take either a dic or list of dict
 		return {'n_neighbors': np.arange(1, 30)}
 
 	def __str__(self):

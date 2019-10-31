@@ -12,10 +12,11 @@ except ImportError:
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import RandomizedSearchCV
 from sklearn.preprocessing import StandardScaler
 import numpy as np
 
-TEST_SIZE_SPLIT = 0.4
+TEST_SIZE_SPLIT = 0.3
 CV_FOLD = 7
 
 class Model():
@@ -26,9 +27,22 @@ class Model():
 	def get_data(self, file_path):
 		if file_path.endswith('arff'):
 			self.get_arff_data(file_path)
+		elif file_path.endswith('data'):
+			self.get_data_data(file_path)
 		else:
 			print("Don't know how to load this data")
 
+	def get_data_data(self, file_path):
+		'''
+		This method is used to load the data from a file which has .data extension and seperate out X and y labels
+		'''
+		data = pd.read_csv(file_path, header=None)
+		y = np.array(data[1])
+		y[y == 'M'] = 1
+		y[y == 'B'] = 0
+		self.y = y.astype('int')
+		self.X = np.array(data.iloc[:, 2:])
+	
 	def get_arff_data(self, file_path):
 		'''
 		This method is used to load the arff data and seperate out X and y labels
@@ -90,17 +104,49 @@ class Model():
 
 	def grid_search_with_cross_validation(self, use_preprocessing=False, k_fold=CV_FOLD):
 		'''
-		Tries to find optimal value of paramters for a model by using cross validations
+		Tries to find optimal value of paramters for a model by using cross validations and cv grid
 		'''
 		classifier = self.model_type.create_new_instance(with_default_values=False, values={})
 		classifier_gscv = GridSearchCV(classifier, self.model_type.param_grid(), cv=k_fold)
 		if use_preprocessing:
 			classifier_gscv.fit(self.X_train_scaled, self.y_train)
-			print('----- {} best param values for {}-fold cross validation on normalized dataset: {} -----'.format(self.model_type, k_fold, classifier_gscv.best_params_))
+			print('----- {} best param values using grid search cv for {}-fold cross validation on normalized dataset: {} -----'.format(self.model_type, k_fold, classifier_gscv.best_params_))
 			score = self.train_and_predict_for_best_params(values=classifier_gscv.best_params_, is_scaled=True)
-			print('----- {} score for {}-fold cross validation on normalized test dataset: {} -----'.format(self.model_type, k_fold, score))
+			print('----- {} score using grid search for {}-fold cross validation on normalized test dataset: {} -----'.format(self.model_type, k_fold, score))
 		else:
 			classifier_gscv.fit(self.X_train, self.y_train)
-			print('----- {} best param values for {}-fold cross validation without any preprocessing: {} -----'.format(self.model_type, k_fold, classifier_gscv.best_params_))
+			print('----- {} best param values using grid search for {}-fold cross validation without any preprocessing: {} -----'.format(self.model_type, k_fold, classifier_gscv.best_params_))
 			score = self.train_and_predict_for_best_params(values=classifier_gscv.best_params_)
-			print('----- {} score for {}-fold cross validation on test dataset without any preprocessing: {} -----'.format(self.model_type, k_fold, score))
+			print('----- {} score using grid search for {}-fold cross validation on test dataset without any preprocessing: {} -----'.format(self.model_type, k_fold, score))
+
+
+	def random_search_with_cross_validation(self, use_preprocessing=False, k_fold=CV_FOLD):
+		'''
+		Tries to find optimal value of paramters for a model by using cross validations and random search
+		'''
+		classifier = self.model_type.create_new_instance(with_default_values=False, values={})
+		classifier_rscv = RandomizedSearchCV(classifier, self.model_type.param_grid(is_random=True), cv=k_fold)
+		if use_preprocessing:
+			classifier_rscv.fit(self.X_train_scaled, self.y_train)
+			print('----- {} best param values using random search cv for {}-fold cross validation on normalized dataset: {} -----'.format(self.model_type, k_fold, classifier_rscv.best_params_))
+			score = self.train_and_predict_for_best_params(values=classifier_rscv.best_params_, is_scaled=True)
+			print('----- {} score using random search cv for {}-fold cross validation on normalized test dataset: {} -----'.format(self.model_type, k_fold, score))
+		else:
+			classifier_rscv.fit(self.X_train, self.y_train)
+			print('----- {} best param values using random search cv for {}-fold cross validation without any preprocessing: {} -----'.format(self.model_type, k_fold, classifier_rscv.best_params_))
+			score = self.train_and_predict_for_best_params(values=classifier_rscv.best_params_)
+			print('----- {} score using random search cv for {}-fold cross validation on test dataset without any preprocessing: {} -----'.format(self.model_type, k_fold, score))
+
+	def perform_experiments(self, file_path):
+		self.get_data(file_path)
+		self.get_score_without_any_processing()
+		self.score_after_preprocessing()
+		
+		# skip grid and random search for GaussianNb as we don't have any hyper-params
+		if self.model_type.__class__.__name__ != "GaussianNbClassifier":
+			# self.grid_search_with_cross_validation(k_fold=2)
+			self.grid_search_with_cross_validation()
+			# self.grid_search_with_cross_validation(k_fold=2, use_preprocessing=True)
+			self.grid_search_with_cross_validation(use_preprocessing=True)
+			self.random_search_with_cross_validation()
+			self.random_search_with_cross_validation(use_preprocessing=True)
