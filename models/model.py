@@ -28,11 +28,57 @@ class Model():
 		if file_path.endswith('arff'):
 			self.get_arff_data(file_path)
 		elif file_path.endswith('data'):
-			self.get_data_data(file_path)
+			if file_path.endswith('wisconsin.data'):
+				self.get_bc_wisconsin_data(file_path)
+			elif 'german' in file_path:
+				self.get_german_credit_data(file_path)
+			else:
+				self.get_au_credit_data(file_path)
+		elif file_path.endswith('NNA'):
+			self.get_steel_plates_faults_data(file_path)
 		else:
 			print("Don't know how to load this data")
 
-	def get_data_data(self, file_path):
+
+	def get_steel_plates_faults_data(self, file_path):
+		'''
+		This method loads the data and converts the available data and assign classes as follows
+		0 - Pastry, 1 - Z_Scratch, 2 - K_Scatch, 3 - Stains, 4 - Dirtiness, 5 - Bumps, 6 - Other_Faults
+		'''
+		data = pd.read_csv(file_path, header=None, delim_whitespace=True)
+		y_all = np.array(data.iloc[:, 27:])
+		y = np.empty(1941, dtype=np.int)
+		y[y_all[:,0] == 1] = 0
+		y[y_all[:,1] == 1] = 1
+		y[y_all[:,2] == 1] = 2
+		y[y_all[:,3] == 1] = 3
+		y[y_all[:,4] == 1] = 4
+		y[y_all[:,5] == 1] = 5
+		y[y_all[:,6] == 1] = 6
+		self.y = y
+		self.X = np.array(data.iloc[:,:27])
+
+
+	def get_german_credit_data(self, file_path):
+		'''
+		This method is used to load the data from a file which has .data extension and seperate out X and y labels
+		'''
+		data = pd.read_csv(file_path, header=None, delim_whitespace=True)
+		y = np.array(data[24])
+		self.y = y.astype('int')
+		self.X = np.array(data.iloc[:, :24])
+
+
+	def get_au_credit_data(self, file_path):
+		'''
+		This method is used to load the data from a file which has .data extension and seperate out X and y labels
+		'''
+		data = pd.read_csv(file_path, header=None, delim_whitespace=True)
+		y = np.array(data[14])
+		self.y = y.astype('int')
+		self.X = np.array(data.iloc[:, :14])
+
+	def get_bc_wisconsin_data(self, file_path):
 		'''
 		This method is used to load the data from a file which has .data extension and seperate out X and y labels
 		'''

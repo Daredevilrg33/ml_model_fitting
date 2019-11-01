@@ -13,7 +13,7 @@ warnings.filterwarnings("ignore", category=FutureWarning)       # Ignore sklearn
 
 @ignore_warnings(category=ConvergenceWarning)
 def __main__():
-	print("******** messidor_features data ***********\n")
+	print("\n\n******** messidor_features data ***********\n")
 	print("*******************************************\n")
 
 	knn_classifier = KnnClassifier()
@@ -32,9 +32,9 @@ def __main__():
 	model = Model(model_type=nn_classifier)
 	model.perform_experiments('./data/messidor_features.arff')
 
-	print("******** breast-cancer-wisconsin data ***********\n")
+	print("\n\n******** breast-cancer-wisconsin data ***********\n")
 	print("*******************************************\n")
-	
+
 	knn_classifier = KnnClassifier()
 	model = Model(model_type=knn_classifier)
 	model.perform_experiments('./data/breast-cancer-wisconsin.data')
@@ -50,5 +50,63 @@ def __main__():
 	nn_classifier = MlpClassifier()
 	model = Model(model_type=nn_classifier)
 	model.perform_experiments('./data/breast-cancer-wisconsin.data')
+
+	print("\n\n******** statlog australian credit data ***********\n")
+	print("*******************************************\n")
+	
+	knn_classifier = KnnClassifier()
+	model = Model(model_type=knn_classifier)
+	model.perform_experiments('./data/statlog-australian-credit-data.data')
+
+	svm_classifier = SvmClassifier()
+	model = Model(model_type=svm_classifier)
+	model.perform_experiments('./data/statlog-australian-credit-data.data')
+
+	gaussian_nb_classifier = GaussianNbClassifier()
+	model = Model(model_type=gaussian_nb_classifier)
+	model.perform_experiments('./data/statlog-australian-credit-data.data')
+
+	nn_classifier = MlpClassifier()
+	model = Model(model_type=nn_classifier)
+	model.perform_experiments('./data/statlog-australian-credit-data.data')
+
+
+	print("\n\n******** statlog german credit data ***********\n")
+	print("*******************************************\n")
+
+	knn_classifier = KnnClassifier()
+	model = Model(model_type=knn_classifier)
+	model.perform_experiments('./data/statlog-german-credit-data.data')
+
+	svm_classifier = SvmClassifier()
+	model = Model(model_type=svm_classifier)
+	model.perform_experiments('./data/statlog-german-credit-data.data')
+
+	gaussian_nb_classifier = GaussianNbClassifier()
+	model = Model(model_type=gaussian_nb_classifier)
+	model.perform_experiments('./data/statlog-german-credit-data.data')
+
+	nn_classifier = MlpClassifier()
+	model = Model(model_type=nn_classifier)
+	model.perform_experiments('./data/statlog-german-credit-data.data')
+
+	print("\n\n******** steel plates faults ***********\n")
+	print("*******************************************\n")
+
+	knn_classifier = KnnClassifier()
+	model = Model(model_type=knn_classifier)
+	model.perform_experiments('./data/steel-plates-faults.NNA')
+
+	svm_classifier = SvmClassifier()
+	model = Model(model_type=svm_classifier)
+	model.perform_experiments('./data/steel-plates-faults.NNA')
+
+	gaussian_nb_classifier = GaussianNbClassifier()
+	model = Model(model_type=gaussian_nb_classifier)
+	model.perform_experiments('./data/steel-plates-faults.NNA')
+
+	nn_classifier = MlpClassifier()
+	model = Model(model_type=nn_classifier)
+	model.perform_experiments('./data/steel-plates-faults.NNA')
 
 __main__()
