@@ -13,100 +13,34 @@ warnings.filterwarnings("ignore", category=FutureWarning)       # Ignore sklearn
 
 @ignore_warnings(category=ConvergenceWarning)
 def __main__():
-	print("\n\n******** messidor_features data ***********\n")
-	print("*******************************************\n")
-
-	knn_classifier = KnnClassifier()
-	model = Model(model_type=knn_classifier)
-	model.perform_experiments('./data/messidor_features.arff')
 	
-	svm_classifier = SvmClassifier()
-	model = Model(model_type=svm_classifier)
-	model.perform_experiments('./data/messidor_features.arff')
-
-	gaussian_nb_classifier = GaussianNbClassifier()
-	model = Model(model_type=gaussian_nb_classifier)
-	model.perform_experiments('./data/messidor_features.arff')
-
-	nn_classifier = MlpClassifier()
-	model = Model(model_type=nn_classifier)
-	model.perform_experiments('./data/messidor_features.arff')
-
-	print("\n\n******** breast-cancer-wisconsin data ***********\n")
-	print("*******************************************\n")
-
-	knn_classifier = KnnClassifier()
-	model = Model(model_type=knn_classifier)
-	model.perform_experiments('./data/breast-cancer-wisconsin.data')
-
-	svm_classifier = SvmClassifier()
-	model = Model(model_type=svm_classifier)
-	model.perform_experiments('./data/breast-cancer-wisconsin.data')
-
-	gaussian_nb_classifier = GaussianNbClassifier()
-	model = Model(model_type=gaussian_nb_classifier)
-	model.perform_experiments('./data/breast-cancer-wisconsin.data')
-
-	nn_classifier = MlpClassifier()
-	model = Model(model_type=nn_classifier)
-	model.perform_experiments('./data/breast-cancer-wisconsin.data')
-
-	print("\n\n******** statlog australian credit data ***********\n")
-	print("*******************************************\n")
-	
-	knn_classifier = KnnClassifier()
-	model = Model(model_type=knn_classifier)
-	model.perform_experiments('./data/statlog-australian-credit-data.data')
-
-	svm_classifier = SvmClassifier()
-	model = Model(model_type=svm_classifier)
-	model.perform_experiments('./data/statlog-australian-credit-data.data')
-
-	gaussian_nb_classifier = GaussianNbClassifier()
-	model = Model(model_type=gaussian_nb_classifier)
-	model.perform_experiments('./data/statlog-australian-credit-data.data')
-
-	nn_classifier = MlpClassifier()
-	model = Model(model_type=nn_classifier)
-	model.perform_experiments('./data/statlog-australian-credit-data.data')
+	dataset_list = [
+		'./data/messidor_features.arff',
+		'./data/breast-cancer-wisconsin.data',
+		'./data/statlog-australian-credit-data.data',
+		'./data/statlog-german-credit-data.data',
+		'./data/steel-plates-faults.NNA',
+	]
 
 
-	print("\n\n******** statlog german credit data ***********\n")
-	print("*******************************************\n")
+	for dataset in dataset_list:
+		print("\n\n******** {} data ***********\n".format(dataset.split('/')[-1]))
+		print("*******************************************\n")
 
-	knn_classifier = KnnClassifier()
-	model = Model(model_type=knn_classifier)
-	model.perform_experiments('./data/statlog-german-credit-data.data')
+		knn_classifier = KnnClassifier(dataset)
+		model = Model(model_type=knn_classifier)
+		model.perform_experiments(dataset)
+		
+		svm_classifier = SvmClassifier(dataset)
+		model = Model(model_type=svm_classifier)
+		model.perform_experiments(dataset)
 
-	svm_classifier = SvmClassifier()
-	model = Model(model_type=svm_classifier)
-	model.perform_experiments('./data/statlog-german-credit-data.data')
+		gaussian_nb_classifier = GaussianNbClassifier(dataset)
+		model = Model(model_type=gaussian_nb_classifier)
+		model.perform_experiments(dataset)
 
-	gaussian_nb_classifier = GaussianNbClassifier()
-	model = Model(model_type=gaussian_nb_classifier)
-	model.perform_experiments('./data/statlog-german-credit-data.data')
-
-	nn_classifier = MlpClassifier()
-	model = Model(model_type=nn_classifier)
-	model.perform_experiments('./data/statlog-german-credit-data.data')
-
-	print("\n\n******** steel plates faults ***********\n")
-	print("*******************************************\n")
-
-	knn_classifier = KnnClassifier()
-	model = Model(model_type=knn_classifier)
-	model.perform_experiments('./data/steel-plates-faults.NNA')
-
-	svm_classifier = SvmClassifier()
-	model = Model(model_type=svm_classifier)
-	model.perform_experiments('./data/steel-plates-faults.NNA')
-
-	gaussian_nb_classifier = GaussianNbClassifier()
-	model = Model(model_type=gaussian_nb_classifier)
-	model.perform_experiments('./data/steel-plates-faults.NNA')
-
-	nn_classifier = MlpClassifier()
-	model = Model(model_type=nn_classifier)
-	model.perform_experiments('./data/steel-plates-faults.NNA')
+		nn_classifier = MlpClassifier(dataset)
+		model = Model(model_type=nn_classifier)
+		model.perform_experiments(dataset)
 
 __main__()

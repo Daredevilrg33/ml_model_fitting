@@ -1,10 +1,11 @@
 from sklearn.naive_bayes import GaussianNB
-import numpy as np
+from models.defaults import DEFAULTS
 
 class GaussianNbClassifier():
 	
-	def __init__(self):
-		self.nb = GaussianNB()
+	def __init__(self, dataset):
+		self.dataset = dataset
+		self.nb = GaussianNB(**DEFAULTS[dataset]['gaussian_nb']['defaults'])
 		print("""
 			**********************
 			GaussianNB
@@ -25,18 +26,15 @@ class GaussianNbClassifier():
 		self.train_and_predict(X, y, X_test)
 		return self.nb.score(X_test, y_test)
 
-	def create_new_instance(self, values, with_default_values=True):
-		if with_default_values:
-			return GaussianNB()
-		else:
-			return GaussianNB(**{**values})
+	def create_new_instance(self, values):
+		return GaussianNB(**{**values})
 
 	def param_grid(self, is_random=False):
 		'''
 		dictionary of hyper-parameters to get good values for each one of them
 		'''
 		# random search only accepts a dict for params whereas gridsearch can take either a dic or list of dict
-		return {}
+		return DEFAULTS[self.dataset]['gaussian_nb']['param_grid']
 
 	def __str__(self):
 		return "GaussianNB"

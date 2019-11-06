@@ -39,7 +39,6 @@ class Model():
 		else:
 			print("Don't know how to load this data")
 
-
 	def get_steel_plates_faults_data(self, file_path):
 		'''
 		This method loads the data and converts the available data and assign classes as follows
@@ -58,7 +57,6 @@ class Model():
 		self.y = y
 		self.X = np.array(data.iloc[:,:27])
 
-
 	def get_german_credit_data(self, file_path):
 		'''
 		This method is used to load the data from a file which has .data extension and seperate out X and y labels
@@ -67,7 +65,6 @@ class Model():
 		y = np.array(data[24])
 		self.y = y.astype('int')
 		self.X = np.array(data.iloc[:, :24])
-
 
 	def get_au_credit_data(self, file_path):
 		'''
@@ -129,14 +126,6 @@ class Model():
 		score = self.model_type.score(self.X_train_scaled, self.X_test_scaled, self.y_train, self.y_test)
 		print('----- {} score after normalizing dataset: {} -----'.format(self.model_type, score))
 
-	# def get_kfold_cross_validation(self, k_fold=CV_FOLD):
-	# 	'''
-	# 	Returns the mean score of knn by doing cross validation
-	# 	'''
-	# 	classifier = self.model_type.create_new_instance(with_default_values=True)
-	# 	cv_scores = cross_val_score(classifier, self.X, self.y, cv=k_fold)
-	# 	print('----- {} score with cross validation: {} -----'.format(self.model_type, np.mean(cv_scores)))
-
 	def train_and_predict_for_best_params(self, values, is_scaled=False):
 		model = self.model_type.create_new_instance(values)
 		if is_scaled:
@@ -152,7 +141,7 @@ class Model():
 		'''
 		Tries to find optimal value of paramters for a model by using cross validations and cv grid
 		'''
-		classifier = self.model_type.create_new_instance(with_default_values=False, values={})
+		classifier = self.model_type.create_new_instance(values={})
 		classifier_gscv = GridSearchCV(classifier, self.model_type.param_grid(), cv=k_fold)
 		if use_preprocessing:
 			classifier_gscv.fit(self.X_train_scaled, self.y_train)
@@ -165,12 +154,11 @@ class Model():
 			score = self.train_and_predict_for_best_params(values=classifier_gscv.best_params_)
 			print('----- {} score using grid search for {}-fold cross validation on test dataset without any preprocessing: {} -----'.format(self.model_type, k_fold, score))
 
-
 	def random_search_with_cross_validation(self, use_preprocessing=False, k_fold=CV_FOLD):
 		'''
 		Tries to find optimal value of paramters for a model by using cross validations and random search
 		'''
-		classifier = self.model_type.create_new_instance(with_default_values=False, values={})
+		classifier = self.model_type.create_new_instance(values={})
 		classifier_rscv = RandomizedSearchCV(classifier, self.model_type.param_grid(is_random=True), cv=k_fold)
 		if use_preprocessing:
 			classifier_rscv.fit(self.X_train_scaled, self.y_train)
@@ -190,9 +178,7 @@ class Model():
 		
 		# skip grid and random search for GaussianNb as we don't have any hyper-params
 		if self.model_type.__class__.__name__ != "GaussianNbClassifier":
-			# self.grid_search_with_cross_validation(k_fold=2)
 			self.grid_search_with_cross_validation()
-			# self.grid_search_with_cross_validation(k_fold=2, use_preprocessing=True)
 			self.grid_search_with_cross_validation(use_preprocessing=True)
 			self.random_search_with_cross_validation()
 			self.random_search_with_cross_validation(use_preprocessing=True)

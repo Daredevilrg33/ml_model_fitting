@@ -1,13 +1,11 @@
 from sklearn.svm import SVC
-import numpy as np
-
-DEFAULT_KERNEL = 'rbf'
-DEFAULT_C = 1.0
+from models.defaults import DEFAULTS
 
 class SvmClassifier():
 	
-	def __init__(self):
-		self.svm = SVC(kernel=DEFAULT_KERNEL, C=DEFAULT_C, gamma='auto', random_state=0)
+	def __init__(self, dataset):
+		self.dataset = dataset
+		self.svm = SVC(**DEFAULTS[dataset]['svm']['defaults'])
 		print("""
 			**********************
 			SVM
@@ -28,24 +26,14 @@ class SvmClassifier():
 		self.train_and_predict(X, y, X_test)
 		return self.svm.score(X_test, y_test)
 
-	def create_new_instance(self, values, with_default_values=True):
-		if with_default_values:
-			return SVC(kernel=DEFAULT_KERNEL, C=DEFAULT_C, gamma='auto', random_state=0)
-		else:
-			return SVC(**{**values, 'random_state': 0})
+	def create_new_instance(self, values):
+		return SVC(**{**values, 'random_state': 0})
 
 	def param_grid(self, is_random=False):
 		'''
 		dictionary of hyper-parameters to get good values for each one of them
 		'''
-		# random search only accepts a dict for params whereas gridsearch can take either a dic or list of dict
-		if is_random:
-			return {'C': [1, 10, 100, 1000], 'kernel': ['rbf','sigmoid'], 'gamma': [0.01, 0.10, 1.0, 10]}
-		else:
-			return [
-				# {'C': [1, 10, 100, 1000], 'kernel': ['linear','poly']}, 
-				{'C': [1, 10, 100, 1000], 'kernel': ['rbf','sigmoid'], 'gamma': [0.01, 0.10, 1.0, 10]},
-			]
+		return DEFAULTS[self.dataset]['svm']['param_grid']
 
 	def __str__(self):
 		return "SVM"

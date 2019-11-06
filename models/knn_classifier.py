@@ -1,12 +1,11 @@
 from sklearn.neighbors import KNeighborsClassifier
-import numpy as np
-
-DEFAULT_KNN_NEIGHBORS = 10
+from models.defaults import DEFAULTS
 
 class KnnClassifier():
 	
-	def __init__(self):
-		self.knn = KNeighborsClassifier(n_neighbors=DEFAULT_KNN_NEIGHBORS)
+	def __init__(self, dataset):
+		self.dataset = dataset
+		self.knn = KNeighborsClassifier(**DEFAULTS[dataset]['knn']['defaults'])
 		print("""
 			**********************
 			KNN
@@ -27,18 +26,14 @@ class KnnClassifier():
 		self.train_and_predict(X, y, X_test)
 		return self.knn.score(X_test, y_test)
 
-	def create_new_instance(self, values, with_default_values=True):
-		if with_default_values:
-			return KNeighborsClassifier(n_neighbors=DEFAULT_KNN_NEIGHBORS)
-		else:
-			return KNeighborsClassifier(**values)
+	def create_new_instance(self, values):
+		return KNeighborsClassifier(**values)
 
 	def param_grid(self, is_random=False):
 		'''
 		dictionary of hyper-parameters to get good values for each one of them
 		'''
-		# random search only accepts a dict for params whereas gridsearch can take either a dic or list of dict
-		return {'n_neighbors': np.arange(1, 30)}
+		return DEFAULTS[self.dataset]['knn']['param_grid']
 
 	def __str__(self):
 		return "KNN"
