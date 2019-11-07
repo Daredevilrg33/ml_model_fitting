@@ -1,5 +1,6 @@
 from scipy.io import arff
 import os
+import random
 
 try:
 	import pandas as pd
@@ -28,7 +29,9 @@ class Model():
 		if file_path.endswith('arff'):
 			self.get_arff_data(file_path)
 		elif file_path.endswith('data'):
-			if file_path.endswith('wisconsin.data'):
+			if file_path.endswith('adult.data'):
+				self.get_adult_data(file_path)
+			elif file_path.endswith('wisconsin.data'):
 				self.get_bc_wisconsin_data(file_path)
 			elif 'german' in file_path:
 				self.get_german_credit_data(file_path)
@@ -38,6 +41,70 @@ class Model():
 			self.get_steel_plates_faults_data(file_path)
 		else:
 			print("Don't know how to load this data")
+
+	def get_adult_data(self, file_path):
+		'''
+		Replace <=50K as 0 and >50K as 1 to make classification work properly.
+		Also, replace string features into numbers
+		'''
+		data = pd.read_csv(file_path, header=None)
+		data = self.change_text_to_number_data_for_adult(data)
+		data.replace(' <=50K', 0, inplace=True)
+		data.replace(' >50K', 1, inplace=True)
+		self.y = np.array(data.iloc[:,14])
+		self.X = np.array(data.iloc[:,:14])
+
+
+	def change_text_to_number_data_for_adult(self, data):
+		'''
+		Replace textual data in columns with numbers
+		'''
+		random.seed(0)
+
+		workclass_dict = {' State-gov': 0, ' Self-emp-not-inc': 1, ' Private': 2, ' Federal-gov': 3, ' Local-gov': 4, ' Self-emp-inc': 5, ' Without-pay': 6, ' Never-worked': 7, ' ?': random.randrange(0,8)}
+		education_dict = {' Bachelors': 0, ' HS-grad': 1, ' 11th': 2, ' Masters': 3, ' 9th': 4, ' Some-college': 5, ' Assoc-acdm': 6, ' Assoc-voc': 7, ' 7th-8th': 8, ' Doctorate': 9, ' Prof-school': 10, ' 5th-6th': 11, ' 10th': 12, ' 1st-4th': 13, ' Preschool': 14, ' 12th': 15, ' ?': random.randrange(0,16)}
+		marital_status_dict = {' Never-married': 0, ' Married-civ-spouse': 1, ' Divorced': 2, ' Married-spouse-absent': 3, ' Separated': 4, ' Married-AF-spouse': 5, ' Widowed': 6, ' ?': random.randrange(0,7)}
+		occupation_dict = {' Adm-clerical': 0, ' Exec-managerial': 1, ' Handlers-cleaners': 2, ' Prof-specialty': 3, ' Other-service': 4, ' Sales': 5, ' Craft-repair': 6, ' Transport-moving': 7, ' Farming-fishing': 8, ' Machine-op-inspct': 9, ' Tech-support': 10, ' Protective-serv': 11, ' Armed-Forces': 12, ' Priv-house-serv': 13, ' ?': random.randrange(0,14)}
+		relationship_dict = {' Not-in-family': 0, ' Husband': 1, ' Wife': 2, ' Own-child': 3, ' Unmarried': 4, ' Other-relative': 5, ' ?': random.randrange(0,6)}
+		race_dict = {' White': 0, ' Black': 1, ' Asian-Pac-Islander': 2, ' Amer-Indian-Eskimo': 3, ' Other': 4, ' ?': random.randrange(0,5)}
+		sex_dict = {' Male': 0, ' Female': 1, ' ?': random.randrange(0,2)}
+		country_dict = {' United-States': 0, ' Cuba': 1, ' Jamaica': 2, ' India': 3, ' Mexico': 4, ' South': 5, ' Puerto-Rico': 6, ' Honduras': 7, ' England': 8, ' Canada': 9, ' Germany': 10, ' Iran': 11, ' Philippines': 12, ' Italy': 13, ' Poland': 14, ' Columbia': 15, ' Cambodia': 16, ' Thailand': 17, ' Ecuador': 18, ' Laos': 19, ' Taiwan': 20, ' Haiti': 21, ' Portugal': 22, ' Dominican-Republic': 23, ' El-Salvador': 24, ' France': 25, ' Guatemala': 26, ' China': 27, ' Japan': 28, ' Yugoslavia': 29, ' Peru': 30, ' Outlying-US(Guam-USVI-etc)': 31, ' Scotland': 32, ' Trinadad&Tobago': 33, ' Greece': 34, ' Nicaragua': 35, ' Vietnam': 36, ' Hong': 37, ' Ireland': 38, ' Hungary': 39, ' Holand-Netherlands': 40, ' ?': random.randrange(0,41)}
+		
+		for key, val in workclass_dict.items():
+			data[1].replace(key, val, inplace=True)
+
+		for key, val in education_dict.items():
+			data[3].replace(key, val, inplace=True)
+
+		for key, val in marital_status_dict.items():
+			data[5].replace(key, val, inplace=True)
+
+		for key, val in occupation_dict.items():
+			data[6].replace(key, val, inplace=True)
+
+		for key, val in relationship_dict.items():
+			data[7].replace(key, val, inplace=True)
+
+		for key, val in race_dict.items():
+			data[8].replace(key, val, inplace=True)
+
+		for key, val in sex_dict.items():
+			data[9].replace(key, val, inplace=True)
+
+		for key, val in country_dict.items():
+			data[13].replace(key, val, inplace=True)
+		
+		return data
+
+	def process_and_load_adult_test_data(self):
+		data = pd.read_csv('./data/adult.test', header=None)
+		data = self.change_text_to_number_data_for_adult(data)
+		data.replace(' <=50K.', 0, inplace=True)
+		data.replace(' >50K.', 1, inplace=True)
+		self.X_train = self.X
+		self.y_train = self.y
+		self.y_test = np.array(data.iloc[:,14])
+		self.X_test = np.array(data.iloc[:,:14])
 
 	def get_steel_plates_faults_data(self, file_path):
 		'''
@@ -109,7 +176,6 @@ class Model():
 		'''
 			Delegates the score method to individual model and gets the score
 		'''
-		self.get_train_and_test_split()
 		score = self.model_type.score(self.X_train, self.X_test, self.y_train, self.y_test)
 		print('----- {} score without any preprocessing: {} -----'.format(self.model_type, score))
 
@@ -173,6 +239,12 @@ class Model():
 
 	def perform_experiments(self, file_path):
 		self.get_data(file_path)
+		
+		if file_path != "./data/adult.data":
+			self.get_train_and_test_split()
+		else:
+			self.process_and_load_adult_test_data()
+
 		self.get_score_without_any_processing()
 		self.score_after_preprocessing()
 		

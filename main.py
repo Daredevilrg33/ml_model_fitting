@@ -20,6 +20,7 @@ def __main__():
 		'./data/statlog-australian-credit-data.data',
 		'./data/statlog-german-credit-data.data',
 		'./data/steel-plates-faults.NNA',
+		'./data/adult.data',
 	]
 
 
