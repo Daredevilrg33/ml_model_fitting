@@ -3,6 +3,8 @@ from models.knn_classifier import KnnClassifier
 from models.svm_classifier import SvmClassifier
 from models.gaussian_nb_classifier import GaussianNbClassifier
 from models.mlp_classifier import MlpClassifier
+from models.logistic_reg_classifier import LogisticRegClassifier
+
 import warnings
 
 from sklearn.utils.testing import ignore_warnings
@@ -43,5 +45,10 @@ def __main__():
 		nn_classifier = MlpClassifier(dataset)
 		model = Model(model_type=nn_classifier)
 		model.perform_experiments(dataset)
+
+		lr_classifier = LogisticRegClassifier(dataset)
+		model = Model(model_type=lr_classifier)
+		model.perform_experiments(dataset)
+
 
 __main__()

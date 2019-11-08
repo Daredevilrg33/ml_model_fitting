@@ -40,6 +40,14 @@ DEFAULTS = {
 				'hidden_layer_sizes': [(random.randrange(1, 20), random.randrange(1, 20)), (random.randrange(1, 20), random.randrange(1, 20))], 
 				'max_iter': [random.randrange(100, 700)], 'activation':['relu', 'tanh'], 'solver': ['adam', 'lbfgs'], 'alpha':[0.001, 0.0001, 0.00001],
 			}
+		},
+		'logistic_reg': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
 		}
 	},
 	'./data/breast-cancer-wisconsin.data': {
@@ -79,6 +87,14 @@ DEFAULTS = {
 			'param_grid': {
 				'hidden_layer_sizes': [(random.randrange(1, 20), random.randrange(1, 20)), (random.randrange(1, 20), random.randrange(1, 20))], 
 				'max_iter': [random.randrange(100, 700)], 'activation':['relu', 'tanh'], 'solver': ['adam', 'lbfgs'], 'alpha':[0.001, 0.0001, 0.00001],
+			}
+		},
+		'logistic_reg': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
 			}
 		}
 	},
@@ -120,6 +136,14 @@ DEFAULTS = {
 				'hidden_layer_sizes': [(random.randrange(1, 20), random.randrange(1, 20)), (random.randrange(1, 20), random.randrange(1, 20))], 
 				'max_iter': [random.randrange(100, 700)], 'activation':['relu', 'tanh'], 'solver': ['adam', 'lbfgs'], 'alpha':[0.001, 0.0001, 0.00001],
 			}
+		},
+		'logistic_reg': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
 		}
 	},
 	'./data/statlog-german-credit-data.data': {
@@ -159,6 +183,14 @@ DEFAULTS = {
 			'param_grid': {
 				'hidden_layer_sizes': [(random.randrange(1, 20), random.randrange(1, 20)), (random.randrange(1, 20), random.randrange(1, 20))], 
 				'max_iter': [random.randrange(100, 700)], 'activation':['relu', 'tanh'], 'solver': ['adam', 'lbfgs'], 'alpha':[0.001, 0.0001, 0.00001],
+			}
+		},
+		'logistic_reg': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
 			}
 		}
 	},
@@ -200,6 +232,14 @@ DEFAULTS = {
 				'hidden_layer_sizes': [(random.randrange(1, 20), random.randrange(1, 20)), (random.randrange(1, 20), random.randrange(1, 20))], 
 				'max_iter': [random.randrange(100, 700)], 'activation':['relu', 'tanh'], 'solver': ['adam', 'lbfgs'], 'alpha':[0.001, 0.0001, 0.00001],
 			}
+		},
+		'logistic_reg': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
 		}
 	},
 	'./data/adult.data': {
@@ -239,6 +279,14 @@ DEFAULTS = {
 			'param_grid': {
 				'hidden_layer_sizes': [(random.randrange(1, 20), random.randrange(1, 20)), (random.randrange(1, 20), random.randrange(1, 20))], 
 				'max_iter': [random.randrange(100, 700)], 'activation':['relu', 'tanh'], 'solver': ['adam', 'lbfgs'], 'alpha':[0.001, 0.0001, 0.00001],
+			}
+		},
+		'logistic_reg': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
 			}
 		}
 	},
