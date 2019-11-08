@@ -4,6 +4,8 @@ from models.svm_classifier import SvmClassifier
 from models.gaussian_nb_classifier import GaussianNbClassifier
 from models.mlp_classifier import MlpClassifier
 from models.logistic_reg_classifier import LogisticRegClassifier
+from models.decision_tree_classifier import DTClassifier
+from models.random_forest_classifier import RfClassifier
 
 import warnings
 
@@ -50,5 +52,12 @@ def __main__():
 		model = Model(model_type=lr_classifier)
 		model.perform_experiments(dataset)
 
+		dt_classifier = DTClassifier(dataset)
+		model = Model(model_type=dt_classifier)
+		model.perform_experiments(dataset)
+
+		rf_classifier = RfClassifier(dataset)
+		model = Model(model_type=rf_classifier)
+		model.perform_experiments(dataset)
 
 __main__()
