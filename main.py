@@ -6,7 +6,7 @@ from models.mlp_classifier import MlpClassifier
 from models.logistic_reg_classifier import LogisticRegClassifier
 from models.decision_tree_classifier import DTClassifier
 from models.random_forest_classifier import RfClassifier
-
+from models.ada_boost_classifier import ABClassifier
 import warnings
 
 from sklearn.utils.testing import ignore_warnings
@@ -58,6 +58,10 @@ def __main__():
 
 		rf_classifier = RfClassifier(dataset)
 		model = Model(model_type=rf_classifier)
+		model.perform_experiments(dataset)
+
+		ada_boost_classifier = ABClassifier(dataset)
+		model = Model(model_type=ada_boost_classifier)
 		model.perform_experiments(dataset)
 
 __main__()

@@ -64,6 +64,14 @@ DEFAULTS = {
 			'param_grid': {
 
 			}
+		},
+		'ab': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
 		}
 	},
 	'./data/breast-cancer-wisconsin.data': {
@@ -122,6 +130,14 @@ DEFAULTS = {
 			}
 		},
 		'rf': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'ab': {
 			'defaults': {
 
 			},
@@ -192,6 +208,14 @@ DEFAULTS = {
 			'param_grid': {
 
 			}
+		},
+		'ab': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
 		}
 	},
 	'./data/statlog-german-credit-data.data': {
@@ -250,6 +274,14 @@ DEFAULTS = {
 			}
 		},
 		'rf': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'ab': {
 			'defaults': {
 
 			},
@@ -320,6 +352,14 @@ DEFAULTS = {
 			'param_grid': {
 
 			}
+		},
+		'ab': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
 		}
 	},
 	'./data/adult.data': {
@@ -378,6 +418,14 @@ DEFAULTS = {
 			}
 		},
 		'rf': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'ab': {
 			'defaults': {
 
 			},
