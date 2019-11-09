@@ -13,7 +13,7 @@ class DTClassifier():
     		**********************
     	""")
 
-    def train(self, X, y, X_test):
+    def train_and_predict(self, X, y, X_test):
         '''
         fit training dataset and predict values for test dataset
         '''
@@ -28,7 +28,7 @@ class DTClassifier():
         return self.decisiontree.score(X_test, y_test)
 
     def create_new_instance(self, values):
-        return DTClassifier(**{**values})
+        return DecisionTreeClassifier(**{**values})
 
     def param_grid(self, is_random=False):
         '''

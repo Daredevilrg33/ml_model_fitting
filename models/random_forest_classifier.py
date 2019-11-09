@@ -13,7 +13,7 @@ class RfClassifier():
     		**********************
     	""")
 
-    def train(self, X, y, X_test):
+    def train_and_predict(self, X, y, X_test):
         '''
         fit training dataset and predict values for test dataset
         '''
@@ -28,7 +28,7 @@ class RfClassifier():
         return self.random_forest.score(X_test, y_test)
 
     def create_new_instance(self, values):
-        return RfClassifier(**{**values})
+        return RandomForestClassifier(**{**values})
 
     def param_grid(self, is_random=False):
         '''

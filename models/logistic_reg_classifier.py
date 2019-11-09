@@ -13,7 +13,7 @@ class LogisticRegClassifier():
     		**********************
     	""")
 
-    def train(self, X, y, X_test):
+    def train_and_predict(self, X, y, X_test):
         '''
         fit training dataset and predict values for test dataset
         '''
