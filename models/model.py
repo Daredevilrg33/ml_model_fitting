@@ -10,6 +10,14 @@ except ImportError:
 	print("installation complete---->")
 	import pandas as pd
 
+
+try:
+	import xlrd
+except ImportError:
+	print("installing xlrd---->")
+	os.system("conda install xlrd	")
+	print("installation complete---->")
+
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import GridSearchCV

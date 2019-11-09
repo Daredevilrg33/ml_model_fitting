@@ -36,21 +36,21 @@ def __main__():
 		print("\n\n******** {} data ***********\n".format(dataset.split('/')[-1]))
 		print("*******************************************\n")
 
-		# knn_classifier = KnnClassifier(dataset)
-		# model = Model(model_type=knn_classifier)
-		# model.perform_experiments(dataset)
+		knn_classifier = KnnClassifier(dataset)
+		model = Model(model_type=knn_classifier)
+		model.perform_experiments(dataset)
 		
-		# svm_classifier = SvmClassifier(dataset)
-		# model = Model(model_type=svm_classifier)
-		# model.perform_experiments(dataset)
+		svm_classifier = SvmClassifier(dataset)
+		model = Model(model_type=svm_classifier)
+		model.perform_experiments(dataset)
 
-		# gaussian_nb_classifier = GaussianNbClassifier(dataset)
-		# model = Model(model_type=gaussian_nb_classifier)
-		# model.perform_experiments(dataset)
+		gaussian_nb_classifier = GaussianNbClassifier(dataset)
+		model = Model(model_type=gaussian_nb_classifier)
+		model.perform_experiments(dataset)
 
-		# nn_classifier = MlpClassifier(dataset)
-		# model = Model(model_type=nn_classifier)
-		# model.perform_experiments(dataset)
+		nn_classifier = MlpClassifier(dataset)
+		model = Model(model_type=nn_classifier)
+		model.perform_experiments(dataset)
 
 		lr_classifier = LogisticRegClassifier(dataset)
 		model = Model(model_type=lr_classifier)
