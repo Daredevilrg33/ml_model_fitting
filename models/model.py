@@ -15,6 +15,7 @@ from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import RandomizedSearchCV
 from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import LabelEncoder
 import numpy as np
 
 TEST_SIZE_SPLIT = 0.3
@@ -27,7 +28,12 @@ class Model():
 
 	def get_data(self, file_path):
 		if file_path.endswith('arff'):
-			self.get_arff_data(file_path)
+			if file_path.endswith('messidor_features.arff'):
+				self.get_arff_data(file_path)
+			elif file_path.endswith('seismic-bumps.arff'):
+				self.get_seismic_bumps_arff_data(file_path)
+			else:
+				self.get_ThoraricSurgery_arff_data(file_path)
 		elif file_path.endswith('data'):
 			if file_path.endswith('adult.data'):
 				self.get_adult_data(file_path)
@@ -35,10 +41,14 @@ class Model():
 				self.get_bc_wisconsin_data(file_path)
 			elif 'german' in file_path:
 				self.get_german_credit_data(file_path)
-			else:
+			elif 'australian' in file_path:
 				self.get_au_credit_data(file_path)
+			else:
+				self.get_yeast_data(file_path)
 		elif file_path.endswith('NNA'):
 			self.get_steel_plates_faults_data(file_path)
+		elif file_path.endswith('xls'):
+			self.get_default_of_credit_cards_clients_data(file_path)
 		else:
 			print("Don't know how to load this data")
 
@@ -160,7 +170,69 @@ class Model():
 		data = arff.loadarff(file_path)
 		dataset = pd.DataFrame(data[0])
 		self.X = dataset.iloc[:, 0: 19].values
-		self.y = dataset.iloc[:, 19].values.astype('int') # convert to int from object type	
+		self.y = dataset.iloc[:, 19].values.astype('int') # convert to int from object type
+
+	def get_yeast_data(self, file_path):
+		'''
+        This method is used to load the data from a file which has .data extension and seperate out X and y labels
+        '''
+		names = ['Sequence Name', 'mcg', 'gvh', 'alm', 'mit', 'erl', 'pox', 'vac', 'nuc', 'class']
+		data = pd.read_csv(file_path, names=names, delim_whitespace=True)
+		dataset = pd.DataFrame(data)
+		label_encoder = LabelEncoder()
+		dataset['Sequence Name'] = label_encoder.fit_transform(dataset['Sequence Name'])
+		dataset['class'] = label_encoder.fit_transform(dataset['class'])
+		self.X = dataset.iloc[:, 0:9].values.astype(int)
+		self.y = dataset.iloc[:, 9].values
+
+	def get_seismic_bumps_arff_data(self, file_path):
+		'''
+        This method is used to load the arff data and seperate out X and y labels
+        '''
+		data = arff.loadarff(file_path)
+		dataset = pd.DataFrame(data[0])
+		label_encoder = LabelEncoder()
+		dataset['seismic'] = label_encoder.fit_transform(dataset['seismic'])
+		dataset['seismoacoustic'] = label_encoder.fit_transform(dataset['seismoacoustic'])
+		dataset['shift'] = label_encoder.fit_transform(dataset['shift'])
+		dataset['ghazard'] = label_encoder.fit_transform(dataset['ghazard'])
+		dataset['class'] = label_encoder.fit_transform(dataset['class'])
+		self.X = dataset.iloc[:, 0: 18].values.astype(int)
+		self.y = dataset.iloc[:, 18].values
+
+	def get_ThoraricSurgery_arff_data(self, file_path):
+		'''
+        This method is used to load the arff data and seperate out X and y labels
+        '''
+		data = arff.loadarff(file_path)
+		dataset = pd.DataFrame(data[0])
+		label_encoder = LabelEncoder()
+		dataset['DGN'] = label_encoder.fit_transform(dataset['DGN'])
+		dataset['PRE6'] = label_encoder.fit_transform(dataset['PRE6'])
+		dataset['PRE7'] = label_encoder.fit_transform(dataset['PRE7'])
+		dataset['PRE8'] = label_encoder.fit_transform(dataset['PRE8'])
+		dataset['PRE9'] = label_encoder.fit_transform(dataset['PRE9'])
+		dataset['PRE10'] = label_encoder.fit_transform(dataset['PRE10'])
+		dataset['PRE11'] = label_encoder.fit_transform(dataset['PRE11'])
+		dataset['PRE14'] = label_encoder.fit_transform(dataset['PRE14'])
+		dataset['PRE17'] = label_encoder.fit_transform(dataset['PRE17'])
+		dataset['PRE19'] = label_encoder.fit_transform(dataset['PRE19'])
+		dataset['PRE25'] = label_encoder.fit_transform(dataset['PRE25'])
+		dataset['PRE30'] = label_encoder.fit_transform(dataset['PRE30'])
+		dataset['PRE32'] = label_encoder.fit_transform(dataset['PRE32'])
+		dataset['Risk1Yr'] = label_encoder.fit_transform(dataset['Risk1Yr'])
+		self.X = dataset.iloc[:, 0: 16].values
+		self.y = dataset.iloc[:, 16].values
+
+	def get_default_of_credit_cards_clients_data(self, file_path):
+		'''
+        This method is used to load the xls data and separate out X and y labels
+        '''
+		data = pd.read_excel(file_path)
+		dataset = pd.DataFrame(data)
+		dataset = dataset.iloc[1:, 1:]
+		self.X = dataset.iloc[:, 0:23].values.astype(int)
+		self.y = dataset.iloc[:, 23].values.astype(int)
 
 	def get_train_and_test_split(self, test_size=TEST_SIZE_SPLIT, stratify=True):
 		'''
@@ -239,7 +311,6 @@ class Model():
 
 	def perform_experiments(self, file_path):
 		self.get_data(file_path)
-		
 		if file_path != "./data/adult.data":
 			self.get_train_and_test_split()
 		else:
