@@ -1,14 +1,46 @@
 from scipy.io import arff
 import pandas as pd
+from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import LabelEncoder
+from sklearn import linear_model
 import xlrd
-data = pd.read_excel('../data/default_of_credit_card_clients.xls')
-# print(data.head(20))
-dataset=pd.DataFrame(data)
-dataset=dataset.iloc[1:,1:]
-print(dataset)
-print(dataset.iloc[:,0:23].values.astype(int))
-print(dataset.iloc[:,23].values).astype(int)
+from sklearn.model_selection import train_test_split
+
+data_path = 'Bike-Sharing-Dataset/hour.csv'
+rides = pd.read_csv('../data_regression/bike_sharing_hour.csv')
+print(rides.head(2))
+dummy_fields = ['season', 'weathersit', 'mnth', 'hr', 'weekday']
+for each in dummy_fields:
+    dummies = pd.get_dummies(rides[each], prefix=each, drop_first=True)
+    rides = pd.concat([rides, dummies], axis=1)
+print(rides.head(2))
+fields_to_drop = ['instant', 'dteday', 'season', 'atemp', 'yr', 'registered', 'casual', 'season',
+                  'weathersit', 'mnth', 'hr', 'weekday'] #remove original features
+data = rides.drop(fields_to_drop, axis=1)
+print(data.head(2))
+data = pd.DataFrame(data)
+X = data.iloc[:, 0:51].values
+y = data.iloc[:, 51].values
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
+
+# Initialize logistic regression model
+lModel = LinearRegression()
+
+# Train the model
+lModel.fit(X_train, y_train)
+lModel.predict(X_test)
+print(lModel.score(X_test, y_test))
+
+
+
+# data = pd.read_excel('../data/default_of_credit_card_clients.xls')
+# # print(data.head(20))
+# dataset=pd.DataFrame(data)
+# dataset=dataset.iloc[1:,1:]
+# print(dataset)
+# print(dataset.iloc[:,0:23].values.astype(int))
+# print(dataset.iloc[:,23].values).astype(int)
 
 
 
