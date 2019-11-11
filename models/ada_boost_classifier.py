@@ -37,5 +37,8 @@ class ABClassifier():
         # random search only accepts a dict for params whereas gridsearch can take either a dic or list of dict
         return DEFAULTS[self.dataset]['ab']['param_grid']
 
+    def get_sklearn_model_class(self):
+        return self.adaboost
+
     def __str__(self):
         return "AdaBoost"

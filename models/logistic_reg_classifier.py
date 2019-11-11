@@ -37,5 +37,8 @@ class LogisticRegClassifier():
         # random search only accepts a dict for params whereas gridsearch can take either a dic or list of dict
         return DEFAULTS[self.dataset]['logistic_reg']['param_grid']
 
+    def get_sklearn_model_class(self):
+        return self.logistic
+
     def __str__(self):
         return "LogisticRegression"

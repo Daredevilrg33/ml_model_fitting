@@ -35,5 +35,8 @@ class SvmClassifier():
 		'''
 		return DEFAULTS[self.dataset]['svm']['param_grid']
 
+	def get_sklearn_model_class(self):
+		return self.svm
+
 	def __str__(self):
 		return "SVM"

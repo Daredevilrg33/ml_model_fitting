@@ -36,5 +36,8 @@ class GaussianNbClassifier():
 		# random search only accepts a dict for params whereas gridsearch can take either a dic or list of dict
 		return DEFAULTS[self.dataset]['gaussian_nb']['param_grid']
 
+	def get_sklearn_model_class(self):
+		return self.nb
+
 	def __str__(self):
 		return "GaussianNB"

@@ -35,5 +35,8 @@ class KnnClassifier():
 		'''
 		return DEFAULTS[self.dataset]['knn']['param_grid']
 
+	def get_sklearn_model_class(self):
+		return self.knn
+
 	def __str__(self):
 		return "KNN"

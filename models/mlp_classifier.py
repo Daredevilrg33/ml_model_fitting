@@ -35,5 +35,8 @@ class MlpClassifier():
 		'''
 		return DEFAULTS[self.dataset]['nn']['param_grid']
 
+	def get_sklearn_model_class(self):
+		return self.nn
+
 	def __str__(self):
 		return "Neural Network"

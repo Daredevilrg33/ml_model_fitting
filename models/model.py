@@ -18,6 +18,13 @@ except ImportError:
 	os.system("conda install xlrd	")
 	print("installation complete---->")
 
+try:
+	import seaborn as sns
+except ImportError:
+	print("installing seaborn---->")
+	os.system("conda install seaborn")
+	import seaborn as sns
+
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import GridSearchCV
@@ -26,6 +33,9 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import LabelEncoder
 import numpy as np
 
+import matplotlib.pyplot as plt
+from sklearn.metrics import accuracy_score, confusion_matrix, precision_recall_fscore_support
+
 TEST_SIZE_SPLIT = 0.3
 CV_FOLD = 7
 
@@ -33,6 +43,9 @@ class Model():
 
 	def __init__(self, model_type):
 		self.model_type = model_type
+		self.best_classifier = None
+		self.best_score = None
+		self.is_normalized = False
 
 	def get_data(self, file_path):
 		if file_path.endswith('arff'):
@@ -257,6 +270,10 @@ class Model():
 			Delegates the score method to individual model and gets the score
 		'''
 		score = self.model_type.score(self.X_train, self.X_test, self.y_train, self.y_test)
+		if self.best_score is None or (self.best_score is not None and score >= self.best_score):
+			self.best_score = score
+			self.best_classifier = self.model_type.get_sklearn_model_class()
+
 		print('----- {} score without any preprocessing: {} -----'.format(self.model_type, score))
 
 	def preprocess_data_with_scaler(self):
@@ -270,6 +287,10 @@ class Model():
 	def score_after_preprocessing(self):
 		self.preprocess_data_with_scaler()
 		score = self.model_type.score(self.X_train_scaled, self.X_test_scaled, self.y_train, self.y_test)
+		if self.best_score is None or (self.best_score is not None and score >= self.best_score):
+			self.best_score = score
+			self.best_classifier = self.model_type.get_sklearn_model_class()
+			self.is_normalized = True
 		print('----- {} score after normalizing dataset: {} -----'.format(self.model_type, score))
 
 	def train_and_predict_for_best_params(self, values, is_scaled=False):
@@ -277,11 +298,18 @@ class Model():
 		if is_scaled:
 			model.fit(self.X_train_scaled, self.y_train)
 			model.predict(self.X_test_scaled)
-			return model.score(self.X_test_scaled, self.y_test)
+			score = model.score(self.X_test_scaled, self.y_test)
 		else:
 			model.fit(self.X_train, self.y_train)
 			model.predict(self.X_test)
-			return model.score(self.X_test, self.y_test)
+			score = model.score(self.X_test, self.y_test)
+
+		if self.best_score is None or (self.best_score is not None and score >= self.best_score):
+			self.best_score = score
+			self.best_classifier = model
+			self.is_normalized = is_scaled
+
+		return score
 
 	def grid_search_with_cross_validation(self, use_preprocessing=False, k_fold=CV_FOLD):
 		'''
@@ -299,7 +327,7 @@ class Model():
 			print('----- {} best param values using grid search for {}-fold cross validation without any preprocessing: {} -----'.format(self.model_type, k_fold, classifier_gscv.best_params_))
 			score = self.train_and_predict_for_best_params(values=classifier_gscv.best_params_)
 			print('----- {} score using grid search for {}-fold cross validation on test dataset without any preprocessing: {} -----'.format(self.model_type, k_fold, score))
-
+	
 	def random_search_with_cross_validation(self, use_preprocessing=False, k_fold=CV_FOLD):
 		'''
 		Tries to find optimal value of paramters for a model by using cross validations and random search
@@ -317,6 +345,27 @@ class Model():
 			score = self.train_and_predict_for_best_params(values=classifier_rscv.best_params_)
 			print('----- {} score using random search cv for {}-fold cross validation on test dataset without any preprocessing: {} -----'.format(self.model_type, k_fold, score))
 
+	def plot_confusion_matrix(self):
+		# Creates a confusion matrix
+		if self.is_normalized:
+			y_pred = self.best_classifier.predict(self.X_test_scaled)
+		else:
+			y_pred = self.best_classifier.predict(self.X_test)
+		
+		cm = confusion_matrix(self.y_test, y_pred) 
+
+		# Transform to df for easier plotting
+		cm_df = pd.DataFrame(cm)
+
+		plt.figure(figsize=(6,4))
+		ax = sns.heatmap(cm, annot=True, fmt="d")
+		bottom, top = ax.get_ylim()
+		ax.set_ylim(bottom + 0.5, top - 0.5)
+		plt.title('{} Accuracy:{:.2f}'.format(str(self.model_type), self.best_score*100))
+		plt.ylabel('True label')
+		plt.xlabel('Predicted label')
+		plt.savefig("./plots/{}-{}.png".format(self.model_type.dataset.split('/')[-1], str(self.model_type)))
+
 	def perform_experiments(self, file_path):
 		self.get_data(file_path)
 		if file_path != "./data/adult.data":
@@ -333,3 +382,5 @@ class Model():
 			self.grid_search_with_cross_validation(use_preprocessing=True)
 			self.random_search_with_cross_validation()
 			self.random_search_with_cross_validation(use_preprocessing=True)
+
+		self.plot_confusion_matrix()
