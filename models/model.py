@@ -48,7 +48,16 @@ class Model():
 		self.is_normalized = False
 
 	def get_data(self, file_path):
-		if file_path.endswith('arff'):
+		if file_path.endswith('csv'):
+			if file_path.endswith('hour.csv'):
+				self.get_bike_sharing_data(file_path)
+			elif file_path.endswith('Facebook.csv'):
+				self.get_facebook_metrics_data(file_path)
+			elif file_path.endswith('toxicity.csv'):
+				self.get_qsar_aquatic_toxicity_data(file_path)
+			else:
+				self.get_sgemm_product(file_path)
+		elif file_path.endswith('arff'):
 			if file_path.endswith('messidor_features.arff'):
 				self.get_arff_data(file_path)
 			elif file_path.endswith('seismic-bumps.arff'):
@@ -69,9 +78,86 @@ class Model():
 		elif file_path.endswith('NNA'):
 			self.get_steel_plates_faults_data(file_path)
 		elif file_path.endswith('xls'):
-			self.get_default_of_credit_cards_clients_data(file_path)
+			if file_path.endswith('clients.xls'):
+				self.get_default_of_credit_cards_clients_data(file_path)
+			else:
+				self.get_concrete_data(file_path)
 		else:
 			print("Don't know how to load this data")
+
+	def get_bike_sharing_data(self, file_path):
+		rides = pd.read_csv(file_path)
+		dummy_fields = ['season', 'weathersit', 'mnth', 'hr', 'weekday']
+		for each in dummy_fields:
+			dummies = pd.get_dummies(rides[each], prefix=each, drop_first=True)
+			rides = pd.concat([rides, dummies], axis=1)
+		fields_to_drop = ['instant', 'dteday', 'season', 'atemp', 'yr', 'registered', 'casual', 'season', 'weathersit',
+						  'mnth', 'hr', 'weekday']  # remove original features
+		data = rides.drop(fields_to_drop, axis=1)
+		data = pd.DataFrame(data)
+		self.X = data.iloc[:, 0:51].values
+		self.y = data.iloc[:, 51].values
+
+	def get_concrete_data(self, file_path):
+		input_data = pd.read_excel(file_path)
+		self.X = input_data.iloc[:, 0:8].values
+		self.y = input_data.iloc[:, 8].values
+
+	def Weekday(self,x):
+		if x == 1:
+			return 'Su'
+		elif x == 2:
+			return 'Mo'
+		elif x == 3:
+			return 'Tu'
+		elif x == 4:
+			return 'We'
+		elif x == 5:
+			return 'Th'
+		elif x == 6:
+			return 'Fr'
+		elif x == 7:
+			return "Sa"
+
+
+	def get_facebook_metrics_data(self, file_path):
+		df = pd.read_csv(file_path, delimiter=';')
+		df['Weekday'] = df['Post Weekday'].apply(lambda x: self.Weekday(x))
+		dayDf = pd.get_dummies(df['Weekday'])
+		df = pd.concat([df, dayDf], axis=1)
+		hours = list(range(0, 18))
+		# hours
+		for i in hours:
+			hours[i] = str(hours[i])
+			hours[i] = 'hr_' + hours[i]
+		hourDf = pd.get_dummies(df['Post Hour'], prefix='hr_')
+		df = pd.concat([df, hourDf], axis=1)
+		monthDf = pd.get_dummies(df['Post Month'], prefix='Mo')
+		df = pd.concat([df, monthDf], axis=1)
+		df['Video'] = pd.get_dummies(df['Type'])['Video']
+		df['Status'] = pd.get_dummies(df['Type'])['Status']
+		df['Photo'] = pd.get_dummies(df['Type'])['Photo']
+		df['Cat_1'] = pd.get_dummies(df['Category'])[1]
+		df['Cat_2'] = pd.get_dummies(df['Category'])[2]
+		df = df.fillna(0)
+		self.X = df[['Page total likes', 'Paid', 'Video', 'Status', 'Photo',
+					 'Cat_1', 'Cat_2', 'Mo', 'Tu', 'Sa', "We", 'Th', 'Fr',
+					 'hr__17', 'hr__1', 'hr__2', 'hr__3', 'hr__4', 'hr__5', 'hr__6', 'hr__7', 'hr__8',
+					 'hr__9', 'hr__10', 'hr__11', 'hr__12', 'hr__13', 'hr__14', 'hr__15', 'hr__16', 'Mo_1',
+					 'Mo_2', 'Mo_12', 'Mo_4', 'Mo_5', 'Mo_6', 'Mo_7', 'Mo_8', 'Mo_9', 'Mo_11', 'Mo_10']]
+		self.y = df['like']
+
+	def get_qsar_aquatic_toxicity_data(self, file_path):
+		data = pd.read_csv(file_path, delimiter=";")
+		self.X = data.iloc[:, 0:8].values
+		self.y = data.iloc[:, 8].values
+
+	def get_sgemm_product(self, file_path):
+		data = pd.read_csv(file_path)
+		data['Avg_Run'] = data[['Run1 (ms)', 'Run2 (ms)', 'Run3 (ms)', 'Run4 (ms)']].mean(axis=1)
+		data = data.drop(['Run1 (ms)', 'Run2 (ms)', 'Run3 (ms)', 'Run4 (ms)'], axis=1)
+		self.X = data.iloc[:, 0:14].values
+		self.y = data.iloc[:, 14].values
 
 	def get_adult_data(self, file_path):
 		'''
@@ -368,8 +454,10 @@ class Model():
 
 	def perform_experiments(self, file_path):
 		self.get_data(file_path)
-		if file_path != "./data/adult.data":
+		if file_path != "./data/adult.data" and "regression" not in file_path:
 			self.get_train_and_test_split()
+		elif "regression" in file_path:
+			self.get_train_and_test_split(stratify=False)
 		else:
 			self.process_and_load_adult_test_data()
 

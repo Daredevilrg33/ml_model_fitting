@@ -7,8 +7,7 @@ from models.logistic_reg_classifier import LogisticRegClassifier
 from models.decision_tree_classifier import DTClassifier
 from models.random_forest_classifier import RfClassifier
 from models.ada_boost_classifier import ABClassifier
-# from models_regression.linear_regression.py import LinearRegression
-# from models_regression.model_regression import Model
+from models.linear_regression import LinearReg
 import warnings
 
 from sklearn.utils.testing import ignore_warnings
@@ -21,55 +20,59 @@ warnings.filterwarnings("ignore", category=FutureWarning)       # Ignore sklearn
 def __main__():
 
     dataset_list = [
-        './data/messidor_features.arff',
-        './data/breast-cancer-wisconsin.data',
-        './data/statlog-australian-credit-data.data',
-        './data/statlog-german-credit-data.data',
-        './data/steel-plates-faults.NNA',
-        './data/adult.data',
-        './data/seismic-bumps.arff',
-        './data/ThoraricSurgery.arff',
-        './data/yeast.data',
-        './data/default_of_credit_card_clients.xls',
-        # './data_regression/bike_sharing_hour.csv'
+        # './data/messidor_features.arff',
+        # './data/breast-cancer-wisconsin.data',
+        # './data/statlog-australian-credit-data.data',
+        # './data/statlog-german-credit-data.data',
+        # './data/steel-plates-faults.NNA',
+        # './data/adult.data',
+        # './data/seismic-bumps.arff',
+        # './data/ThoraricSurgery.arff',
+        # './data/yeast.data',
+        # './data/default_of_credit_card_clients.xls',
+        # './data_regression/bike_sharing_hour.csv',
+        # './data_regression/Concrete_Data.xls',
+        './data_regression/dataset_Facebook.csv',
+        './data_regression/qsar_aquatic_toxicity.csv',
+        './data_regression/sgemm_product.csv'
     ]
     for dataset in dataset_list:
         print("\n\n******** {} data ***********\n".format(dataset.split('/')[-1]))
         print("*******************************************\n")
-        knn_classifier = KnnClassifier(dataset)
-        model = Model(model_type=knn_classifier)
-        model.perform_experiments(dataset)
-
-        svm_classifier = SvmClassifier(dataset)
-        model = Model(model_type=svm_classifier)
-        model.perform_experiments(dataset)
-
-        gaussian_nb_classifier = GaussianNbClassifier(dataset)
-        model = Model(model_type=gaussian_nb_classifier)
-        model.perform_experiments(dataset)
-
-        nn_classifier = MlpClassifier(dataset)
-        model = Model(model_type=nn_classifier)
-        model.perform_experiments(dataset)
-
-        lr_classifier = LogisticRegClassifier(dataset)
-        model = Model(model_type=lr_classifier)
-        model.perform_experiments(dataset)
-
-        dt_classifier = DTClassifier(dataset)
-        model = Model(model_type=dt_classifier)
-        model.perform_experiments(dataset)
-
-        rf_classifier = RfClassifier(dataset)
-        model = Model(model_type=rf_classifier)
-        model.perform_experiments(dataset)
-
-        ada_boost_classifier = ABClassifier(dataset)
-        model = Model(model_type=ada_boost_classifier)
-        model.perform_experiments(dataset)
-
-        # linear_regression = LinearRegression(dataset)
-        # model = Model(model_type=linear_regression)
+        # knn_classifier = KnnClassifier(dataset)
+        # model = Model(model_type=knn_classifier)
         # model.perform_experiments(dataset)
+        #
+        # svm_classifier = SvmClassifier(dataset)
+        # model = Model(model_type=svm_classifier)
+        # model.perform_experiments(dataset)
+        #
+        # gaussian_nb_classifier = GaussianNbClassifier(dataset)
+        # model = Model(model_type=gaussian_nb_classifier)
+        # model.perform_experiments(dataset)
+        #
+        # nn_classifier = MlpClassifier(dataset)
+        # model = Model(model_type=nn_classifier)
+        # model.perform_experiments(dataset)
+        #
+        # lr_classifier = LogisticRegClassifier(dataset)
+        # model = Model(model_type=lr_classifier)
+        # model.perform_experiments(dataset)
+        #
+        # dt_classifier = DTClassifier(dataset)
+        # model = Model(model_type=dt_classifier)
+        # model.perform_experiments(dataset)
+        #
+        # rf_classifier = RfClassifier(dataset)
+        # model = Model(model_type=rf_classifier)
+        # model.perform_experiments(dataset)
+        #
+        # ada_boost_classifier = ABClassifier(dataset)
+        # model = Model(model_type=ada_boost_classifier)
+        # model.perform_experiments(dataset)
+
+        linear_regression = LinearReg(dataset)
+        model = Model(model_type=linear_regression)
+        model.perform_experiments(dataset)
 
 __main__()

@@ -722,4 +722,44 @@ DEFAULTS = {
 			}
 		}
 	},
+	'./data_regression/bike_sharing_hour.csv': {
+		'linear_reg': {
+			'defaults': {
+			},
+			'param_grid': {
+			}
+		}
+	},
+	'./data_regression/dataset_Facebook.csv': {
+		'linear_reg': {
+			'defaults': {
+			},
+			'param_grid': {
+			}
+		}
+	},
+	'./data_regression/qsar_aquatic_toxicity.csv': {
+		'linear_reg': {
+			'defaults': {
+			},
+			'param_grid': {
+			}
+		}
+	},
+	'./data_regression/sgemm_product.csv': {
+		'linear_reg': {
+			'defaults': {
+			},
+			'param_grid': {
+			}
+		}
+	},
+	'./data_regression/Concrete_Data.xls': {
+		'linear_reg': {
+			'defaults': {
+			},
+			'param_grid': {
+			}
+		}
+	}
 }
