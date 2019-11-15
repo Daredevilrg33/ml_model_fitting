@@ -5,7 +5,7 @@ class SvmClassifier():
 	
 	def __init__(self, dataset):
 		self.dataset = dataset
-		self.svm = SVC(**DEFAULTS[dataset]['svm']['defaults'])
+		self.svm = SVC(**{**DEFAULTS[dataset]['svm']['defaults'], 'probability': True})
 		print("""
 			**********************
 			SVM
@@ -27,7 +27,7 @@ class SvmClassifier():
 		return self.svm.score(X_test, y_test)
 
 	def create_new_instance(self, values):
-		return SVC(**{**values, 'random_state': 0})
+		return SVC(**{**values, 'random_state': 0, 'probability': True})
 
 	def param_grid(self, is_random=False):
 		'''

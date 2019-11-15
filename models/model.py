@@ -34,7 +34,7 @@ from sklearn.preprocessing import LabelEncoder
 import numpy as np
 
 import matplotlib.pyplot as plt
-from sklearn.metrics import accuracy_score, confusion_matrix, precision_recall_fscore_support
+from sklearn.metrics import accuracy_score, confusion_matrix, roc_curve, roc_auc_score, average_precision_score, precision_recall_curve
 
 TEST_SIZE_SPLIT = 0.3
 CV_FOLD = 5
@@ -457,7 +457,50 @@ class Model():
 		plt.ylabel('True label')
 		plt.xlabel('Predicted label')
 		plt.savefig("./plots/{}-{}.png".format(self.model_type.dataset.split('/')[-1], str(self.model_type)))
+		plt.close()
 
+	def plot_roc_curve(self):
+		if self.is_normalized:
+			y_pred_proba = self.best_classifier.predict_proba(self.X_test_scaled)
+		else:
+			y_pred_proba = self.best_classifier.predict_proba(self.X_test)
+
+		pos_label = None
+
+		if "german-credit-data" in self.model_type.dataset:
+			pos_label = 1
+
+		fpr, tpr, _ = roc_curve(self.y_test,  y_pred_proba[:,1], pos_label=pos_label)
+		auc = roc_auc_score(self.y_test, y_pred_proba[:,1])
+
+		plt.plot(fpr,tpr)
+		plt.title('{} ROC AUC:{:.2f}'.format(str(self.model_type), auc))
+		plt.xlabel('False Positive Rate')
+		plt.ylabel('True Positive Rate')
+		plt.savefig("./plots/{}-{}-roc.png".format(self.model_type.dataset.split('/')[-1], str(self.model_type)))
+		plt.close()
+
+
+	def plot_pr_curve(self):
+		if self.is_normalized:
+			y_pred_proba = self.best_classifier.predict_proba(self.X_test_scaled)
+		else:
+			y_pred_proba = self.best_classifier.predict_proba(self.X_test)
+
+		pos_label = None
+		if "german-credit-data" in self.model_type.dataset:
+			pos_label = 1
+
+		p, r, _ = precision_recall_curve(self.y_test,  y_pred_proba[:,1], pos_label=pos_label)
+		auc = average_precision_score(self.y_test, y_pred_proba[:,1])
+
+		plt.plot(r,p)
+		plt.title('{} Average PR AUC:{:.2f}'.format(str(self.model_type), auc))
+		plt.xlabel('Recall')
+		plt.ylabel('Precision')
+		plt.savefig("./plots/{}-{}-pr.png".format(self.model_type.dataset.split('/')[-1], str(self.model_type)))
+		plt.close()
+	
 	def perform_experiments(self, file_path):
 		
 		if self.is_regression:
@@ -478,13 +521,14 @@ class Model():
 		self.get_score_without_any_processing()
 		self.score_after_preprocessing()
 		
-		# skip grid and random search for GaussianNb as we don't have any hyper-params
-		if self.model_type.__class__.__name__ != "GaussianNbClassifier":
-			if file_path != "./data/adult.data" and file_path != './data/default_of_credit_card_clients.xls':
-				self.grid_search_with_cross_validation(k_fold=self.cv_fold)
-				self.grid_search_with_cross_validation(use_preprocessing=True, k_fold=self.cv_fold)
-			self.random_search_with_cross_validation(k_fold=self.cv_fold)
-			self.random_search_with_cross_validation(use_preprocessing=True, k_fold=self.cv_fold)
-
+		if file_path != "./data/adult.data" and file_path != './data/default_of_credit_card_clients.xls':
+			self.grid_search_with_cross_validation(k_fold=self.cv_fold)
+			self.grid_search_with_cross_validation(use_preprocessing=True, k_fold=self.cv_fold)
+		self.random_search_with_cross_validation(k_fold=self.cv_fold)
+		self.random_search_with_cross_validation(use_preprocessing=True, k_fold=self.cv_fold)
+		
 		if not self.is_regression:
+			if np.unique(self.y).shape[0] == 2:
+				self.plot_roc_curve()
+				self.plot_pr_curve()
 			self.plot_confusion_matrix()

@@ -27,7 +27,7 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-
+				'var_smoothing': np.arange(0.1, 1, .1)
 			}
 		},
 		'nn':{
@@ -99,7 +99,7 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-
+				'var_smoothing': np.arange(0.1, 1, .1)
 			}
 		},
 		'nn':{
@@ -171,7 +171,7 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-
+				'var_smoothing': np.arange(0.1, 1, .1)
 			}
 		},
 		'nn':{
@@ -243,7 +243,7 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-
+				'var_smoothing': np.arange(0.1, 1, .1)
 			}
 		},
 		'nn':{
@@ -315,7 +315,7 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-
+				'var_smoothing': np.arange(0.1, 1, .1)
 			}
 		},
 		'nn':{
@@ -387,7 +387,7 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-
+				'var_smoothing': np.arange(0.1, 1, .1)
 			}
 		},
 		'nn':{
@@ -459,7 +459,7 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-
+				'var_smoothing': np.arange(0.1, 1, .1)
 			}
 		},
 		'nn':{
@@ -531,7 +531,7 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-
+				'var_smoothing': np.arange(0.1, 1, .1)
 			}
 		},
 		'nn':{
@@ -603,7 +603,7 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-
+				'var_smoothing': np.arange(0.1, 1, .1)
 			}
 		},
 		'nn':{
@@ -675,7 +675,7 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-
+				'var_smoothing': np.arange(0.1, 1, .1)
 			}
 		},
 		'nn':{
