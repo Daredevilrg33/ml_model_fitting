@@ -37,7 +37,8 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import accuracy_score, confusion_matrix, precision_recall_fscore_support
 
 TEST_SIZE_SPLIT = 0.3
-CV_FOLD = 7
+CV_FOLD = 5
+CV_FOLD_FOR_LARGE_DATASET = 2
 
 class Model():
 
@@ -46,6 +47,7 @@ class Model():
 		self.best_classifier = None
 		self.best_score = None
 		self.is_normalized = False
+		self.cv_fold = CV_FOLD
 
 	def get_data(self, file_path):
 		if file_path.endswith('arff'):
@@ -373,14 +375,19 @@ class Model():
 		else:
 			self.process_and_load_adult_test_data()
 
+		# reduce cv fold for large datasets inorder to minimize run time
+		if file_path == './data/default_of_credit_card_clients.xls' or file_path == './data/adult.data':
+			self.cv_fold = CV_FOLD_FOR_LARGE_DATASET
+		
 		self.get_score_without_any_processing()
 		self.score_after_preprocessing()
 		
 		# skip grid and random search for GaussianNb as we don't have any hyper-params
 		if self.model_type.__class__.__name__ != "GaussianNbClassifier":
-			self.grid_search_with_cross_validation()
-			self.grid_search_with_cross_validation(use_preprocessing=True)
-			self.random_search_with_cross_validation()
-			self.random_search_with_cross_validation(use_preprocessing=True)
+			if file_path != "./data/adult.data" and file_path != './data/default_of_credit_card_clients.xls':
+				self.grid_search_with_cross_validation(k_fold=self.cv_fold)
+				self.grid_search_with_cross_validation(use_preprocessing=True, k_fold=self.cv_fold)
+			self.random_search_with_cross_validation(k_fold=self.cv_fold)
+			self.random_search_with_cross_validation(use_preprocessing=True, k_fold=self.cv_fold)
 
 		self.plot_confusion_matrix()

@@ -24,11 +24,11 @@ def __main__():
 		'./data/statlog-australian-credit-data.data',
 		'./data/statlog-german-credit-data.data',
 		'./data/steel-plates-faults.NNA',
-		'./data/adult.data',
 		'./data/seismic-bumps.arff',
 		'./data/ThoraricSurgery.arff',
 		'./data/yeast.data',
 		'./data/default_of_credit_card_clients.xls',
+		'./data/adult.data',
 	]
 
 
