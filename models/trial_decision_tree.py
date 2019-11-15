@@ -5,10 +5,33 @@ from sklearn import metrics #Import scikit-learn metrics module for accuracy cal
 from sklearn.externals.six import StringIO
 from IPython.display import Image
 from sklearn.tree import export_graphviz
-import pydotplus
 
 
+# conda install -c anaconda graphviz
+# conda install -c conda-forge pydotplus
 
+import conda.cli.python_api as Conda
+import sys
+
+try:
+    import pydotplus
+except:
+    (stdout_str, stderr_str, return_code_int) = Conda.run_command(
+        Conda.Commands.INSTALL,
+        '-c', 'conda-forge',
+        'pydotplus',
+    use_exception_handler = True, stdout = sys.stdout, stderr = sys.stderr
+    )
+
+try:
+    import graphviz
+except:
+    (stdout_str, stderr_str, return_code_int) = Conda.run_command(
+        Conda.Commands.INSTALL,
+        '-c', 'anaconda',
+        'graphviz',
+        use_exception_handler=True, stdout=sys.stdout, stderr=sys.stderr
+    )
 
 col_names = ['ID','Amount of the given credit', 'Gender', 'Education', 'Marital status', 'Age', 'repayment status in September, 2005', 'repayment status in August, 2005', 'repayment status in July, 2005', 'repayment status in June, 2005','repayment status in May, 2005','repayment status in April, 2005','Amount of Bill Statement in September, 2005', 'Amount of Bill Statement in August, 2005', 'Amount of Bill Statement in July, 2005', 'Amount of Bill Statement in June, 2005','Amount of Bill Statement in May, 2005','Amount of Bill Statement in April, 2005','Amount Payed in September, 2005', 'Amount Payed in August, 2005', 'Amount Payed in July, 2005', 'Amount Payed in June, 2005','Amount Payed in May, 2005','Amount Payed in April, 2005','default_payment']
 # data = pd.read_excel (r'./../data/try.xls', header=None,names=col_names)
