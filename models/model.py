@@ -42,24 +42,16 @@ CV_FOLD_FOR_LARGE_DATASET = 2
 
 class Model():
 
-	def __init__(self, model_type):
+	def __init__(self, model_type, is_regression=False):
 		self.model_type = model_type
 		self.best_classifier = None
 		self.best_score = None
 		self.is_normalized = False
 		self.cv_fold = CV_FOLD
+		self.is_regression = is_regression
 
-	def get_data(self, file_path):
-		if file_path.endswith('csv'):
-			if file_path.endswith('hour.csv'):
-				self.get_bike_sharing_data(file_path)
-			elif file_path.endswith('Facebook.csv'):
-				self.get_facebook_metrics_data(file_path)
-			elif file_path.endswith('toxicity.csv'):
-				self.get_qsar_aquatic_toxicity_data(file_path)
-			else:
-				self.get_sgemm_product(file_path)
-		elif file_path.endswith('arff'):
+	def get_classification_data(self, file_path):
+		if file_path.endswith('arff'):
 			if file_path.endswith('messidor_features.arff'):
 				self.get_arff_data(file_path)
 			elif file_path.endswith('seismic-bumps.arff'):
@@ -80,10 +72,22 @@ class Model():
 		elif file_path.endswith('NNA'):
 			self.get_steel_plates_faults_data(file_path)
 		elif file_path.endswith('xls'):
-			if file_path.endswith('clients.xls'):
-				self.get_default_of_credit_cards_clients_data(file_path)
+			self.get_default_of_credit_cards_clients_data(file_path)
+		else:
+			print("Don't know how to load this data")
+
+	def get_regression_data(self, file_path):
+		if file_path.endswith('csv'):
+			if file_path.endswith('hour.csv'):
+				self.get_bike_sharing_data(file_path)
+			elif file_path.endswith('Facebook.csv'):
+				self.get_facebook_metrics_data(file_path)
+			elif file_path.endswith('toxicity.csv'):
+				self.get_qsar_aquatic_toxicity_data(file_path)
 			else:
-				self.get_concrete_data(file_path)
+				self.get_sgemm_product(file_path)
+		elif file_path.endswith('xls'):
+			self.get_concrete_data(file_path)
 		else:
 			print("Don't know how to load this data")
 
@@ -455,13 +459,17 @@ class Model():
 		plt.savefig("./plots/{}-{}.png".format(self.model_type.dataset.split('/')[-1], str(self.model_type)))
 
 	def perform_experiments(self, file_path):
-		self.get_data(file_path)
-		if file_path != "./data/adult.data" and "regression" not in file_path:
-			self.get_train_and_test_split()
-		elif "regression" in file_path:
+		
+		if self.is_regression:
+			self.get_regression_data(file_path)
 			self.get_train_and_test_split(stratify=False)
 		else:
-			self.process_and_load_adult_test_data()
+			self.get_classification_data(file_path)
+			#adult dataset has its own test dataset
+			if file_path != "./data/adult.data":
+				self.get_train_and_test_split()
+			else:
+				self.process_and_load_adult_test_data()
 
 		# reduce cv fold for large datasets inorder to minimize run time
 		if file_path == './data/default_of_credit_card_clients.xls' or file_path == './data/adult.data':
@@ -478,4 +486,5 @@ class Model():
 			self.random_search_with_cross_validation(k_fold=self.cv_fold)
 			self.random_search_with_cross_validation(use_preprocessing=True, k_fold=self.cv_fold)
 
-		self.plot_confusion_matrix()
+		if not self.is_regression:
+			self.plot_confusion_matrix()

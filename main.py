@@ -33,8 +33,8 @@ def __main__():
 	]
 
 	regression_dataset_list = [
-		# './data_regression/bike_sharing_hour.csv',
-		# './data_regression/Concrete_Data.xls',
+		'./data_regression/bike_sharing_hour.csv',
+		'./data_regression/Concrete_Data.xls',
 		'./data_regression/dataset_Facebook.csv',
 		'./data_regression/qsar_aquatic_toxicity.csv',
 		'./data_regression/sgemm_product.csv'
@@ -81,7 +81,7 @@ def __main__():
 		print("*******************************************\n")
 
 		linear_regression = LinearReg(dataset)
-		model = Model(model_type=linear_regression)
+		model = Model(model_type=linear_regression, is_regression=True)
 		model.perform_experiments(dataset)      
 
 __main__()
