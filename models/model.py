@@ -78,7 +78,9 @@ class Model():
 
 	def get_regression_data(self, file_path):
 		if file_path.endswith('csv'):
-			if file_path.endswith('hour.csv'):
+			if 'winequality' in file_path:
+				self.get_wine_quality_data(file_path)
+			elif file_path.endswith('hour.csv'):
 				self.get_bike_sharing_data(file_path)
 			elif file_path.endswith('Facebook.csv'):
 				self.get_facebook_metrics_data(file_path)
@@ -90,6 +92,12 @@ class Model():
 			self.get_concrete_data(file_path)
 		else:
 			print("Don't know how to load this data")
+
+	def get_wine_quality_data(self, file_path):
+		data = pd.read_csv(file_path, delimiter=';')
+		data = pd.DataFrame(data)
+		self.X = data.iloc[:, 0:11].values
+		self.y = data.iloc[:, 11].values
 
 	def get_bike_sharing_data(self, file_path):
 		rides = pd.read_csv(file_path)
@@ -473,10 +481,10 @@ class Model():
 		fpr, tpr, _ = roc_curve(self.y_test,  y_pred_proba[:,1], pos_label=pos_label)
 		auc = roc_auc_score(self.y_test, y_pred_proba[:,1])
 
-		plt.plot(fpr,tpr)
+		plt.plot(tpr,fpr)
 		plt.title('{} ROC AUC:{:.2f}'.format(str(self.model_type), auc))
-		plt.xlabel('False Positive Rate')
-		plt.ylabel('True Positive Rate')
+		plt.ylabel('False Positive Rate')
+		plt.xlabel('True Positive Rate')
 		plt.savefig("./plots/{}-{}-roc.png".format(self.model_type.dataset.split('/')[-1], str(self.model_type)))
 		plt.close()
 

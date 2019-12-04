@@ -761,5 +761,21 @@ DEFAULTS = {
 			'param_grid': {
 			}
 		}
+	},
+	'./data_regression/winequality-red.csv': {
+		'linear_reg': {
+			'defaults': {
+			},
+			'param_grid': {
+			}
+		}
+	},
+	'./data_regression/winequality-white.csv': {
+		'linear_reg': {
+			'defaults': {
+			},
+			'param_grid': {
+			}
+		}
 	}
 }

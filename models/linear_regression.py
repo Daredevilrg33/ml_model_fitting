@@ -1,5 +1,6 @@
 from sklearn.linear_model import LinearRegression
 from models.defaults import DEFAULTS
+from sklearn.metrics import mean_squared_error
 
 
 class LinearReg():
@@ -24,8 +25,11 @@ class LinearReg():
         '''
         Returns the score of Linear Regression by fitting training data
         '''
-        self.train_and_predict(X, y, X_test)
-        return self.linear.score(X_test, y_test)
+        # self.train_and_predict(X, y, X_test)
+        # return self.linear.score(X_test, y_test)
+        self.linear.fit(X, y)
+        y_pred = self.linear.predict(X_test)
+        return mean_squared_error(y_test, y_pred)
 
     def create_new_instance(self, values):
         return LinearRegression(**values)

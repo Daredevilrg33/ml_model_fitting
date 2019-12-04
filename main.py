@@ -33,6 +33,8 @@ def __main__():
 	]
 
 	regression_dataset_list = [
+		'./data_regression/winequality-red.csv',
+		'./data_regression/winequality-white.csv',
 		'./data_regression/bike_sharing_hour.csv',
 		'./data_regression/Concrete_Data.xls',
 		'./data_regression/dataset_Facebook.csv',
