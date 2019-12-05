@@ -18,12 +18,12 @@ from sklearn.preprocessing import StandardScaler
 # y = data.iloc[:, 14].values
 
 
-data = pd.read_csv("../data_regression/communities.data",  delimiter=",", header=None)
-print(data.iloc[:, 5:127])
-imp = SimpleImputer(missing_values="?", strategy="most_frequent")
-data=imp.fit_transform(data.iloc[:, 5:127]).astype(float)
-X= data[:,0:121]
-y=data[:,121]
+# data = pd.read_csv("../data_regression/communities.data",  delimiter=",", header=None)
+# print(data.iloc[:, 5:127])
+# imp = SimpleImputer(missing_values="?", strategy="most_frequent")
+# data=imp.fit_transform(data.iloc[:, 5:127]).astype(float)
+# X= data[:,0:121]
+# y=data[:,121]
 
 
 # data=pd.read_csv("../data_regression/parkinson_train_data.txt",delimiter=",")
@@ -32,6 +32,23 @@ y=data[:,121]
 # print(X)
 # y=np.array(data.iloc[:,27])
 
+df = pd.read_csv("../data_regression/dataset_Facebook.csv", delimiter=';')
+print(df.info())
+# print(df)
+
+
+
+labelencoder = LabelEncoder()
+df["Type"] = labelencoder.fit_transform(df["Type"])
+imp = SimpleImputer(missing_values=np.nan, strategy="mean")
+X=df.iloc[:,0:16].values
+X= imp.fit_transform(X)
+print(X)
+y=df.iloc[:, 18].values
+print(y)
+y= imp.fit_transform(y.reshape(-1,1))
+y=y.flatten()
+print(y)
 
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
@@ -136,6 +153,8 @@ print(lModel.score(X_test, y_test))
 
 
 
+
+
 # def Weekday(x):
 #     if x == 1:
 #         return 'Su'
@@ -153,8 +172,8 @@ print(lModel.score(X_test, y_test))
 #         return "Sa"
 
 
-# df = pd.read_csv("../data_regression/dataset_Facebook.csv", delimiter=';')
-# # print(df.info())
+
+
 # df['Weekday'] = df['Post Weekday'].apply(lambda x: Weekday(x))
 # dayDf = pd.get_dummies(df['Weekday'])
 # df = pd.concat([df,dayDf],axis=1)

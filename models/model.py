@@ -147,30 +147,41 @@ class Model():
 
 	def get_facebook_metrics_data(self, file_path):
 		df = pd.read_csv(file_path, delimiter=';')
-		df['Weekday'] = df['Post Weekday'].apply(lambda x: self.Weekday(x))
-		dayDf = pd.get_dummies(df['Weekday'])
-		df = pd.concat([df, dayDf], axis=1)
-		hours = list(range(0, 18))
-		# hours
-		for i in hours:
-			hours[i] = str(hours[i])
-			hours[i] = 'hr_' + hours[i]
-		hourDf = pd.get_dummies(df['Post Hour'], prefix='hr_')
-		df = pd.concat([df, hourDf], axis=1)
-		monthDf = pd.get_dummies(df['Post Month'], prefix='Mo')
-		df = pd.concat([df, monthDf], axis=1)
-		df['Video'] = pd.get_dummies(df['Type'])['Video']
-		df['Status'] = pd.get_dummies(df['Type'])['Status']
-		df['Photo'] = pd.get_dummies(df['Type'])['Photo']
-		df['Cat_1'] = pd.get_dummies(df['Category'])[1]
-		df['Cat_2'] = pd.get_dummies(df['Category'])[2]
-		df = df.fillna(0)
-		self.X = df[['Page total likes', 'Paid', 'Video', 'Status', 'Photo',
-					 'Cat_1', 'Cat_2', 'Mo', 'Tu', 'Sa', "We", 'Th', 'Fr',
-					 'hr__17', 'hr__1', 'hr__2', 'hr__3', 'hr__4', 'hr__5', 'hr__6', 'hr__7', 'hr__8',
-					 'hr__9', 'hr__10', 'hr__11', 'hr__12', 'hr__13', 'hr__14', 'hr__15', 'hr__16', 'Mo_1',
-					 'Mo_2', 'Mo_12', 'Mo_4', 'Mo_5', 'Mo_6', 'Mo_7', 'Mo_8', 'Mo_9', 'Mo_11', 'Mo_10']]
-		self.y = df['like']
+		labelencoder = LabelEncoder()
+		df["Type"] = labelencoder.fit_transform(df["Type"])
+		imp = SimpleImputer(missing_values=np.nan, strategy="mean")
+		X = df.iloc[:, 0:16].values
+		self.X = imp.fit_transform(X)
+		y = df.iloc[:, 18].values
+		y = imp.fit_transform(y.reshape(-1, 1))
+		self.y = y.flatten()
+
+
+		# df = pd.read_csv(file_path, delimiter=';')
+		# df['Weekday'] = df['Post Weekday'].apply(lambda x: self.Weekday(x))
+		# dayDf = pd.get_dummies(df['Weekday'])
+		# df = pd.concat([df, dayDf], axis=1)
+		# hours = list(range(0, 18))
+		# # hours
+		# for i in hours:
+		# 	hours[i] = str(hours[i])
+		# 	hours[i] = 'hr_' + hours[i]
+		# hourDf = pd.get_dummies(df['Post Hour'], prefix='hr_')
+		# df = pd.concat([df, hourDf], axis=1)
+		# monthDf = pd.get_dummies(df['Post Month'], prefix='Mo')
+		# df = pd.concat([df, monthDf], axis=1)
+		# df['Video'] = pd.get_dummies(df['Type'])['Video']
+		# df['Status'] = pd.get_dummies(df['Type'])['Status']
+		# df['Photo'] = pd.get_dummies(df['Type'])['Photo']
+		# df['Cat_1'] = pd.get_dummies(df['Category'])[1]
+		# df['Cat_2'] = pd.get_dummies(df['Category'])[2]
+		# df = df.fillna(0)
+		# self.X = df[['Page total likes', 'Paid', 'Video', 'Status', 'Photo',
+		# 			 'Cat_1', 'Cat_2', 'Mo', 'Tu', 'Sa', "We", 'Th', 'Fr',
+		# 			 'hr__17', 'hr__1', 'hr__2', 'hr__3', 'hr__4', 'hr__5', 'hr__6', 'hr__7', 'hr__8',
+		# 			 'hr__9', 'hr__10', 'hr__11', 'hr__12', 'hr__13', 'hr__14', 'hr__15', 'hr__16', 'Mo_1',
+		# 			 'Mo_2', 'Mo_12', 'Mo_4', 'Mo_5', 'Mo_6', 'Mo_7', 'Mo_8', 'Mo_9', 'Mo_11', 'Mo_10']]
+		# self.y = df['like']
 
 	def get_qsar_aquatic_toxicity_data(self, file_path):
 		data = pd.read_csv(file_path, delimiter=";")
