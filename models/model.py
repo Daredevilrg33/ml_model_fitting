@@ -2,6 +2,7 @@ from scipy.io import arff
 import os
 import random
 
+
 try:
 	import pandas as pd
 except ImportError:
@@ -31,6 +32,7 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import RandomizedSearchCV
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import LabelEncoder
+from sklearn.impute import SimpleImputer
 import numpy as np
 
 import matplotlib.pyplot as plt
@@ -90,8 +92,17 @@ class Model():
 				self.get_sgemm_product(file_path)
 		elif file_path.endswith('xls'):
 			self.get_concrete_data(file_path)
+		elif file_path.endswith('data'):
+			self.get_communities_and_crime_data(file_path)
 		else:
 			print("Don't know how to load this data")
+
+	def get_communities_and_crime_data(self, file_path):
+		data = pd.read_csv(file_path, delimiter=",", header=None)
+		imp = SimpleImputer(missing_values="?", strategy="most_frequent")
+		data = imp.fit_transform(data.iloc[:, 5:127]).astype(float)
+		self.X = data[:, 0:121]
+		self.y = data[:, 121]
 
 	def get_wine_quality_data(self, file_path):
 		data = pd.read_csv(file_path, delimiter=';')

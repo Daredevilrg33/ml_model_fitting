@@ -7,26 +7,49 @@ import xlrd
 from sklearn.model_selection import train_test_split
 from sklearn.impute import SimpleImputer
 import numpy as np
+from sklearn.preprocessing import StandardScaler
 
 
-data=pd.read_csv("../data_regression/sgemm_product.csv")
-data['Avg_Run'] = data[['Run1 (ms)', 'Run2 (ms)', 'Run3 (ms)', 'Run4 (ms)']].mean(axis=1)
-data = data.drop(['Run1 (ms)', 'Run2 (ms)', 'Run3 (ms)', 'Run4 (ms)'], axis=1)
-print(data)
-X = data.iloc[:, 0:14].values
-y = data.iloc[:, 14].values
+# data=pd.read_csv("../data_regression/sgemm_product.csv")
+# data['Avg_Run'] = data[['Run1 (ms)', 'Run2 (ms)', 'Run3 (ms)', 'Run4 (ms)']].mean(axis=1)
+# data = data.drop(['Run1 (ms)', 'Run2 (ms)', 'Run3 (ms)', 'Run4 (ms)'], axis=1)
+# print(data)
+# X = data.iloc[:, 0:14].values
+# y = data.iloc[:, 14].values
+
+
+data = pd.read_csv("../data_regression/communities.data",  delimiter=",", header=None)
+print(data.iloc[:, 5:127])
+imp = SimpleImputer(missing_values="?", strategy="most_frequent")
+data=imp.fit_transform(data.iloc[:, 5:127]).astype(float)
+X= data[:,0:121]
+y=data[:,121]
+
+
+# data=pd.read_csv("../data_regression/parkinson_train_data.txt",delimiter=",")
+# print(data)
+# X=np.array(data.iloc[:,1:27])
+# print(X)
+# y=np.array(data.iloc[:,27])
 
 
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
+scaler = StandardScaler().fit(X_train)
+X_train = scaler.transform(X_train)
+X_test = scaler.transform(X_test)
 
-# Initialize logistic regression model
+# Initialize linear regression model
 lModel = LinearRegression()
 
 # Train the model
 lModel.fit(X_train, y_train)
 lModel.predict(X_test)
 print(lModel.score(X_test, y_test))
+
+
+
+
 
 
 # Read student data
