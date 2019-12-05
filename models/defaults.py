@@ -728,6 +728,38 @@ DEFAULTS = {
 			},
 			'param_grid': {
 			}
+		},
+		'dtr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'svr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'gaussian_pr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'rf': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
 		}
 	},
 	'./data_regression/dataset_Facebook.csv': {
@@ -735,6 +767,38 @@ DEFAULTS = {
 			'defaults': {
 			},
 			'param_grid': {
+			}
+		},
+		'dtr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'svr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'gaussian_pr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'rf': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
 			}
 		}
 	},
@@ -744,6 +808,38 @@ DEFAULTS = {
 			},
 			'param_grid': {
 			}
+		},
+		'dtr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'svr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'gaussian_pr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'rf': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
 		}
 	},
 	'./data_regression/sgemm_product.csv': {
@@ -751,6 +847,38 @@ DEFAULTS = {
 			'defaults': {
 			},
 			'param_grid': {
+			}
+		},
+		'dtr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'svr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'gaussian_pr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'rf': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
 			}
 		}
 	},
@@ -760,6 +888,38 @@ DEFAULTS = {
 			},
 			'param_grid': {
 			}
+		},
+		'dtr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'svr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'gaussian_pr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'rf': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
 		}
 	},
 	'./data_regression/winequality-red.csv': {
@@ -768,6 +928,38 @@ DEFAULTS = {
 			},
 			'param_grid': {
 			}
+		},
+		'dtr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'svr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'gaussian_pr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'rf': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
 		}
 	},
 	'./data_regression/winequality-white.csv': {
@@ -775,6 +967,38 @@ DEFAULTS = {
 			'defaults': {
 			},
 			'param_grid': {
+			}
+		},
+		'dtr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'svr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'gaussian_pr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'rf': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
 			}
 		}
 	},
@@ -788,11 +1012,43 @@ DEFAULTS = {
 			}
 		},
 	},
-  './data_regression/student-por.csv': {
+  	'./data_regression/student-por.csv': {
 		'linear_reg': {
 			'defaults': {
 			},
 			'param_grid': {
+			}
+		},
+		'dtr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'svr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'gaussian_pr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'rf': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
 			}
 		}
 	},
@@ -801,6 +1057,38 @@ DEFAULTS = {
 			'defaults': {
 			},
 			'param_grid': {
+			}
+		},
+		'dtr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'svr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'gaussian_pr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'rf': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
 			}
 		}
 	}

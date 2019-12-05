@@ -11,7 +11,7 @@ class SvrRegression():
         self.svr = SVR(**{**DEFAULTS[dataset]['svr']['defaults'], 'probability': True})
         print("""
 			**********************
-			SVR
+			    SVR Regression
 			**********************
 		""")
 

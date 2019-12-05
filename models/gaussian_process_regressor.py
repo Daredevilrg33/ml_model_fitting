@@ -1,12 +1,12 @@
 import numpy as np
 from sklearn.gaussian_process import GaussianProcessRegressor
-
+from models.defaults import DEFAULTS
 # TODO : Change the default values and test it
 class GaussianPrRegressor():
 
     def __init__(self, dataset):
         self.dataset = dataset
-        self.gpr = GaussianProcessRegressor(**DEFAULTS[dataset]['gaussian_nb']['defaults'])
+        self.gpr = GaussianProcessRegressor(**DEFAULTS[dataset]['gaussian_pr']['defaults'])
         print("""
 			**********************
 			Gaussian Process Regressor
@@ -35,7 +35,7 @@ class GaussianPrRegressor():
         dictionary of hyper-parameters to get good values for each one of them
         '''
         # random search only accepts a dict for params whereas gridsearch can take either a dic or list of dict
-        return DEFAULTS[self.dataset]['gaussian_nb']['param_grid']
+        return DEFAULTS[self.dataset]['gaussian_pr']['param_grid']
 
     def get_sklearn_model_class(self):
         return self.gpr

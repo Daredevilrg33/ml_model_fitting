@@ -7,7 +7,11 @@ from models.logistic_reg_classifier import LogisticRegClassifier
 from models.decision_tree_classifier import DTClassifier
 from models.random_forest_classifier import RfClassifier
 from models.ada_boost_classifier import ABClassifier
+from models.gaussian_process_regressor import GaussianPrRegressor
+from models.svr_regression import SvrRegression
 from models.linear_regression import LinearReg
+from models.decision_tree_regression import DTRegression
+from models.random_forest_regressor import RfRegressor
 from models.cifar_models import CifarModel
 import warnings
 
@@ -82,16 +86,28 @@ def __main__():
 	# 	model = Model(model_type=ada_boost_classifier)
 	# 	model.perform_experiments(dataset)
 
-	# for dataset in regression_dataset_list:
-	# 	print("\n\n******** {} data ***********\n".format(dataset.split('/')[-1]))
-	# 	print("*******************************************\n")
+	for dataset in regression_dataset_list:
+		print("\n\n******** {} data ***********\n".format(dataset.split('/')[-1]))
+		print("*******************************************\n")
 
-	# 	linear_regression = LinearReg(dataset)
-	# 	model = Model(model_type=linear_regression, is_regression=True)
-	# 	model.perform_experiments(dataset)
+		linear_regression = LinearReg(dataset)
+		model = Model(model_type=linear_regression, is_regression=True)
+		model.perform_experiments(dataset)
+		decision_tree_regressor = DTRegression(dataset)
+		model = Model(model_type=decision_tree_regressor,is_regression=True)
+		model.perform_experiments(dataset)
+		svr_regressor = SvrRegression(dataset)
+		model = Model(model_type=svr_regressor,is_regression=True)
+		model.perform_experiments(dataset)
+		gaussian_process_regressor = GaussianPrRegressor(dataset)
+		model = Model(model_type=gaussian_process_regressor,is_regression=True)
+		model.perform_experiments(dataset)
+		random_forest_regressor = RfRegressor(dataset)
+		model = Model(model_type=random_forest_regressor,is_regression=True)
+		model.perform_experiments(dataset)
 
-	cifar = CifarModel()
-	cifar.train_and_save_cnn()
-	cifar.test_cnn()
+	# cifar = CifarModel()
+	# cifar.train_and_save_cnn()
+	# cifar.test_cnn()
 
 __main__()
