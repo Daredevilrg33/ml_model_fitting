@@ -26,19 +26,19 @@ except ImportError:
 	os.system("conda install seaborn")
 	import seaborn as sns
 
-try:
-    import graphviz
-except:
-    print ("Graphiz not found, Installing Grpahiz ")
-    os.system("conda install -c anaconda graphviz")
-    import graphviz
+# try:
+#     import graphviz
+# except:
+#     print ("Graphiz not found, Installing Grpahiz ")
+#     os.system("conda install -c anaconda graphviz")
+#     import graphviz
 
-try:
-    import pydotplus
-except:
-    print("pydotplus not found, Installing pydotplus ")
-    os.system("conda install -c  conda-forge pydotplus")
-    import pydotplus
+# try:
+#     import pydotplus
+# except:
+#     print("pydotplus not found, Installing pydotplus ")
+#     os.system("conda install -c  conda-forge pydotplus")
+#     import pydotplus
 
 
 from sklearn.model_selection import train_test_split

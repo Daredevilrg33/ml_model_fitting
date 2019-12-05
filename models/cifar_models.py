@@ -10,26 +10,26 @@ PATH = '../cifar_net.pth'
 BATCH_SIZE = 4
 MOMENTUM = 0.9
 LEARNING_RATE = 0.001
-EPOCH = 2
+EPOCH = 7
 
-# class SimpleNet(nn.Module):
-# 	def __init__(self):
-# 		super(SimpleNet, self).__init__()
-# 		self.conv1 = nn.Conv2d(3, 6, 5)
-# 		self.pool = nn.MaxPool2d(2, 2)
-# 		self.conv2 = nn.Conv2d(6, 16, 5)
-# 		self.fc1 = nn.Linear(16 * 5 * 5, 120)
-# 		self.fc2 = nn.Linear(120, 84)
-# 		self.fc3 = nn.Linear(84, 10)
+class SimpleNet(nn.Module):
+	def __init__(self):
+		super(SimpleNet, self).__init__()
+		self.conv1 = nn.Conv2d(3, 6, 5)
+		self.pool = nn.MaxPool2d(2, 2)
+		self.conv2 = nn.Conv2d(6, 16, 5)
+		self.fc1 = nn.Linear(16 * 5 * 5, 120)
+		self.fc2 = nn.Linear(120, 84)
+		self.fc3 = nn.Linear(84, 10)
 
-# 	def forward(self, x):
-# 		x = self.pool(F.relu(self.conv1(x)))
-# 		x = self.pool(F.relu(self.conv2(x)))
-# 		x = x.view(-1, 16 * 5 * 5)
-# 		x = F.relu(self.fc1(x))
-# 		x = F.relu(self.fc2(x))
-# 		x = self.fc3(x)
-# 		return x
+	def forward(self, x):
+		x = self.pool(F.relu(self.conv1(x)))
+		x = self.pool(F.relu(self.conv2(x)))
+		x = x.view(-1, 16 * 5 * 5)
+		x = F.relu(self.fc1(x))
+		x = F.relu(self.fc2(x))
+		x = self.fc3(x)
+		return x
 
 # class SimpleNet(nn.Module):
 
@@ -69,62 +69,55 @@ EPOCH = 2
 # 		probas = F.softmax(logits, dim=1)
 # 		return logits, probas
 
-class Unit(nn.Module):
-	def __init__(self,in_channels,out_channels):
-		super(Unit,self).__init__()
-		self.conv = nn.Conv2d(in_channels=in_channels,kernel_size=3,out_channels=out_channels,stride=1,padding=1)
-		self.bn = nn.BatchNorm2d(num_features=out_channels)
-		self.relu = nn.ReLU()
+# class Unit(nn.Module):
+# 	def __init__(self,in_channels,out_channels):
+# 		super(Unit,self).__init__()
+# 		self.conv = nn.Conv2d(in_channels=in_channels,kernel_size=3,out_channels=out_channels,stride=1,padding=1)
+# 		self.bn = nn.BatchNorm2d(num_features=out_channels)
+# 		self.relu = nn.ReLU()
 
-	def forward(self,input):
-		output = self.conv(input)
-		output = self.bn(output)
-		output = self.relu(output)
-		return output
+# 	def forward(self,input):
+# 		output = self.conv(input)
+# 		output = self.bn(output)
+# 		output = self.relu(output)
+# 		return output
 
-class SimpleNet(nn.Module):
-	def __init__(self,num_classes=10):
-		super(SimpleNet,self).__init__()
+# class SimpleNet(nn.Module):
+# 	def __init__(self,num_classes=10):
+# 		super(SimpleNet,self).__init__()
 
-		#Create 14 layers of the unit with max pooling in between
-		self.unit1 = Unit(in_channels=3,out_channels=32)
-		self.unit2 = Unit(in_channels=32, out_channels=32)
-		self.unit3 = Unit(in_channels=32, out_channels=32)
+# 		#Create 14 layers of the unit with max pooling in between
+# 		self.unit1 = Unit(in_channels=3,out_channels=32)
+# 		self.unit2 = Unit(in_channels=32, out_channels=32)
 
-		self.pool1 = nn.MaxPool2d(kernel_size=2)
+# 		self.pool1 = nn.MaxPool2d(kernel_size=2)
 
-		self.unit4 = Unit(in_channels=32, out_channels=64)
-		self.unit5 = Unit(in_channels=64, out_channels=64)
-		self.unit6 = Unit(in_channels=64, out_channels=64)
-		self.unit7 = Unit(in_channels=64, out_channels=64)
+# 		self.unit4 = Unit(in_channels=32, out_channels=64)
+# 		self.unit5 = Unit(in_channels=64, out_channels=64)
 
-		self.pool2 = nn.MaxPool2d(kernel_size=2)
+# 		self.pool2 = nn.MaxPool2d(kernel_size=2)
 
-		self.unit8 = Unit(in_channels=64, out_channels=128)
-		self.unit9 = Unit(in_channels=128, out_channels=128)
-		self.unit10 = Unit(in_channels=128, out_channels=128)
-		self.unit11 = Unit(in_channels=128, out_channels=128)
+# 		self.unit8 = Unit(in_channels=64, out_channels=128)
+# 		self.unit9 = Unit(in_channels=128, out_channels=128)
 
-		self.pool3 = nn.MaxPool2d(kernel_size=2)
+# 		self.pool3 = nn.MaxPool2d(kernel_size=2)
 
-		self.unit12 = Unit(in_channels=128, out_channels=128)
-		self.unit13 = Unit(in_channels=128, out_channels=128)
-		self.unit14 = Unit(in_channels=128, out_channels=128)
+# 		self.unit12 = Unit(in_channels=128, out_channels=128)
+# 		self.unit13 = Unit(in_channels=128, out_channels=128)
 
-		self.avgpool = nn.AvgPool2d(kernel_size=4)
+# 		self.avgpool = nn.AvgPool2d(kernel_size=4)
 
-		#Add all the units into the Sequential layer in exact order
-		self.net = nn.Sequential(self.unit1, self.unit2, self.unit3, self.pool1, self.unit4, self.unit5, self.unit6
-		               ,self.unit7, self.pool2, self.unit8, self.unit9, self.unit10, self.unit11, self.pool3,
-		               self.unit12, self.unit13, self.unit14, self.avgpool)
+# 		#Add all the units into the Sequential layer in exact order
+# 		self.net = nn.Sequential(self.unit1, self.unit2, self.pool1, self.unit4, self.unit5, self.pool2, self.unit8, self.unit9, self.pool3,
+# 		               self.unit12, self.unit13, self.avgpool)
 
-		self.fc = nn.Linear(in_features=128,out_features=num_classes)
+# 		self.fc = nn.Linear(in_features=128,out_features=num_classes)
 
-	def forward(self, input):
-		output = self.net(input)
-		output = output.view(-1,128)
-		output = self.fc(output)
-		return output
+# 	def forward(self, input):
+# 		output = self.net(input)
+# 		output = output.view(-1,128)
+# 		output = self.fc(output)
+# 		return output
 
 
 class CifarModel():
