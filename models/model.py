@@ -540,3 +540,17 @@ class Model():
 				self.plot_roc_curve()
 				self.plot_pr_curve()
 			self.plot_confusion_matrix()
+
+	def perform_experiment_for_cifar(self, X_train, X_test, y_train, y_test):
+		self.X_train = X_train
+		self.X_test = X_test
+		self.y_train = y_train
+		self.y_test = y_test
+
+		self.cv_fold = CV_FOLD_FOR_LARGE_DATASET
+		print("without preprocessing")
+		self.get_score_without_any_processing()
+		self.score_after_preprocessing()
+		self.random_search_with_cross_validation(k_fold=self.cv_fold)
+		self.random_search_with_cross_validation(use_preprocessing=True, k_fold=self.cv_fold)
+

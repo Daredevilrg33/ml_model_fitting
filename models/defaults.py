@@ -777,5 +777,15 @@ DEFAULTS = {
 			'param_grid': {
 			}
 		}
+	},
+	'./cfar10/data_batch': {
+		'dt': {
+			'defaults': {
+				'max_depth': 10000, 'random_state': 0, 'min_samples_split': 5,
+			},
+			'param_grid': {
+				'max_depth': [100, 500, 1000, 10000], 'max_features': ['auto', 'log2', None], 'criterion': ['gini', 'entropy'],
+			}
+		},
 	}
 }
