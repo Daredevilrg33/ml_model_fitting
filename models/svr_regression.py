@@ -8,7 +8,7 @@ class SvrRegression():
 
     def __init__(self, dataset):
         self.dataset = dataset
-        self.svr = SVR(**{**DEFAULTS[dataset]['svr']['defaults'], 'probability': True})
+        self.svr = SVR(**{**DEFAULTS[dataset]['svr']['defaults']})
         print("""
 			**********************
 			    SVR Regression
@@ -30,7 +30,7 @@ class SvrRegression():
         return self.svr.score(X_test, y_test)
 
     def create_new_instance(self, values):
-        return SVR(**{**values, 'random_state': 0, 'probability': True})
+        return SVR(**{**values})
 
     def param_grid(self, is_random=False):
         '''

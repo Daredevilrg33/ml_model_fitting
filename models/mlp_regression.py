@@ -20,6 +20,8 @@ import numpy as np
 # ax1.scatter(x, y, s=1, c='b', marker="s", label='real')
 # ax1.scatter(test_x,test_y, s=10, c='r', marker="o", label='NN Prediction')
 # plt.show()
+from models.defaults import DEFAULTS
+
 
 class MlpRegression():
 
