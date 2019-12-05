@@ -787,5 +787,20 @@ DEFAULTS = {
 				'max_depth': [100, 500, 1000, 10000], 'max_features': ['auto', 'log2', None], 'criterion': ['gini', 'entropy'],
 			}
 		},
+  './data_regression/student-por.csv': {
+		'linear_reg': {
+			'defaults': {
+			},
+			'param_grid': {
+			}
+		}
+	},
+	'./data_regression/communities.data': {
+		'linear_reg': {
+			'defaults': {
+			},
+			'param_grid': {
+			}
+		}
 	}
 }

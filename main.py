@@ -40,7 +40,10 @@ def __main__():
 		'./data_regression/Concrete_Data.xls',
 		'./data_regression/dataset_Facebook.csv',
 		'./data_regression/qsar_aquatic_toxicity.csv',
-		'./data_regression/sgemm_product.csv'
+		'./data_regression/sgemm_product.csv',
+		'./data_regression/student-por.csv',
+		'./data_regression/sgemm_product.csv',
+		'./data_regression/communities.data'
 	]
 
 	# for dataset in classification_dataset_list:
