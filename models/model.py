@@ -26,6 +26,21 @@ except ImportError:
 	os.system("conda install seaborn")
 	import seaborn as sns
 
+try:
+    import graphviz
+except:
+    print ("Graphiz not found, Installing Grpahiz ")
+    os.system("conda install -c anaconda graphviz")
+    import graphviz
+
+try:
+    import pydotplus
+except:
+    print("pydotplus not found, Installing pydotplus ")
+    os.system("conda install -c  conda-forge pydotplus")
+    import pydotplus
+
+
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import GridSearchCV
@@ -88,6 +103,8 @@ class Model():
 				self.get_facebook_metrics_data(file_path)
 			elif file_path.endswith('toxicity.csv'):
 				self.get_qsar_aquatic_toxicity_data(file_path)
+			elif file_path.endswith('student-por.csv'):
+				self.get_studentpor_data(file_path)
 			else:
 				self.get_sgemm_product(file_path)
 		elif file_path.endswith('xls'):
@@ -127,6 +144,50 @@ class Model():
 		input_data = pd.read_excel(file_path)
 		self.X = input_data.iloc[:, 0:8].values
 		self.y = input_data.iloc[:, 8].values
+
+	def get_studentpor_data(self,file_path):
+		student_data = pd.read_csv(file_path,delimiter=';')
+		data = pd.DataFrame(student_data)
+		label_encoder = LabelEncoder();
+		# encode label student
+		data["school"] = label_encoder.fit_transform(data["school"])
+		# sex
+		data.iloc[:, 1] = label_encoder.fit_transform(data.iloc[:, 1])
+		# address
+		data.iloc[:, 3] = label_encoder.fit_transform(data.iloc[:, 3])
+		# famsize
+		data.iloc[:, 4] = label_encoder.fit_transform(data.iloc[:, 4])
+		# Pstatus
+		data.iloc[:, 5] = label_encoder.fit_transform(data.iloc[:, 5])
+		# Mjob
+		data.iloc[:, 8] = label_encoder.fit_transform(data.iloc[:, 8])
+		# Fjob
+		data.iloc[:, 9] = label_encoder.fit_transform(data.iloc[:, 9])
+		# reason
+		data.iloc[:, 10] = label_encoder.fit_transform(data.iloc[:, 10])
+		# guardian
+		data.iloc[:, 11] = label_encoder.fit_transform(data.iloc[:, 11])
+		# schoolsup
+		data.iloc[:, 15] = label_encoder.fit_transform(data.iloc[:, 15])
+		# famsup
+		data.iloc[:, 16] = label_encoder.fit_transform(data.iloc[:, 16])
+		# paid
+		data.iloc[:, 17] = label_encoder.fit_transform(data.iloc[:, 17])
+		# activities
+		data.iloc[:, 18] = label_encoder.fit_transform(data.iloc[:, 18])
+		# nursery
+		data.iloc[:, 19] = label_encoder.fit_transform(data.iloc[:, 19])
+		# higher
+		data.iloc[:, 20] = label_encoder.fit_transform(data.iloc[:, 20])
+		# internet
+		data.iloc[:, 21] = label_encoder.fit_transform(data.iloc[:, 21])
+		# romantic
+		data.iloc[:, 22] = label_encoder.fit_transform(data.iloc[:, 22])
+		X = data.iloc[:, 0:32]
+		fields = ["Fedu", "age", "Fjob", "activities", "famsize", "health", "Walc", "romantic",
+				  "goout", "famrel", "Pstatus", "famsup", "nursery", "studytime", "absences", "Mjob", "G2"]
+		self.X = X[fields].values
+		self.y = data.iloc[:, 32].values
 
 	def Weekday(self,x):
 		if x == 1:
@@ -325,6 +386,7 @@ class Model():
 		label_encoder = LabelEncoder()
 		dataset['Sequence Name'] = label_encoder.fit_transform(dataset['Sequence Name'])
 		dataset['class'] = label_encoder.fit_transform(dataset['class'])
+		print(dataset['class'])
 		self.X = dataset.iloc[:, 0:9].values.astype(int)
 		self.y = dataset.iloc[:, 9].values
 

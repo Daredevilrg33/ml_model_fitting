@@ -778,6 +778,14 @@ DEFAULTS = {
 			}
 		}
 	},
+    './data_regression/student-por.csv': {
+		'linear_reg': {
+			'defaults': {
+			},
+			'param_grid': {
+			}
+		}
+	},
 	'./data_regression/communities.data': {
 		'linear_reg': {
 			'defaults': {
