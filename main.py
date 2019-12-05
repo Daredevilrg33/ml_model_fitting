@@ -47,7 +47,13 @@ def __main__():
 		'./data_regression/sgemm_product.csv',
 		'./data_regression/student-por.csv',
 		'./data_regression/sgemm_product.csv',
-		'./data_regression/communities.data'
+		'./data_regression/communities.data',
+		'./data_regression/ACT2_competition_training.npz',
+		'./data_regression/ACT4_competition_training.npz',
+		'./data_regression/parkinson_train_data.txt'
+
+
+
 	]
 
 	# for dataset in classification_dataset_list:
@@ -106,8 +112,8 @@ def __main__():
 		model = Model(model_type=random_forest_regressor,is_regression=True)
 		model.perform_experiments(dataset)
 
-	# cifar = CifarModel()
-	# cifar.train_and_save_cnn()
-	# cifar.test_cnn()
+	cifar = CifarModel()
+	cifar.train_and_save_cnn()
+	cifar.test_cnn()
 
 __main__()

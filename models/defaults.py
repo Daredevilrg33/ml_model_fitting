@@ -1091,5 +1091,125 @@ DEFAULTS = {
 
 			}
 		}
+	},
+	'./data_regression/ACT2_competition_training.npz': {
+		'linear_reg': {
+			'defaults': {
+			},
+			'param_grid': {
+			}
+		},
+		'dtr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'svr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'gaussian_pr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'rf': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		}
+	},
+	'./data_regression/ACT4_competition_training.npz': {
+		'linear_reg': {
+			'defaults': {
+			},
+			'param_grid': {
+			}
+		},
+		'dtr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'svr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'gaussian_pr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'rf': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		}
+	},
+	'./data_regression/parkinson_train_data.txt': {
+		'linear_reg': {
+			'defaults': {
+			},
+			'param_grid': {
+			}
+		},
+		'dtr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'svr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'gaussian_pr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'rf': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		}
 	}
 }

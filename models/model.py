@@ -49,7 +49,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import LabelEncoder
 from sklearn.impute import SimpleImputer
 import numpy as np
-
+from sklearn.feature_selection import VarianceThreshold
 import matplotlib.pyplot as plt
 from sklearn.metrics import accuracy_score, confusion_matrix, roc_curve, roc_auc_score, average_precision_score, precision_recall_curve
 
@@ -111,8 +111,27 @@ class Model():
 			self.get_concrete_data(file_path)
 		elif file_path.endswith('data'):
 			self.get_communities_and_crime_data(file_path)
+		elif file_path.endswith('npz'):
+			self.get_merck_molecule_activity(file_path)
+		elif file_path.endswith('txt'):
+			self.get_parkinson_speech(file_path)
 		else:
 			print("Don't know how to load this data")
+
+
+	def get_merck_molecule_activity(self,file_path):
+		npzfile = np.load(file_path)
+		X = npzfile['arr_0']
+		self.y = npzfile['arr_1']
+		value = np.mean(np.var(X, axis=1))
+		selector = VarianceThreshold(threshold=int(value))
+		self.X = selector.fit_transform(X)
+
+	def get_parkinson_speech(self,file_path):
+		data = pd.read_csv(file_path,delimiter=",")
+		self.X = np.array(data.iloc[:, 1:27])
+		self.y = np.array(data.iloc[:, 27])
+
 
 	def get_communities_and_crime_data(self, file_path):
 		data = pd.read_csv(file_path, delimiter=",", header=None)
