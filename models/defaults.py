@@ -799,8 +799,7 @@ DEFAULTS = {
 				"n_estimators": [10, 40, 60],
 				"max_depth": [8, 15, 20],
 				"min_samples_split": [15, 50, 60],
-				"min_samples_leaf": [1, 2, 5],
-
+				"min_samples_leaf": [1, 2, 5]
 			}
 		},
 		'ab': {
@@ -1209,7 +1208,7 @@ DEFAULTS = {
 	'./data_regression/Concrete_Data.xls': {
 		'linear_reg': {
 			'defaults': {
-				'random_state': [0],
+
 			},
 			'param_grid': {
 				'fit_intercept': [True, False],
