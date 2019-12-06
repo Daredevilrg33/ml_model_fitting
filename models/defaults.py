@@ -57,10 +57,14 @@ DEFAULTS = {
 		},
 		'dt': {
 			'defaults': {
-
+				'random_state': 0
 			},
 			'param_grid': {
-
+  				'random_state': [0],
+				"min_samples_split": [2,3,5],
+				"max_depth": [5,10,15,20],
+				"min_samples_leaf": [5,10,15],
+				"max_leaf_nodes": [20,30,40,50],
 			}
 		},
 		'rf': {
@@ -134,9 +138,14 @@ DEFAULTS = {
 		},
 		'dt': {
 			'defaults': {
-
+'random_state': 0
 			},
 			'param_grid': {
+  				'random_state': [0],
+				"min_samples_split": [2,3,5],
+				"max_depth": [3,5,10,15,20],
+				"min_samples_leaf": [2,3,5],
+				"max_leaf_nodes": [20,30,40,50],
 
 			}
 		},
@@ -211,9 +220,14 @@ DEFAULTS = {
 		},
 		'dt': {
 			'defaults': {
-
+'random_state': 0
 			},
 			'param_grid': {
+  				'random_state': [0],
+				"min_samples_split": [2,3,5],
+				"max_depth": [3,2,4,5],
+				"min_samples_leaf": [5,10,15,20,25],
+				"max_leaf_nodes": [20,30,40],
 
 			}
 		},
@@ -287,9 +301,14 @@ DEFAULTS = {
 		},
 		'dt': {
 			'defaults': {
-
+'random_state': 0
 			},
 			'param_grid': {
+  				'random_state': [0],
+				"min_samples_split": [2,3,5],
+				"max_depth": [5,10,15,20],
+				"min_samples_leaf": [5,10,15],
+				"max_leaf_nodes": [40,50, 100, 120],
 
 			}
 		},
@@ -365,9 +384,14 @@ DEFAULTS = {
 		},
 		'dt': {
 			'defaults': {
-
+'random_state': 0
 			},
 			'param_grid': {
+  				'random_state': [0],
+				"min_samples_split": [3,5,6,7],
+				"max_depth": [5,10,15],
+				"min_samples_leaf": [5,10,15],
+				"max_leaf_nodes": [40,50, 100, 120],
 
 			}
 		},
@@ -443,9 +467,14 @@ DEFAULTS = {
 		},
 		'dt': {
 			'defaults': {
-
+'random_state': 0
 			},
 			'param_grid': {
+  				'random_state': [0],
+				"min_samples_split": [2,3,5],
+				"max_depth": [5,10,15,20],
+				"min_samples_leaf": [5,10,15],
+				"max_leaf_nodes": [40,50, 100, 120],
 
 			}
 		},
@@ -521,9 +550,14 @@ DEFAULTS = {
 		},
 		'dt': {
 			'defaults': {
-
+'random_state': 0
 			},
 			'param_grid': {
+  				'random_state': [0],
+				"min_samples_split": [2,3,5],
+				"max_depth": [5,10,15,20],
+				"min_samples_leaf": [5,10,15],
+				"max_leaf_nodes": [40,50, 100, 120],
 
 			}
 		},
@@ -599,9 +633,14 @@ DEFAULTS = {
 		},
 		'dt': {
 			'defaults': {
-
+'random_state': 0
 			},
 			'param_grid': {
+  				'random_state': [0],
+				"min_samples_split": [2,3,5],
+				"max_depth": [5,10,15,20],
+				"min_samples_leaf": [5,10,15],
+				"max_leaf_nodes": [40,50, 100, 120],
 
 			}
 		},
@@ -678,9 +717,14 @@ DEFAULTS = {
 		},
 		'dt': {
 			'defaults': {
-
+'random_state': 0
 			},
 			'param_grid': {
+  				'random_state': [0],
+				"min_samples_split": [2,3,5],
+				"max_depth": [5,10,15,20],
+				"min_samples_leaf": [5,10,15],
+				"max_leaf_nodes": [40,50, 100, 120],
 
 			}
 		},
@@ -757,9 +801,14 @@ DEFAULTS = {
 		},
 		'dt': {
 			'defaults': {
-
+				'random_state': 0
 			},
 			'param_grid': {
+  				'random_state': [0],
+				"min_samples_split": [2,3,5],
+				"max_depth": [5,10,15,20],
+				"min_samples_leaf": [5,10,15],
+				"max_leaf_nodes": [40,50, 100, 120],
 
 			}
 		},
@@ -789,15 +838,21 @@ DEFAULTS = {
 		},
 		'dtr': {
 			'defaults': {
-
+				'random_state': 0
 			},
 			'param_grid': {
-
+				'random_state': [0],
+              	"min_samples_split": [10, 15, 20],
+              	"max_depth": [2, 6, 8],
+              	"min_samples_leaf": [20, 40, 100],
+              	"max_leaf_nodes": [50,100],
 			}
 		},
 		'svr': {
 			'defaults': {
-
+				'C':100,
+				'gamma':0.1,
+				'epsilon':.1
 			},
 			'param_grid': {
                 'C': [1, 10, 100, 1000],
@@ -848,15 +903,21 @@ DEFAULTS = {
 		},
 		'dtr': {
 			'defaults': {
-
+				'random_state': 0
 			},
 			'param_grid': {
-
+'random_state': [0],
+				"min_samples_split": [10, 15, 20, 40],
+				"max_depth": [4,6,8, 10],
+				"min_samples_leaf": [10,20, 40],
+				"max_leaf_nodes": [40,50, 100],
 			}
 		},
 		'svr': {
 			'defaults': {
-
+				'C':100,
+				'gamma':0.1,
+				'epsilon':.1
 			},
 			'param_grid': {
                 'C': [1, 10, 100, 1000],
@@ -907,10 +968,14 @@ DEFAULTS = {
 		},
 		'dtr': {
 			'defaults': {
-
+				'random_state': 0
 			},
 			'param_grid': {
-
+				'random_state': [0],
+				"min_samples_split": [10, 15, 20, 40],
+				"max_depth": [4,6,8, 10],
+				"min_samples_leaf": [10,20, 40],
+				"max_leaf_nodes": [40,50, 100],
 			}
 		},
 		'svr': {
@@ -966,10 +1031,10 @@ DEFAULTS = {
 		},
 		'dtr': {
 			'defaults': {
-
+				'random_state': 0
 			},
 			'param_grid': {
-
+                'random_state': [0]
 			}
 		},
 		'svr': {
@@ -1025,10 +1090,14 @@ DEFAULTS = {
 		},
 		'dtr': {
 			'defaults': {
-
+				'random_state': 0
 			},
 			'param_grid': {
-
+  				'random_state': [0],
+				"min_samples_split": [2,3,5],
+				"max_depth": [5,10,15,20],
+				"min_samples_leaf": [5,10,15],
+				"max_leaf_nodes": [40,50, 100, 120],
 			}
 		},
 		'svr': {
@@ -1080,19 +1149,26 @@ DEFAULTS = {
 			'defaults': {
 			},
 			'param_grid': {
+
 			}
 		},
 		'dtr': {
 			'defaults': {
-
+				'random_state': 0
 			},
 			'param_grid': {
-
+				'random_state': [0],
+				'max_depth':[None, 5, 3, 1],
+                'min_samples_split':np.linspace(0.1, 1.0, 5, endpoint=True),
+                'min_samples_leaf':np.linspace(0.1, 0.5, 5, endpoint=True),
+                'max_features':['auto', 'sqrt', 'log2'],
 			}
 		},
 		'svr': {
 			'defaults': {
-
+				'C':100,
+				'gamma':0.1,
+				'epsilon':.1
 			},
 			'param_grid': {
                 'C': [1, 10, 100, 1000],
@@ -1139,14 +1215,19 @@ DEFAULTS = {
 			'defaults': {
 			},
 			'param_grid': {
+
 			}
 		},
 		'dtr': {
 			'defaults': {
-
+				'random_state': 0
 			},
 			'param_grid': {
-
+				'random_state': [0],
+				'max_depth':[None, 5, 3, 1],
+                'min_samples_split':np.linspace(0.1, 1.0, 5, endpoint=True),
+                'min_samples_leaf':np.linspace(0.1, 0.5, 5, endpoint=True),
+                'max_features':['auto', 'sqrt', 'log2'],
 			}
 		},
 		'svr': {
@@ -1212,10 +1293,14 @@ DEFAULTS = {
 		},
 		'dtr': {
 			'defaults': {
-
+				'random_state': 0
 			},
 			'param_grid': {
-
+                'random_state': [0],
+                'max_depth':np.linspace(1, 32, 16, endpoint=True),
+                'min_samples_split':np.linspace(0.1, 1.0, 5, endpoint=True),
+                'min_samples_leaf':np.linspace(0.1, 0.5, 5, endpoint=True),
+                # 'max_features':list(range(1,train.shape[1])),
 			}
 		},
 		'svr': {
@@ -1241,9 +1326,12 @@ DEFAULTS = {
 			'defaults': {
 
 			},
+# https://towardsdatascience.com/hyperparameter-tuning-the-random-forest-in-python-using-scikit-learn-28d2aa77dd74
 			'param_grid': {
-
-			}
+                'max_depth': [ 40,  70,  100],
+                'min_samples_leaf': [1, 2, 4],
+                'min_samples_split': [2, 5, 10],
+                'n_estimators': [ 1800, 2000]}
 		},
 		'nn': {
 			'defaults': {
@@ -1271,10 +1359,14 @@ DEFAULTS = {
 		},
 		'dtr': {
 			'defaults': {
-
+				'random_state': 0
 			},
 			'param_grid': {
-
+                'random_state': [0],
+				"min_samples_split": [5,10],
+				"max_depth": [8, 10,14],
+				"min_samples_leaf": [10,20, 40],
+				"max_leaf_nodes": [10,20,40],
 			}
 		},
 		'svr': {
@@ -1330,10 +1422,14 @@ DEFAULTS = {
 		},
 		'dtr': {
 			'defaults': {
-
+				'random_state': 0
 			},
 			'param_grid': {
-
+                'random_state': [0],
+				"min_samples_split": [4,5,6],
+				"max_depth": [8, 10,14],
+				"min_samples_leaf": [10,20, 40],
+				"max_leaf_nodes": [40,50],
 			}
 		},
 		'svr': {
@@ -1389,10 +1485,14 @@ DEFAULTS = {
 		},
 		'dtr': {
 			'defaults': {
-
+				'random_state': 0
 			},
 			'param_grid': {
-
+                'random_state': [0],
+				"min_samples_split": [3,4,5],
+				"max_depth": [ 10,14,16],
+				"min_samples_leaf": [10,20, 40],
+				"max_leaf_nodes": [50,60],
 			}
 		},
 		'svr': {
@@ -1448,10 +1548,14 @@ DEFAULTS = {
 		},
 		'dtr': {
 			'defaults': {
-
+				'random_state': 0
 			},
 			'param_grid': {
-
+ 'random_state': [0],
+				"min_samples_split": [2,3,4],
+				"max_depth": [3,4,5],
+				"min_samples_leaf": [40,60,80],
+				"max_leaf_nodes": [10,20,30],
 			}
 		},
 		'svr': {
