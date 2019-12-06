@@ -760,6 +760,22 @@ DEFAULTS = {
 			'param_grid': {
 
 			}
+		},
+		'nn': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'ab': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
 		}
 	},
 	'./data_regression/dataset_Facebook.csv': {
@@ -794,6 +810,22 @@ DEFAULTS = {
 			}
 		},
 		'rf': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'nn': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'ab': {
 			'defaults': {
 
 			},
@@ -840,6 +872,22 @@ DEFAULTS = {
 			'param_grid': {
 
 			}
+		},
+		'nn': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'ab': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
 		}
 	},
 	'./data_regression/sgemm_product.csv': {
@@ -874,6 +922,22 @@ DEFAULTS = {
 			}
 		},
 		'rf': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'nn': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'ab': {
 			'defaults': {
 
 			},
@@ -920,6 +984,22 @@ DEFAULTS = {
 			'param_grid': {
 
 			}
+		},
+		'nn': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'ab': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
 		}
 	},
 	'./data_regression/winequality-red.csv': {
@@ -960,6 +1040,22 @@ DEFAULTS = {
 			'param_grid': {
 
 			}
+		},
+		'nn': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'ab': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
 		}
 	},
 	'./data_regression/winequality-white.csv': {
@@ -994,6 +1090,22 @@ DEFAULTS = {
 			}
 		},
 		'rf': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'nn': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'ab': {
 			'defaults': {
 
 			},
@@ -1050,6 +1162,22 @@ DEFAULTS = {
 			'param_grid': {
 
 			}
+		},
+		'nn': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'ab': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
 		}
 	},
 	'./data_regression/communities.data': {
@@ -1084,6 +1212,22 @@ DEFAULTS = {
 			}
 		},
 		'rf': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'nn': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'ab': {
 			'defaults': {
 
 			},
@@ -1130,6 +1274,22 @@ DEFAULTS = {
 			'param_grid': {
 
 			}
+		},
+		'nn': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'ab': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
 		}
 	},
 	'./data_regression/ACT4_competition_training.npz': {
@@ -1170,6 +1330,22 @@ DEFAULTS = {
 			'param_grid': {
 
 			}
+		},
+		'nn': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'ab': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
 		}
 	},
 	'./data_regression/parkinson_train_data.txt': {
@@ -1204,6 +1380,22 @@ DEFAULTS = {
 			}
 		},
 		'rf': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'nn': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'ab': {
 			'defaults': {
 
 			},

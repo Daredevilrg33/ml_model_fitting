@@ -12,7 +12,9 @@ from models.svr_regression import SvrRegression
 from models.linear_regression import LinearReg
 from models.decision_tree_regression import DTRegression
 from models.random_forest_regressor import RfRegressor
-from models.cifar_models import CifarModel
+from models.mlp_regression import MlpRegression
+from models.ada_boost_regressor import ABRegressor
+# from models.cifar_models import CifarModel
 import warnings
 
 from sklearn.utils.testing import ignore_warnings
@@ -38,20 +40,19 @@ def __main__():
 	]
 
 	regression_dataset_list = [
-		'./data_regression/winequality-red.csv',
-		'./data_regression/winequality-white.csv',
-		'./data_regression/bike_sharing_hour.csv',
-		'./data_regression/Concrete_Data.xls',
-		'./data_regression/dataset_Facebook.csv',
-		'./data_regression/qsar_aquatic_toxicity.csv',
-		'./data_regression/sgemm_product.csv',
-		'./data_regression/student-por.csv',
-		'./data_regression/sgemm_product.csv',
-		'./data_regression/communities.data',
-		'./data_regression/ACT2_competition_training.npz',
-		'./data_regression/ACT4_competition_training.npz',
-		'./data_regression/parkinson_train_data.txt'
+		# './data_regression/winequality-red.csv',
+		# './data_regression/winequality-white.csv',
+		# './data_regression/bike_sharing_hour.csv',
+		# './data_regression/Concrete_Data.xls',
+		# './data_regression/dataset_Facebook.csv',
+		# './data_regression/qsar_aquatic_toxicity.csv',
+		# './data_regression/sgemm_product.csv',
 
+		# './data_regression/communities.data',
+		# './data_regression/ACT2_competition_training.npz',
+		# './data_regression/ACT4_competition_training.npz',
+		# './data_regression/parkinson_train_data.txt',
+			'./data_regression/student-por.csv'
 
 
 	]
@@ -111,9 +112,15 @@ def __main__():
 		random_forest_regressor = RfRegressor(dataset)
 		model = Model(model_type=random_forest_regressor,is_regression=True)
 		model.perform_experiments(dataset)
+		mlp_regressor = MlpRegression(dataset)
+		model = Model(model_type=mlp_regressor,is_regression=True)
+		model.perform_experiments(dataset)
+		ab_regressor = ABRegressor(dataset)
+		model = Model(model_type=ab_regressor,is_regression=True)
+		model.perform_experiments(dataset)
 
-	cifar = CifarModel()
-	cifar.train_and_save_cnn()
-	cifar.test_cnn()
+	# cifar = CifarModel()
+	# cifar.train_and_save_cnn()
+	# cifar.test_cnn()
 
 __main__()

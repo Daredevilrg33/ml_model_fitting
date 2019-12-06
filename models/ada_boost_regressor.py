@@ -11,9 +11,9 @@ class ABRegressor():
         self.dataset = dataset
         self.adaboost = AdaBoostRegressor(**DEFAULTS[dataset]['ab']['defaults'])
         print("""
-    		**********************
-    		Ada Boost Regressor
-    		**********************
+    		*************************
+    		    Ada Boost Regressor
+    		************************ 
     	""")
 
     def train_and_predict(self, X, y, X_test):
