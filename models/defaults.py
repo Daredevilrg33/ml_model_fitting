@@ -19,7 +19,9 @@ DEFAULTS = {
 				'random_state': 0,
 			},
 			'param_grid': {
-				'C': [1, 10, 100, 1000], 'kernel': ['rbf','sigmoid'], 'gamma': [0.01, 0.10, 1.0, 10]
+				'C': [1, 10, 100, 1000],
+                'kernel': ['rbf','sigmoid'],
+                'gamma': [0.01, 0.10, 1.0, 10]
 			}
 		},
 		'gaussian_nb': {
@@ -95,7 +97,9 @@ DEFAULTS = {
 				'random_state': 0,
 			},
 			'param_grid': {
-				'C': [1, 10, 100, 1000], 'kernel': ['rbf','sigmoid'], 'gamma': [0.01, 0.10, 1.0, 10]
+				'C': [1, 10, 100, 1000],
+                'kernel': ['rbf','sigmoid'],
+                'gamma': [0.01, 0.10, 1.0, 10]
 			}
 		},
 		'gaussian_nb': {
@@ -170,7 +174,9 @@ DEFAULTS = {
 				'random_state': 0,
 			},
 			'param_grid': {
-				'C': [1, 10, 100, 1000], 'kernel': ['rbf','sigmoid'], 'gamma': [0.01, 0.10, 1.0, 10]
+				'C': [1, 10, 100, 1000],
+                'kernel': ['rbf','sigmoid'],
+                'gamma': [0.01, 0.10, 1.0, 10]
 			}
 		},
 		'gaussian_nb': {
@@ -245,7 +251,9 @@ DEFAULTS = {
 				'random_state': 0,
 			},
 			'param_grid': {
-				'C': [1, 10, 100, 1000], 'kernel': ['rbf','sigmoid'], 'gamma': [0.01, 0.10, 1.0, 10]
+				'C': [1, 10, 100, 1000],
+                'kernel': ['rbf','sigmoid'],
+                'gamma': [0.01, 0.10, 1.0, 10]
 			}
 		},
 		'gaussian_nb': {
@@ -319,7 +327,9 @@ DEFAULTS = {
 				'random_state': 0,
 			},
 			'param_grid': {
-				'C': [1, 10, 100, 1000], 'kernel': ['rbf','sigmoid'], 'gamma': [0.01, 0.10, 1.0, 10]
+				'C': [1, 10, 100, 1000],
+                'kernel': ['rbf','sigmoid'],
+                'gamma': [0.01, 0.10, 1.0, 10]
 			}
 		},
 		'gaussian_nb': {
@@ -395,7 +405,9 @@ DEFAULTS = {
 				'random_state': 0,
 			},
 			'param_grid': {
-				'C': [1, 10, 100, 1000], 'kernel': ['rbf','sigmoid'], 'gamma': [0.01, 0.10, 1.0, 10]
+				'C': [1, 10, 100, 1000],
+                'kernel': ['rbf','sigmoid'],
+                'gamma': [0.01, 0.10, 1.0, 10]
 			}
 		},
 		'gaussian_nb': {
@@ -471,7 +483,9 @@ DEFAULTS = {
 				'random_state': 0,
 			},
 			'param_grid': {
-				'C': [1, 10, 100, 1000], 'kernel': ['rbf','sigmoid'], 'gamma': [0.01, 0.10, 1.0, 10]
+				'C': [1, 10, 100, 1000],
+                'kernel': ['rbf','sigmoid'],
+                'gamma': [0.01, 0.10, 1.0, 10]
 			}
 		},
 		'gaussian_nb': {
@@ -547,7 +561,9 @@ DEFAULTS = {
 				'random_state': 0,
 			},
 			'param_grid': {
-				'C': [1, 10, 100, 1000], 'kernel': ['rbf','sigmoid'], 'gamma': [0.01, 0.10, 1.0, 10]
+				'C': [1, 10, 100, 1000],
+                'kernel': ['rbf','sigmoid'],
+                'gamma': [0.01, 0.10, 1.0, 10]
 			}
 		},
 		'gaussian_nb': {
@@ -623,7 +639,9 @@ DEFAULTS = {
 				'random_state': 0,
 			},
 			'param_grid': {
-				'C': [1, 10, 100, 1000], 'kernel': ['rbf','sigmoid'], 'gamma': [0.01, 0.10, 1.0, 10]
+				'C': [1, 10, 100, 1000],
+                'kernel': ['rbf','sigmoid'],
+                'gamma': [0.01, 0.10, 1.0, 10]
 			}
 		},
 		'gaussian_nb': {
@@ -700,7 +718,9 @@ DEFAULTS = {
 				'random_state': 0,
 			},
 			'param_grid': {
-				'C': [1, 10, 100, 1000], 'kernel': ['rbf','sigmoid'], 'gamma': [0.01, 0.10, 1.0, 10]
+				'C': [1, 10, 100, 1000],
+                'kernel': ['rbf','sigmoid'],
+                'gamma': [0.01, 0.10, 1.0, 10]
 			}
 		},
 		'gaussian_nb': {
@@ -780,6 +800,9 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+                'C': [1, 10, 100, 1000],
+                'kernel': ['rbf','sigmoid'],
+                'gamma': [0.01, 0.10, 1.0, 10]
 
 			}
 		},
@@ -836,6 +859,9 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+                'C': [1, 10, 100, 1000],
+                'kernel': ['rbf','sigmoid'],
+                'gamma': [0.01, 0.10, 1.0, 10]
 
 			}
 		},
@@ -892,6 +918,9 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+                'C': [1, 10, 100, 1000],
+                'kernel': ['rbf','sigmoid'],
+                'gamma': [0.01, 0.10, 1.0, 10]
 
 			}
 		},
@@ -948,6 +977,9 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+                'C': [1, 10, 100, 1000],
+                'kernel': ['rbf','sigmoid'],
+                'gamma': [0.01, 0.10, 1.0, 10]
 
 			}
 		},
@@ -1004,6 +1036,9 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+                'C': [1, 10, 100, 1000],
+                'kernel': ['rbf','sigmoid'],
+                'gamma': [0.01, 0.10, 1.0, 10]
 
 			}
 		},
@@ -1060,6 +1095,9 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+                'C': [1, 10, 100, 1000],
+                'kernel': ['rbf','sigmoid'],
+                'gamma': [0.01, 0.10, 1.0, 10]
 
 			}
 		},
@@ -1116,6 +1154,9 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+                'C': [1, 10, 100, 1000],
+                'kernel': ['rbf','sigmoid'],
+                'gamma': [0.01, 0.10, 1.0, 10]
 
 			}
 		},
@@ -1182,6 +1223,9 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+                'C': [1, 10, 100, 1000],
+                'kernel': ['rbf','sigmoid'],
+                'gamma': [0.01, 0.10, 1.0, 10]
 
 			}
 		},
@@ -1238,6 +1282,9 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+                'C': [1, 10, 100, 1000],
+                'kernel': ['rbf','sigmoid'],
+                'gamma': [0.01, 0.10, 1.0, 10]
 
 			}
 		},
@@ -1294,6 +1341,9 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+                'C': [1, 10, 100, 1000],
+                'kernel': ['rbf','sigmoid'],
+                'gamma': [0.01, 0.10, 1.0, 10]
 
 			}
 		},
@@ -1350,6 +1400,9 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+                'C': [1, 10, 100, 1000],
+                'kernel': ['rbf','sigmoid'],
+                'gamma': [0.01, 0.10, 1.0, 10]
 
 			}
 		},
@@ -1406,6 +1459,9 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+                'C': [1, 10, 100, 1000],
+                'kernel': ['rbf','sigmoid'],
+                'gamma': [0.01, 0.10, 1.0, 10]
 
 			}
 		},

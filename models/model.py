@@ -227,14 +227,14 @@ class Model():
 
 	def get_facebook_metrics_data(self, file_path):
 		df = pd.read_csv(file_path, delimiter=';')
-		labelencoder = LabelEncoder()
-		df["Type"] = labelencoder.fit_transform(df["Type"])
-		imp = SimpleImputer(missing_values=np.nan, strategy="mean")
-		X = df.iloc[:, 0:16].values
-		self.X = imp.fit_transform(X)
-		y = df.iloc[:, 18].values
-		y = imp.fit_transform(y.reshape(-1, 1))
-		self.y = y.flatten()
+        labelencoder = LabelEncoder()
+        df["Type"] = labelencoder.fit_transform(df["Type"])
+        imp = SimpleImputer(missing_values=np.nan, strategy="mean")
+        X = df.iloc[:, 0:7].values
+        self.X = imp.fit_transform(X)
+        y = df.iloc[:, 10].values
+        y = imp.fit_transform(y.reshape(-1, 1))
+        self.y = y.flatten()
 
 
 		# df = pd.read_csv(file_path, delimiter=';')

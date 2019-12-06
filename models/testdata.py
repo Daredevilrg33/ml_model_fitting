@@ -1,3 +1,5 @@
+from io import StringIO
+
 from scipy.io import arff
 import pandas as pd
 from sklearn.linear_model import LinearRegression
@@ -11,6 +13,8 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.feature_selection import VarianceThreshold
 from sklearn.decomposition import TruncatedSVD
 from tempfile import TemporaryFile
+from sklearn.model_selection import GridSearchCV
+from sklearn.tree import DecisionTreeRegressor
 
 
 # with open("../data_regression/ACT2_competition_training.csv") as f:
@@ -21,14 +25,14 @@ from tempfile import TemporaryFile
 # np.savez('mat1.npz', X, y)
 # "mat.npz".seek(0) # Only needed here to simulate closing & reopening file
 
-npzfile = np.load("mat1.npz")
-X=npzfile['arr_0']
-y=npzfile['arr_1']
-value=np.mean(np.var(X,axis=1))
-selector = VarianceThreshold(threshold=int(value))
-print(X.shape)
-X=selector.fit_transform(X)
-print(X.shape)
+# npzfile = np.load("mat1.npz")
+# X=npzfile['arr_0']
+# y=npzfile['arr_1']
+# value=np.mean(np.var(X,axis=1))
+# selector = VarianceThreshold(threshold=int(value))
+# print(X.shape)
+# X=selector.fit_transform(X)
+# print(X.shape)
 
 
 # svd = TruncatedSVD(n_components=100)
@@ -36,10 +40,71 @@ print(X.shape)
 # X=newSvd.fit_transform(X)
 
 
+# data=pd.read_csv("../data_regression/sgemm_product.csv")
+# data['Avg_Run'] = data[['Run1 (ms)', 'Run2 (ms)', 'Run3 (ms)', 'Run4 (ms)']].mean(axis=1)
+# data = data.drop(['Run1 (ms)', 'Run2 (ms)', 'Run3 (ms)', 'Run4 (ms)'], axis=1)
+# print(data)
+# X = data.iloc[:, 0:14].values
+# y = data.iloc[:, 14].values
 
 
 
+# df = pd.read_csv("../data_regression/dataset_Facebook.csv", delimiter=';')
+# print(df.info())
+# print(df)
 
+# data=pd.read_csv("../data_regression/sgemm_product.csv")
+# data['Avg_Run'] = data[['Run1 (ms)', 'Run2 (ms)', 'Run3 (ms)', 'Run4 (ms)']].mean(axis=1)
+# data = data.drop(['Run1 (ms)', 'Run2 (ms)', 'Run3 (ms)', 'Run4 (ms)'], axis=1)
+# print(data)
+# X = data.iloc[:, 0:14].values
+# y = data.iloc[:, 14].values
+
+
+
+# data=pd.read_csv("../data_regression/parkinson_train_data.txt",delimiter=",")
+# print(data.info())
+# f=open("../data_regression/parkinson_train_data.txt","r")
+# cols = f.readline().rstrip('\n').split(',')
+# c = StringIO(f.read())
+# X = np.loadtxt("../data_regression/parkinson_train_data.txt", delimiter=',', usecols=range(1, len(cols)-2))
+# y = np.loadtxt("../data_regression/parkinson_train_data.txt", delimiter=',', usecols=[len(cols)-2])
+
+# df = pd.read_csv("../data_regression/dataset_Facebook.csv", delimiter=';')
+# labelencoder = LabelEncoder()
+# df["Type"] = labelencoder.fit_transform(df["Type"])
+# imp = SimpleImputer(missing_values=np.nan, strategy="mean")
+# X = df.iloc[:, 0:7].values
+# X = imp.fit_transform(X)
+# y = df.iloc[:,10].values
+# y = imp.fit_transform(y.reshape(-1, 1))
+# y = y.flatten()
+
+# X_train=X[:940,:]
+# y_train=y[:940]
+# X_test=X[941:,:]
+# y_test=y[941:]
+# X_train=np.array(data.iloc[0:940,0:27])
+# y_train=np.array(data.iloc[0:940,27])
+# X_test=np.array(data.iloc[941:1040,0:27])
+# y_test=np.array(data.iloc[941:1040,27])
+#
+#
+#
+
+# data = pd.read_csv('../data_regression/winequality-red.csv', delimiter=';')
+# data = pd.DataFrame(data)
+# list_red=['density', 'citric acid', 'quality']
+# # include_red=[fixed acidity;"volatile acidity";"citric acid";"residual sugar";"chlorides";"free sulfur dioxide";"total sulfur dioxide";"density";"pH";"sulphates";"alcohol"]
+# # list_white=['chlorides', 'fixed acidity', 'quality']
+# include=['volatile acidity',"citric acid","residual sugar","free sulfur dioxide","total sulfur dioxide","density","pH","sulphates","alcohol"]
+# y = data['quality'].values
+# data=data.drop(list_red, axis =1)
+# data.head()
+# X = data.values
+# print(X)
+# print(y)
+# # print(np.var(X,axis=1))
 
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
@@ -48,12 +113,56 @@ X_train = scaler.transform(X_train)
 X_test = scaler.transform(X_test)
 
 # Initialize linear regression model
-lModel = LinearRegression()
-
-# Train the model
+lModel = LinearRegression(normalize=True, fit_intercept=True, copy_X=True)
 lModel.fit(X_train, y_train)
 y_output=lModel.predict(X_test)
 print(lModel.score(X_test, y_test))
+
+
+# rides = pd.read_csv('../data_regression/bike_sharing_hour.csv')
+# # labelencoder = LabelEncoder()
+# # rides['dteday']=labelencoder.fit_transform(rides["dteday"])
+# # X = rides.iloc[:, 1:14].values
+# # y = rides.iloc[:, 16].values
+#
+# dummy_fields = ['season', 'weathersit', 'mnth', 'hr', 'weekday']
+# for each in dummy_fields:
+# 	dummies = pd.get_dummies(rides[each], prefix=each, drop_first=True)
+# 	rides = pd.concat([rides, dummies], axis=1)
+# fields_to_drop = ['instant', 'dteday', 'season', 'atemp', 'yr', 'registered', 'casual', 'season', 'weathersit',
+# 						  'mnth', 'hr', 'weekday']  # remove original features
+# data = rides.drop(fields_to_drop, axis=1)
+# data = pd.DataFrame(data)
+# X = data.iloc[:, 0:51].values
+# y = data.iloc[:, 51].values
+#
+# dtm = DecisionTreeRegressor(max_depth=4,
+#                            min_samples_split=5,
+#                            max_leaf_nodes=10)
+
+
+
+# normalize=True, fit_intercept=True, copy_X=True
+#
+# # Train the model
+# dtm.fit(X_train, y_train)
+# y_output=dtm.predict(X_test)
+# print(dtm.score(X_test, y_test))
+#
+# lModel.fit(X_train, y_train)
+# y_output=lModel.predict(X_test)
+# print(lModel.score(X_test, y_test))
+#
+# param_grid = {
+#               "min_samples_split": [10, 20, 40],
+#               "max_depth": [2, 6, 8],
+#               "min_samples_leaf": [20, 40, 100],
+#               "max_leaf_nodes": [5, 20, 100],
+#               }
+# grid_cv_dtm = GridSearchCV(dtm, param_grid, cv=5)
+#
+# grid_cv_dtm.fit(X,y)
+# print(grid_cv_dtm.best_score_)
 
 
 # avx=np.mean(y_output)
@@ -64,11 +173,7 @@ print(lModel.score(X_test, y_test))
 # print(num/denom)
 
 
-# data=pd.read_csv("../data_regression/parkinson_train_data.txt",delimiter=",")
-# print(data)
-# X=np.array(data.iloc[:,0:27])
-# print(X)
-# y=np.array(data.iloc[:,27])
+
 
 
 # df = pd.read_csv("../data_regression/dataset_Facebook.csv", delimiter=';')

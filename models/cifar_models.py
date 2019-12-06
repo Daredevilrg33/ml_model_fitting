@@ -35,7 +35,7 @@ class SimpleNet(nn.Module):
 		self.fc2 = nn.Linear(120, 84)
 		self.fc3 = nn.Linear(84, 10)
 
-	def forward(self, x):	
+	def forward(self, x):
 		x = self.pool(F.relu(self.conv1(x)))
 		x = self.pool(F.relu(self.conv2(x)))
 		x = self.pool2(F.relu(self.conv3(x)))
@@ -94,7 +94,7 @@ class CifarModel():
 		self.X_test_scaled_tensor = self.X_test_scaled.reshape(self.X_test_scaled.shape[0], 3, 32, 32)
 		self.X_train_scaled_tensor = torch.from_numpy(self.X_train_scaled_tensor).float()
 		self.X_test_scaled_tensor = torch.from_numpy(self.X_test_scaled_tensor).float()
-		
+
 		self.y_train_tensor = torch.tensor(np.array(self.y_train).astype(np.int64))
 		self.y_test_tensor = torch.tensor(np.array(self.y_test).astype(np.int64))
 
@@ -113,8 +113,8 @@ class CifarModel():
 
 		for epoch in range(EPOCH):  # loop over the dataset multiple times
 			for i in range(0, len(self.X_train_scaled_tensor), batch_size):
-				inputs = self.X_train_scaled_tensor[i:i+batch_size]   
-				labels = self.y_train_tensor[i:i+batch_size]   
+				inputs = self.X_train_scaled_tensor[i:i+batch_size]
+				labels = self.y_train_tensor[i:i+batch_size]
 
 				# zero the parameter gradients
 				optimizer.zero_grad()
@@ -126,7 +126,7 @@ class CifarModel():
 				optimizer.step()
 
 			print("Epoch {} final minibatch had loss {}".format(epoch, loss.item()))
-		
+
 		print('Finished cnn Training, Saving model')
 		torch.save(net.state_dict(), MODEL_PATH)
 
