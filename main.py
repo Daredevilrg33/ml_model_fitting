@@ -46,52 +46,56 @@ def __main__():
 		'./data_regression/communities.data'
 	]
 
-	# for dataset in classification_dataset_list:
-	# 	print("\n\n******** {} data ***********\n".format(dataset.split('/')[-1]))
-	# 	print("*******************************************\n")
+	for dataset in classification_dataset_list:
+		print("\n\n******** {} data ***********\n".format(dataset.split('/')[-1]))
+		print("*******************************************\n")
 
-	# 	knn_classifier = KnnClassifier(dataset)
-	# 	model = Model(model_type=knn_classifier)
-	# 	model.perform_experiments(dataset)
+		knn_classifier = KnnClassifier(dataset)
+		model = Model(model_type=knn_classifier)
+		model.perform_experiments(dataset)
 
-	# 	svm_classifier = SvmClassifier(dataset)
-	# 	model = Model(model_type=svm_classifier)
-	# 	model.perform_experiments(dataset)
+		svm_classifier = SvmClassifier(dataset)
+		model = Model(model_type=svm_classifier)
+		model.perform_experiments(dataset)
 
-	# 	gaussian_nb_classifier = GaussianNbClassifier(dataset)
-	# 	model = Model(model_type=gaussian_nb_classifier)
-	# 	model.perform_experiments(dataset)
+		gaussian_nb_classifier = GaussianNbClassifier(dataset)
+		model = Model(model_type=gaussian_nb_classifier)
+		model.perform_experiments(dataset)
 
-	# 	nn_classifier = MlpClassifier(dataset)
-	# 	model = Model(model_type=nn_classifier)
-	# 	model.perform_experiments(dataset)
+		nn_classifier = MlpClassifier(dataset)
+		model = Model(model_type=nn_classifier)
+		model.perform_experiments(dataset)
 
-	# 	lr_classifier = LogisticRegClassifier(dataset)
-	# 	model = Model(model_type=lr_classifier)
-	# 	model.perform_experiments(dataset)
+		lr_classifier = LogisticRegClassifier(dataset)
+		model = Model(model_type=lr_classifier)
+		model.perform_experiments(dataset)
 
-	# 	dt_classifier = DTClassifier(dataset)
-	# 	model = Model(model_type=dt_classifier)
-	# 	model.perform_experiments(dataset)
+		dt_classifier = DTClassifier(dataset)
+		model = Model(model_type=dt_classifier)
+		model.perform_experiments(dataset)
+		model.model_type.plot_and_save_tree()
 
-	# 	rf_classifier = RfClassifier(dataset)
-	# 	model = Model(model_type=rf_classifier)
-	# 	model.perform_experiments(dataset)
+		rf_classifier = RfClassifier(dataset)
+		model = Model(model_type=rf_classifier)
+		model.perform_experiments(dataset)
 
-	# 	ada_boost_classifier = ABClassifier(dataset)
-	# 	model = Model(model_type=ada_boost_classifier)
-	# 	model.perform_experiments(dataset)
+		ada_boost_classifier = ABClassifier(dataset)
+		model = Model(model_type=ada_boost_classifier)
+		model.perform_experiments(dataset)
 
-	# for dataset in regression_dataset_list:
-	# 	print("\n\n******** {} data ***********\n".format(dataset.split('/')[-1]))
-	# 	print("*******************************************\n")
+	for dataset in regression_dataset_list:
+		print("\n\n******** {} data ***********\n".format(dataset.split('/')[-1]))
+		print("*******************************************\n")
 
-	# 	linear_regression = LinearReg(dataset)
-	# 	model = Model(model_type=linear_regression, is_regression=True)
-	# 	model.perform_experiments(dataset)
+		linear_regression = LinearReg(dataset)
+		model = Model(model_type=linear_regression, is_regression=True)
+		model.perform_experiments(dataset)
 
 	cifar = CifarModel()
-	cifar.train_and_save_cnn()
-	cifar.test_cnn()
+	cifar.load_and_normalize_data() # load cifar data, combine batches data into single numpy array 
+	cifar.train_and_test_dt() # train and test decision tree
+	cifar.train_and_save_cnn() # train and save cnn
+	cifar.test_cnn() # test cnn on test dataset
+	cifar.activation_maximization_cnn() # create activation map
 
 __main__()
