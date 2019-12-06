@@ -48,7 +48,6 @@ def __main__():
 		'./data_regression/qsar_aquatic_toxicity.csv',
 		'./data_regression/sgemm_product.csv',
 		'./data_regression/student-por.csv',
-		'./data_regression/sgemm_product.csv',
 		'./data_regression/communities.data',
 		'./data_regression/ACT2_competition_training.npz',
 		'./data_regression/ACT4_competition_training.npz',

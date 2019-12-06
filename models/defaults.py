@@ -1,6 +1,7 @@
 import numpy as np
 import random
-
+from sklearn.gaussian_process.kernels import ConstantKernel, RBF
+kernel = ConstantKernel(constant_value=1.0, constant_value_bounds=(5.0, 10.0)) * RBF(length_scale=0.5, length_scale_bounds=(5.0, 10.0)) + RBF(length_scale=2.0, length_scale_bounds=(5.0, 1.0))
 DEFAULTS = {
 	'./data/messidor_features.arff': {
 		'knn': {
@@ -8,7 +9,8 @@ DEFAULTS = {
 				'n_neighbors': 10
 			},
 			'param_grid': {
-				'n_neighbors': np.arange(1, 30)
+				'n_neighbors': np.arange(1, 30),
+				'leaf_size' : np.arange(1,50)
 			}
 		},
 		'svm': {
@@ -79,11 +81,14 @@ DEFAULTS = {
 			}
 		},
 		'ab': {
-			'defaults': {
-
+				'defaults': {
+				# 'random_state' = 0, 'n_estimators' = 100,
+				'random_state': 0, 'n_estimators': 100,
 			},
 			'param_grid': {
-
+				'n_estimators': [50, 100],
+ 				'learning_rate' : [0.1,0.3,1],
+ 				'loss' : ['linear', 'exponential']
 			}
 		}
 	},
@@ -93,7 +98,8 @@ DEFAULTS = {
 				'n_neighbors': 10
 			},
 			'param_grid': {
-				'n_neighbors': np.arange(1, 30)
+				'n_neighbors': np.arange(1, 30),
+				'leaf_size' : np.arange(1,50)
 			}
 		},
 		'svm': {
@@ -164,11 +170,14 @@ DEFAULTS = {
 			}
 		},
 		'ab': {
-			'defaults': {
-
+				'defaults': {
+				# 'random_state' = 0, 'n_estimators' = 100,
+				'random_state': 0, 'n_estimators': 100,
 			},
 			'param_grid': {
-
+				'n_estimators': [50, 100],
+ 				'learning_rate' : [0.1,0.3,1],
+ 				'loss' : ['linear', 'exponential']
 			}
 		}
 	},
@@ -178,7 +187,8 @@ DEFAULTS = {
 				'n_neighbors': 10
 			},
 			'param_grid': {
-				'n_neighbors': np.arange(1, 30)
+				'n_neighbors': np.arange(1, 30),
+				'leaf_size' : np.arange(1,50)
 			}
 		},
 		'svm': {
@@ -250,11 +260,14 @@ DEFAULTS = {
 			}
 		},
 		'ab': {
-			'defaults': {
-
+				'defaults': {
+				# 'random_state' = 0, 'n_estimators' = 100,
+				'random_state': 0, 'n_estimators': 100,
 			},
 			'param_grid': {
-
+				'n_estimators': [50, 100],
+ 				'learning_rate' : [0.1,0.3,1],
+ 				'loss' : ['linear', 'exponential']
 			}
 		}
 	},
@@ -264,7 +277,8 @@ DEFAULTS = {
 				'n_neighbors': 10
 			},
 			'param_grid': {
-				'n_neighbors': np.arange(1, 30)
+				'n_neighbors': np.arange(1, 30),
+				'leaf_size' : np.arange(1,50)
 			}
 		},
 		'svm': {
@@ -335,11 +349,14 @@ DEFAULTS = {
 			}
 		},
 		'ab': {
-			'defaults': {
-
+				'defaults': {
+				# 'random_state' = 0, 'n_estimators' = 100,
+				'random_state': 0, 'n_estimators': 100,
 			},
 			'param_grid': {
-
+				'n_estimators': [50, 100],
+ 				'learning_rate' : [0.1,0.3,1],
+ 				'loss' : ['linear', 'exponential']
 			}
 		}
 	},
@@ -349,7 +366,8 @@ DEFAULTS = {
 				'n_neighbors': 10
 			},
 			'param_grid': {
-				'n_neighbors': np.arange(1, 30)
+				'n_neighbors': np.arange(1, 30),
+				'leaf_size' : np.arange(1,50)
 			}
 		},
 		'svm': {
@@ -422,11 +440,14 @@ DEFAULTS = {
 			}
 		},
 		'ab': {
-			'defaults': {
-
+				'defaults': {
+				# 'random_state' = 0, 'n_estimators' = 100,
+				'random_state': 0, 'n_estimators': 100,
 			},
 			'param_grid': {
-
+				'n_estimators': [50, 100],
+ 				'learning_rate' : [0.1,0.3,1],
+ 				'loss' : ['linear', 'exponential']
 			}
 		}
 	},
@@ -436,7 +457,8 @@ DEFAULTS = {
 				'n_neighbors': 10
 			},
 			'param_grid': {
-				'n_neighbors': np.arange(1, 30)
+				'n_neighbors': np.arange(1, 30),
+				'leaf_size' : np.arange(1,50)
 			}
 		},
 		'svm': {
@@ -508,11 +530,14 @@ DEFAULTS = {
 			}
 		},
 		'ab': {
-			'defaults': {
-
+				'defaults': {
+				# 'random_state' = 0, 'n_estimators' = 100,
+				'random_state': 0, 'n_estimators': 100,
 			},
 			'param_grid': {
-
+				'n_estimators': [50, 100],
+ 				'learning_rate' : [0.1,0.3,1],
+ 				'loss' : ['linear', 'exponential']
 			}
 		}
 	},
@@ -522,7 +547,8 @@ DEFAULTS = {
 				'n_neighbors': 10
 			},
 			'param_grid': {
-				'n_neighbors': np.arange(1, 30)
+				'n_neighbors': np.arange(1, 30),
+				'leaf_size' : np.arange(1,50)
 			}
 		},
 		'svm': {
@@ -595,11 +621,14 @@ DEFAULTS = {
 			}
 		},
 		'ab': {
-			'defaults': {
-
+				'defaults': {
+				# 'random_state' = 0, 'n_estimators' = 100,
+				'random_state': 0, 'n_estimators': 100,
 			},
 			'param_grid': {
-
+				'n_estimators': [50, 100],
+ 				'learning_rate' : [0.1,0.3,1],
+ 				'loss' : ['linear', 'exponential']
 			}
 		}
 	},
@@ -609,7 +638,8 @@ DEFAULTS = {
 				'n_neighbors': 10
 			},
 			'param_grid': {
-				'n_neighbors': np.arange(1, 30)
+				'n_neighbors': np.arange(1, 30),
+				'leaf_size': np.arange(1, 50)
 			}
 		},
 		'svm': {
@@ -682,11 +712,14 @@ DEFAULTS = {
 			}
 		},
 		'ab': {
-			'defaults': {
-
+				'defaults': {
+				# 'random_state' = 0, 'n_estimators' = 100,
+				'random_state': 0, 'n_estimators': 100,
 			},
 			'param_grid': {
-
+				'n_estimators': [50, 100],
+ 				'learning_rate' : [0.1,0.3,1],
+ 				'loss' : ['linear', 'exponential']
 			}
 		}
 	},
@@ -696,7 +729,8 @@ DEFAULTS = {
 				'n_neighbors': 10
 			},
 			'param_grid': {
-				'n_neighbors': np.arange(1, 30)
+				'n_neighbors': np.arange(1, 30),
+				'leaf_size': np.arange(1, 50)
 			}
 		},
 		'svm': {
@@ -770,11 +804,14 @@ DEFAULTS = {
 			}
 		},
 		'ab': {
-			'defaults': {
-
+				'defaults': {
+				# 'random_state' = 0, 'n_estimators' = 100,
+				'random_state': 0, 'n_estimators': 100,
 			},
 			'param_grid': {
-
+				'n_estimators': [50, 100],
+ 				'learning_rate' : [0.1,0.3,1],
+ 				'loss' : ['linear', 'exponential']
 			}
 		}
 	},
@@ -784,7 +821,8 @@ DEFAULTS = {
 				'n_neighbors': 10
 			},
 			'param_grid': {
-				'n_neighbors': np.arange(1, 30)
+				'n_neighbors': np.arange(1, 30),
+				'leaf_size': np.arange(1, 50)
 			}
 		},
 		'svm': {
@@ -858,11 +896,14 @@ DEFAULTS = {
 			}
 		},
 		'ab': {
-			'defaults': {
-
+				'defaults': {
+				# 'random_state' = 0, 'n_estimators' = 100,
+				'random_state': 0, 'n_estimators': 100,
 			},
 			'param_grid': {
-
+				'n_estimators': [50, 100],
+ 				'learning_rate' : [0.1,0.3,1],
+ 				'loss' : ['linear', 'exponential']
 			}
 		}
 	},
@@ -903,7 +944,7 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-
+				'kernel' : [kernel],
 			}
 		},
 		'rf': {
@@ -920,18 +961,22 @@ DEFAULTS = {
 		},
 		'nn': {
 			'defaults': {
-
+				'max_iter':10
 			},
 			'param_grid': {
-
+				'hidden_layer_sizes': [(50,50,50), (100,)],
+				'activation': ['tanh', 'relu'],
+				'alpha': [ 0.05],
 			}
 		},
 		'ab': {
 			'defaults': {
-
+				'random_state': 0, 'n_estimators': 100,
 			},
 			'param_grid': {
-
+				'n_estimators': [50, 100],
+				'learning_rate': [0.01, 0.05, 0.1, 0.3, 1],
+				'loss': ['linear', 'square', 'exponential']
 			}
 		}
 	},
@@ -972,7 +1017,7 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-
+				'kernel' : [kernel],
 			}
 		},
 		'rf': {
@@ -989,18 +1034,24 @@ DEFAULTS = {
 		},
 		'nn': {
 			'defaults': {
-
+				'max_iter':500
 			},
 			'param_grid': {
-
+				'hidden_layer_sizes': [ (100,)],
+				'activation': ['tanh' ],
+				'solver': ['sgd', 'adam'],
+				'alpha': [ 0.05],
+				'learning_rate': ['constant']
 			}
 		},
 		'ab': {
 			'defaults': {
-
+				'random_state': 0, 'n_estimators': 100,
 			},
 			'param_grid': {
-
+				'n_estimators': [50, 100],
+				'learning_rate': [0.01, 0.05, 0.1, 0.3, 1],
+				'loss': ['linear', 'square', 'exponential']
 			}
 		}
 	},
@@ -1044,7 +1095,7 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-
+				'kernel' : [kernel],
 			}
 		},
 		'rf': {
@@ -1061,18 +1112,24 @@ DEFAULTS = {
 		},
 		'nn': {
 			'defaults': {
-
+				'max_iter':200
 			},
 			'param_grid': {
-
+				'hidden_layer_sizes': [ (100,)],
+				'activation': ['tanh', 'relu'],
+				'solver': ['sgd', 'adam'],
+				'alpha': [ 0.05],
+				'learning_rate': ['constant','adaptive']
 			}
 		},
 		'ab': {
 			'defaults': {
-
+				'random_state': 0, 'n_estimators': 100,
 			},
 			'param_grid': {
-
+				'n_estimators': [50, 100],
+				'learning_rate': [0.01, 0.05, 0.1, 0.3, 1],
+				'loss': ['linear', 'square', 'exponential']
 			}
 		}
 	},
@@ -1112,7 +1169,7 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-
+				'kernel' : [kernel],
 			}
 		},
 		'rf': {
@@ -1129,18 +1186,23 @@ DEFAULTS = {
 		},
 		'nn': {
 			'defaults': {
-
+				'max_iter':5
 			},
 			'param_grid': {
-
+				# 'hidden_layer_sizes': [ (100,)],
+				# # 'activation': ['tanh', 'relu'],
+				# 'solver': ['sgd'],
+				# 'alpha': [ 0.5],
 			}
 		},
 		'ab': {
 			'defaults': {
-
+				'random_state': 0, 'n_estimators': 100,
 			},
 			'param_grid': {
-
+				'n_estimators': [50, 100],
+				'learning_rate': [0.01, 0.05, 0.1, 0.3, 1],
+				'loss': ['linear', 'square', 'exponential']
 			}
 		}
 	},
@@ -1185,7 +1247,7 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-
+				'kernel' : [kernel],
 			}
 		},
 		'rf': {
@@ -1202,18 +1264,23 @@ DEFAULTS = {
 		},
 		'nn': {
 			'defaults': {
-
+				'max_iter':20
 			},
 			'param_grid': {
-
+				'hidden_layer_sizes': [ (100,)],
+				'activation': ['tanh', 'relu'],
+				'solver': ['sgd', 'adam'],
+				'alpha': [0.05],
 			}
 		},
 		'ab': {
 			'defaults': {
-
+				'random_state': 0, 'n_estimators': 100,
 			},
 			'param_grid': {
-
+				'n_estimators': [50, 100],
+				'learning_rate': [0.01, 0.05, 0.1, 0.3, 1],
+				'loss': ['linear', 'square', 'exponential']
 			}
 		}
 	},
@@ -1257,7 +1324,7 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-
+				'kernel' : [kernel],
 			}
 		},
 		'rf': {
@@ -1274,18 +1341,24 @@ DEFAULTS = {
 		},
 		'nn': {
 			'defaults': {
-
+				'max_iter': 20
 			},
 			'param_grid': {
-
+				'hidden_layer_sizes': [(100,)],
+				'activation': ['tanh'],
+				'solver': ['sgd', 'adam'],
+				'alpha': [0.05],
+				'learning_rate': ['constant','adaptive']
 			}
 		},
 		'ab': {
 			'defaults': {
-
+				'random_state': 0, 'n_estimators': 100,
 			},
 			'param_grid': {
-
+				'n_estimators': [50, 100],
+				'learning_rate': [0.01, 0.05, 0.1, 0.3, 1],
+				'loss': ['linear', 'square', 'exponential']
 			}
 		}
 	},
@@ -1329,7 +1402,7 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-
+				'kernel' : [kernel],
 			}
 		},
 		'rf': {
@@ -1346,18 +1419,24 @@ DEFAULTS = {
 		},
 		'nn': {
 			'defaults': {
-
+				'max_iter':10
 			},
 			'param_grid': {
-
+				'hidden_layer_sizes': [(100,)],
+				'activation': ['tanh', 'relu'],
+				'solver': ['sgd'],
+				'alpha': [ 0.05],
+				'learning_rate': ['constant']
 			}
 		},
 		'ab': {
 			'defaults': {
-
+				'random_state': 0, 'n_estimators': 100,
 			},
 			'param_grid': {
-
+				'n_estimators': [50, 100],
+				'learning_rate': [0.01, 0.05, 0.1, 0.3, 1],
+				'loss': ['linear', 'square', 'exponential']
 			}
 		}
 	},
@@ -1411,7 +1490,7 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-
+				'kernel' : [kernel],
 			}
 		},
 		'rf': {
@@ -1427,18 +1506,24 @@ DEFAULTS = {
 		},
 		'nn': {
 			'defaults': {
-
+				'max_iter':100
 			},
 			'param_grid': {
-
+				'hidden_layer_sizes': [ (100,)],
+				'activation': ['tanh', 'relu'],
+				'solver': ['sgd', 'adam'],
+				'alpha': [0.1, 0.05],
+				'learning_rate': ['constant','adaptive']
 			}
 		},
 		'ab': {
 			'defaults': {
-
+				'random_state': 0, 'n_estimators': 100,
 			},
 			'param_grid': {
-
+				'n_estimators': [50, 100],
+				'learning_rate': [0.01, 0.05, 0.1, 0.3, 1],
+				'loss': ['linear', 'square', 'exponential']
 			}
 		}
 	},
@@ -1480,7 +1565,7 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-
+				'kernel' : [kernel],
 			}
 		},
 		'rf': {
@@ -1497,18 +1582,24 @@ DEFAULTS = {
 		},
 		'nn': {
 			'defaults': {
-
+				'max_iter':10
 			},
 			'param_grid': {
-
+				'hidden_layer_sizes': [(100,)],
+				'activation': [ 'relu'],
+				# 'solver': ['sgd', 'adam'],
+				'alpha': [ 0.05,0.1],
+				'learning_rate': ['constant','adaptive']
 			}
 		},
 		'ab': {
 			'defaults': {
-
+				'random_state': 0, 'n_estimators': 100,
 			},
 			'param_grid': {
-
+				'n_estimators': [50, 100],
+				'learning_rate': [0.01, 0.05, 0.1, 0.3, 1],
+				'loss': ['linear', 'square', 'exponential']
 			}
 		}
 	},
@@ -1547,7 +1638,7 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-
+				'kernel' : [kernel],
 			}
 		},
 		'rf': {
@@ -1564,18 +1655,24 @@ DEFAULTS = {
 		},
 		'nn': {
 			'defaults': {
-
+				'max_iter':100
 			},
 			'param_grid': {
-
+				'hidden_layer_sizes': [(100,)],
+				'activation': ['tanh', 'relu'],
+				'solver': ['sgd', 'adam'],
+				'alpha': [0.10, 0.05],
+				'learning_rate': ['constant','adaptive']
 			}
 		},
 		'ab': {
 			'defaults': {
-
+				'random_state': 0, 'n_estimators': 100,
 			},
 			'param_grid': {
-
+				'n_estimators': [50, 100],
+				'learning_rate': [0.01, 0.05, 0.1, 0.3, 1],
+				'loss': ['linear', 'square', 'exponential']
 			}
 		}
 	},
@@ -1617,7 +1714,7 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-
+				'kernel' : [kernel],
 			}
 		},
 		'rf': {
@@ -1634,18 +1731,24 @@ DEFAULTS = {
 		},
 		'nn': {
 			'defaults': {
-
+				'max_iter':100
 			},
 			'param_grid': {
-
+				'hidden_layer_sizes': [ (100,)],
+				'activation': ['tanh', 'relu'],
+				'solver': ['sgd', 'adam'],
+				'alpha': [0.10, 0.05],
+				'learning_rate': ['constant','adaptive']
 			}
 		},
 		'ab': {
 			'defaults': {
-
+				'random_state': 0, 'n_estimators': 100,
 			},
 			'param_grid': {
-
+				'n_estimators': [50, 100],
+				'learning_rate': [0.01, 0.05, 0.1, 0.3, 1],
+				'loss': ['linear', 'square', 'exponential']
 			}
 		}
 	},
@@ -1687,7 +1790,7 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-
+				'kernel' : [kernel],
 			}
 		},
 		'rf': {
@@ -1704,18 +1807,25 @@ DEFAULTS = {
 		},
 		'nn': {
 			'defaults': {
-
+				'max_iter':100
 			},
 			'param_grid': {
-
+				'hidden_layer_sizes': [ (100,)],
+				'activation': ['tanh', 'relu'],
+				'solver': ['sgd', 'adam'],
+				'alpha': [0.1, 0.05],
+				'learning_rate': ['constant','adaptive']
 			}
 		},
 		'ab': {
 			'defaults': {
-
+				# 'random_state' = 0, 'n_estimators' = 100,
+				'random_state': 0, 'n_estimators': 100,
 			},
 			'param_grid': {
-
+				'n_estimators': [50, 100],
+ 				'learning_rate' : [0.01,0.05,0.1,0.3,1],
+ 				'loss' : ['linear', 'square', 'exponential']
 			}
 		}
 	}
