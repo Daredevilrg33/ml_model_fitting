@@ -35,24 +35,25 @@ def __main__():
 		'./data/seismic-bumps.arff',
 		'./data/ThoraricSurgery.arff',
 		'./data/yeast.data',
-		'./data/default_of_credit_card_clients.xls',
 		'./data/adult.data',
+		'./data/default_of_credit_card_clients.xls',
 	]
 
 	regression_dataset_list = [
-		# './data_regression/winequality-red.csv',
-		# './data_regression/winequality-white.csv',
-		# './data_regression/bike_sharing_hour.csv',
-		# './data_regression/Concrete_Data.xls',
-		# './data_regression/dataset_Facebook.csv',
-		# './data_regression/qsar_aquatic_toxicity.csv',
-		# './data_regression/sgemm_product.csv',
+		'./data_regression/winequality-red.csv',
+		'./data_regression/winequality-white.csv',
+		'./data_regression/bike_sharing_hour.csv',
+		'./data_regression/Concrete_Data.xls',
+		'./data_regression/dataset_Facebook.csv',
+		'./data_regression/qsar_aquatic_toxicity.csv',
+		'./data_regression/sgemm_product.csv',
+		'./data_regression/student-por.csv',
+		'./data_regression/sgemm_product.csv',
+		'./data_regression/communities.data',
+		'./data_regression/ACT2_competition_training.npz',
+		'./data_regression/ACT4_competition_training.npz',
+		'./data_regression/parkinson_train_data.txt'
 
-		# './data_regression/communities.data',
-		# './data_regression/ACT2_competition_training.npz',
-		# './data_regression/ACT4_competition_training.npz',
-		# './data_regression/parkinson_train_data.txt',
-			'./data_regression/student-por.csv'
 
 
 	]

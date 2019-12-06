@@ -405,7 +405,7 @@ class Model():
 		label_encoder = LabelEncoder()
 		dataset['Sequence Name'] = label_encoder.fit_transform(dataset['Sequence Name'])
 		dataset['class'] = label_encoder.fit_transform(dataset['class'])
-		print(dataset['class'])
+		# print(dataset['class'])
 		self.X = dataset.iloc[:, 0:9].values.astype(int)
 		self.y = dataset.iloc[:, 9].values
 

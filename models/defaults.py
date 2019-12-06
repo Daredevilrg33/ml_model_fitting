@@ -44,9 +44,13 @@ DEFAULTS = {
 		'logistic_reg': {
 			'defaults': {
 
+
 			},
 			'param_grid': {
-
+				'penalty': ['l1', 'l2'],
+				'C': [0.01, 0.1, 1, 10, 100],
+				'class_weight': [{1:0.4, 0:0.6}, {1:0.6, 0:0.4}, {1:0.7, 0:0.3}],
+				'solver': ['liblinear', 'saga'],
 			}
 		},
 		'dt': {
@@ -118,7 +122,10 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-
+				'penalty': ['l1', 'l2'],
+				'C': [0.01, 0.1, 1, 10, 100],
+				'class_weight': [{1:0.4, 0:0.6}, {1:0.6, 0:0.4}, {1:0.7, 0:0.3}],
+				'solver': ['liblinear', 'saga'],
 			}
 		},
 		'dt': {
@@ -190,6 +197,9 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+				'penalty': ['l1', 'l2'],
+				'C': [0.01, 0.1, 1, 10, 100],
+				'solver': ['liblinear', 'saga'],
 
 			}
 		},
@@ -262,7 +272,9 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-
+				'penalty': ['l1', 'l2'],
+				'C': [0.01, 0.1, 1, 10, 100],
+				'solver': ['liblinear', 'saga'],
 			}
 		},
 		'dt': {
@@ -334,6 +346,10 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+				'penalty': ['l1', 'l2'],
+				'C': [0.01, 0.1, 1, 10, 100],
+				'solver': ['liblinear', 'saga'],
+
 
 			}
 		},
@@ -406,6 +422,10 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+				'penalty': ['l1', 'l2'],
+				'C': [0.01, 0.1, 1, 10, 100],
+				'solver': ['liblinear', 'saga'],
+
 
 			}
 		},
@@ -478,6 +498,10 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+				'penalty': ['l1', 'l2'],
+				'C': [0.01, 0.1, 1, 10, 100],
+				'solver': ['liblinear', 'saga'],
+
 
 			}
 		},
@@ -550,6 +574,10 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+				'penalty': ['l1', 'l2'],
+				'C': [0.01, 0.1, 1, 10, 100],
+				'solver': ['liblinear', 'saga'],
+
 
 			}
 		},
@@ -622,6 +650,11 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+				'penalty': ['l1', 'l2'],
+				'C': [0.01, 0.1, 1, 10, 100],
+				'class_weight': [{1:0.4, 0:0.6}, {1:0.6, 0:0.4}, {1:0.7, 0:0.3}],
+				'solver': ['liblinear', 'saga'],
+
 
 			}
 		},
@@ -694,6 +727,11 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+				'penalty': ['l1', 'l2'],
+				'C': [0.01, 0.1, 1, 10, 100],
+				'class_weight': [{1:0.4, 0:0.6}, {1:0.6, 0:0.4}, {1:0.7, 0:0.3}],
+				'solver': ['liblinear', 'saga'],
+
 
 			}
 		},
