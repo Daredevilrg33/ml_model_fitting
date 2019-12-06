@@ -29,7 +29,7 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-				'var_smoothing': np.arange(0.1, 1, .1)
+				'var_smoothing': [0.00001,0.001,0.1,1]
 			}
 		},
 		'nn':{
@@ -111,7 +111,7 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-				'var_smoothing': np.arange(0.1, 1, .1)
+				'var_smoothing': [0.00001,0.001,0.1,10]
 			}
 		},
 		'nn':{
@@ -193,7 +193,7 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-				'var_smoothing': np.arange(0.1, 1, .1)
+				'var_smoothing': [0.00001,0.001,0.1,10]
 			}
 		},
 		'nn':{
@@ -275,7 +275,7 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-				'var_smoothing': np.arange(0.1, 1, .1)
+				'var_smoothing': [0.00001,0.001,0.1,10]
 			}
 		},
 		'nn':{
@@ -356,7 +356,7 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-				'var_smoothing': np.arange(0.1, 1, .1)
+				'var_smoothing': [0.00001,0.001,0.1,10]
 			}
 		},
 		'nn':{
@@ -439,7 +439,7 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-				'var_smoothing': np.arange(0.1, 1, .1)
+				'var_smoothing': [0.00001,0.001,0.1,10]
 			}
 		},
 		'nn':{
@@ -522,7 +522,7 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-				'var_smoothing': np.arange(0.1, 1, .1)
+				'var_smoothing': [0.00001,0.001,0.1,10]
 			}
 		},
 		'nn':{
@@ -605,7 +605,7 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-				'var_smoothing': np.arange(0.1, 1, .1)
+				'var_smoothing': [0.00001,0.001,0.1,10]
 			}
 		},
 		'nn':{
@@ -688,7 +688,7 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-				'var_smoothing': np.arange(0.1, 1, .1)
+				'var_smoothing': [0.00001,0.001,0.1,10]
 			}
 		},
 		'nn':{
@@ -772,7 +772,7 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-				'var_smoothing': np.arange(0.1, 1, .1)
+				'var_smoothing': [0.00001,0.001,0.1,10]
 			}
 		},
 		'nn':{
@@ -834,6 +834,9 @@ DEFAULTS = {
 			'defaults': {
 			},
 			'param_grid': {
+				'fit_intercept':[True, False],
+				'normalize':[True, False],
+				'copy_X':[True, False],
 			}
 		},
 		'dtr': {
@@ -855,10 +858,7 @@ DEFAULTS = {
 				'epsilon':.1
 			},
 			'param_grid': {
-                'C': [1, 10, 100, 1000],
-                'kernel': ['rbf','sigmoid'],
-                'gamma': [0.01, 0.10, 1.0, 10]
-
+                'C': [0.1,1, 10],
 			}
 		},
 		'gaussian_pr': {
@@ -964,6 +964,9 @@ DEFAULTS = {
 			'defaults': {
 			},
 			'param_grid': {
+				'fit_intercept': [True, False],
+				'normalize': [True, False],
+				'copy_X': [True, False],
 			}
 		},
 		'dtr': {
@@ -1027,6 +1030,9 @@ DEFAULTS = {
 			'defaults': {
 			},
 			'param_grid': {
+				'fit_intercept': [True, False],
+				'normalize': [True, False],
+				'copy_X': [True, False],
 			}
 		},
 		'dtr': {
@@ -1086,6 +1092,9 @@ DEFAULTS = {
 			'defaults': {
 			},
 			'param_grid': {
+				'fit_intercept': [True, False],
+				'normalize': [True, False],
+				'copy_X': [True, False],
 			}
 		},
 		'dtr': {
@@ -1149,7 +1158,9 @@ DEFAULTS = {
 			'defaults': {
 			},
 			'param_grid': {
-
+				'fit_intercept': [True, False],
+				'normalize': [True, False],
+				'copy_X': [True, False],
 			}
 		},
 		'dtr': {
@@ -1215,7 +1226,9 @@ DEFAULTS = {
 			'defaults': {
 			},
 			'param_grid': {
-
+				'fit_intercept': [True, False],
+				'normalize': [True, False],
+				'copy_X': [True, False],
 			}
 		},
 		'dtr': {
@@ -1235,9 +1248,9 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-                'C': [1, 10, 100, 1000],
+                'C': [1, 10, 100],
                 'kernel': ['rbf','sigmoid'],
-                'gamma': [0.01, 0.10, 1.0, 10]
+                'gamma': [0.01, 0.10, 1.0]
 
 			}
 		},
@@ -1289,6 +1302,9 @@ DEFAULTS = {
 			'defaults': {
 			},
 			'param_grid': {
+				'fit_intercept': [True, False],
+				'normalize': [True, False],
+				'copy_X': [True, False],
 			}
 		},
 		'dtr': {
@@ -1355,6 +1371,9 @@ DEFAULTS = {
 			'defaults': {
 			},
 			'param_grid': {
+				'fit_intercept': [True, False],
+				'normalize': [True, False],
+				'copy_X': [True, False],
 			}
 		},
 		'dtr': {
@@ -1418,6 +1437,9 @@ DEFAULTS = {
 			'defaults': {
 			},
 			'param_grid': {
+				'fit_intercept': [True, False],
+				'normalize': [True, False],
+				'copy_X': [True, False],
 			}
 		},
 		'dtr': {
@@ -1437,10 +1459,7 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-                'C': [1, 10, 100, 1000],
-                'kernel': ['rbf','sigmoid'],
-                'gamma': [0.01, 0.10, 1.0, 10]
-
+                'C': [0.1, 1, 10],
 			}
 		},
 		'gaussian_pr': {
@@ -1481,6 +1500,9 @@ DEFAULTS = {
 			'defaults': {
 			},
 			'param_grid': {
+				'fit_intercept': [True, False],
+				'normalize': [True, False],
+				'copy_X': [True, False],
 			}
 		},
 		'dtr': {
@@ -1500,9 +1522,9 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-                'C': [1, 10, 100, 1000],
+                'C': [0.1,1, 10],
                 'kernel': ['rbf','sigmoid'],
-                'gamma': [0.01, 0.10, 1.0, 10]
+                'gamma': ['auto','scale']
 
 			}
 		},
@@ -1544,6 +1566,9 @@ DEFAULTS = {
 			'defaults': {
 			},
 			'param_grid': {
+				'fit_intercept': [True, False],
+				'normalize': [True, False],
+				'copy_X': [True, False],
 			}
 		},
 		'dtr': {
