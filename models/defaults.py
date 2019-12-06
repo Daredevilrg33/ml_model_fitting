@@ -44,9 +44,13 @@ DEFAULTS = {
 		'logistic_reg': {
 			'defaults': {
 
+
 			},
 			'param_grid': {
-
+				'penalty': ['l1', 'l2'],
+				'C': [0.01, 0.1, 1, 10, 100],
+				'class_weight': [{1:0.4, 0:0.6}, {1:0.6, 0:0.4}, {1:0.7, 0:0.3}],
+				'solver': ['liblinear', 'saga'],
 			}
 		},
 		'dt': {
@@ -118,7 +122,10 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-
+				'penalty': ['l1', 'l2'],
+				'C': [0.01, 0.1, 1, 10, 100],
+				'class_weight': [{1:0.4, 0:0.6}, {1:0.6, 0:0.4}, {1:0.7, 0:0.3}],
+				'solver': ['liblinear', 'saga'],
 			}
 		},
 		'dt': {
@@ -190,6 +197,9 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+				'penalty': ['l1', 'l2'],
+				'C': [0.01, 0.1, 1, 10, 100],
+				'solver': ['liblinear', 'saga'],
 
 			}
 		},
@@ -262,7 +272,9 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-
+				'penalty': ['l1', 'l2'],
+				'C': [0.01, 0.1, 1, 10, 100],
+				'solver': ['liblinear', 'saga'],
 			}
 		},
 		'dt': {
@@ -334,6 +346,10 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+				'penalty': ['l1', 'l2'],
+				'C': [0.01, 0.1, 1, 10, 100],
+				'solver': ['liblinear', 'saga'],
+
 
 			}
 		},
@@ -406,6 +422,10 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+				'penalty': ['l1', 'l2'],
+				'C': [0.01, 0.1, 1, 10, 100],
+				'solver': ['liblinear', 'saga'],
+
 
 			}
 		},
@@ -478,6 +498,10 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+				'penalty': ['l1', 'l2'],
+				'C': [0.01, 0.1, 1, 10, 100],
+				'solver': ['liblinear', 'saga'],
+
 
 			}
 		},
@@ -550,6 +574,10 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+				'penalty': ['l1', 'l2'],
+				'C': [0.01, 0.1, 1, 10, 100],
+				'solver': ['liblinear', 'saga'],
+
 
 			}
 		},
@@ -622,6 +650,11 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+				'penalty': ['l1', 'l2'],
+				'C': [0.01, 0.1, 1, 10, 100],
+				'class_weight': [{1:0.4, 0:0.6}, {1:0.6, 0:0.4}, {1:0.7, 0:0.3}],
+				'solver': ['liblinear', 'saga'],
+
 
 			}
 		},
@@ -694,6 +727,11 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+				'penalty': ['l1', 'l2'],
+				'C': [0.01, 0.1, 1, 10, 100],
+				'class_weight': [{1:0.4, 0:0.6}, {1:0.6, 0:0.4}, {1:0.7, 0:0.3}],
+				'solver': ['liblinear', 'saga'],
+
 
 			}
 		},
@@ -728,6 +766,54 @@ DEFAULTS = {
 			},
 			'param_grid': {
 			}
+		},
+		'dtr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'svr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'gaussian_pr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'rf': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'nn': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'ab': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
 		}
 	},
 	'./data_regression/dataset_Facebook.csv': {
@@ -735,6 +821,54 @@ DEFAULTS = {
 			'defaults': {
 			},
 			'param_grid': {
+			}
+		},
+		'dtr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'svr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'gaussian_pr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'rf': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'nn': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'ab': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
 			}
 		}
 	},
@@ -744,6 +878,54 @@ DEFAULTS = {
 			},
 			'param_grid': {
 			}
+		},
+		'dtr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'svr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'gaussian_pr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'rf': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'nn': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'ab': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
 		}
 	},
 	'./data_regression/sgemm_product.csv': {
@@ -751,6 +933,54 @@ DEFAULTS = {
 			'defaults': {
 			},
 			'param_grid': {
+			}
+		},
+		'dtr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'svr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'gaussian_pr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'rf': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'nn': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'ab': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
 			}
 		}
 	},
@@ -760,6 +990,54 @@ DEFAULTS = {
 			},
 			'param_grid': {
 			}
+		},
+		'dtr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'svr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'gaussian_pr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'rf': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'nn': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'ab': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
 		}
 	},
 	'./data_regression/winequality-red.csv': {
@@ -768,6 +1046,54 @@ DEFAULTS = {
 			},
 			'param_grid': {
 			}
+		},
+		'dtr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'svr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'gaussian_pr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'rf': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'nn': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'ab': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
 		}
 	},
 	'./data_regression/winequality-white.csv': {
@@ -775,6 +1101,54 @@ DEFAULTS = {
 			'defaults': {
 			},
 			'param_grid': {
+			}
+		},
+		'dtr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'svr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'gaussian_pr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'rf': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'nn': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'ab': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
 			}
 		}
 	},
@@ -788,11 +1162,59 @@ DEFAULTS = {
 			}
 		},
 	},
-  './data_regression/student-por.csv': {
+  	'./data_regression/student-por.csv': {
 		'linear_reg': {
 			'defaults': {
 			},
 			'param_grid': {
+			}
+		},
+		'dtr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'svr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'gaussian_pr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'rf': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'nn': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'ab': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
 			}
 		}
 	},
@@ -801,6 +1223,222 @@ DEFAULTS = {
 			'defaults': {
 			},
 			'param_grid': {
+			}
+		},
+		'dtr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'svr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'gaussian_pr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'rf': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'nn': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'ab': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		}
+	},
+	'./data_regression/ACT2_competition_training.npz': {
+		'linear_reg': {
+			'defaults': {
+			},
+			'param_grid': {
+			}
+		},
+		'dtr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'svr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'gaussian_pr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'rf': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'nn': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'ab': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		}
+	},
+	'./data_regression/ACT4_competition_training.npz': {
+		'linear_reg': {
+			'defaults': {
+			},
+			'param_grid': {
+			}
+		},
+		'dtr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'svr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'gaussian_pr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'rf': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'nn': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'ab': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		}
+	},
+	'./data_regression/parkinson_train_data.txt': {
+		'linear_reg': {
+			'defaults': {
+			},
+			'param_grid': {
+			}
+		},
+		'dtr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'svr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'gaussian_pr': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'rf': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'nn': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
+			}
+		},
+		'ab': {
+			'defaults': {
+
+			},
+			'param_grid': {
+
 			}
 		}
 	}

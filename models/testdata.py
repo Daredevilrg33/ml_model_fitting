@@ -8,7 +8,72 @@ from sklearn.model_selection import train_test_split
 from sklearn.impute import SimpleImputer
 import numpy as np
 from sklearn.preprocessing import StandardScaler
+from sklearn.feature_selection import VarianceThreshold
+from sklearn.decomposition import TruncatedSVD
+from tempfile import TemporaryFile
 
+
+# with open("../data_regression/ACT2_competition_training.csv") as f:
+#     cols = f.readline().rstrip('\n').split(',') # Read the header line and get list of column names
+# # Load the actual data, ignoring first column and using second column as targets.
+# X = np.loadtxt("../data_regression/ACT2_competition_training.csv", delimiter=',', usecols=range(2, len(cols)), skiprows=1, dtype=np.uint8)
+# y = np.loadtxt("../data_regression/ACT2_competition_training.csv", delimiter=',', usecols=[1], skiprows=1)
+# np.savez('mat1.npz', X, y)
+# "mat.npz".seek(0) # Only needed here to simulate closing & reopening file
+
+npzfile = np.load("mat1.npz")
+X=npzfile['arr_0']
+y=npzfile['arr_1']
+value=np.mean(np.var(X,axis=1))
+selector = VarianceThreshold(threshold=int(value))
+print(X.shape)
+X=selector.fit_transform(X)
+print(X.shape)
+
+
+# svd = TruncatedSVD(n_components=100)
+# newSvd=svd.fit(X)
+# X=newSvd.fit_transform(X)
+
+
+
+
+
+
+
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
+scaler = StandardScaler().fit(X_train)
+X_train = scaler.transform(X_train)
+X_test = scaler.transform(X_test)
+
+# Initialize linear regression model
+lModel = LinearRegression()
+
+# Train the model
+lModel.fit(X_train, y_train)
+y_output=lModel.predict(X_test)
+print(lModel.score(X_test, y_test))
+
+
+# avx=np.mean(y_output)
+# avy=np.mean(y_train)
+# num=sum( (y_output-avx)*(y_train-avy) )
+# num=num*num
+# denom=sum((y_output-avx)*(y_output-avx)) * sum( (y_train-avy)*(y_train-avy) )
+# print(num/denom)
+
+
+# data=pd.read_csv("../data_regression/parkinson_train_data.txt",delimiter=",")
+# print(data)
+# X=np.array(data.iloc[:,0:27])
+# print(X)
+# y=np.array(data.iloc[:,27])
+
+
+# df = pd.read_csv("../data_regression/dataset_Facebook.csv", delimiter=';')
+# print(df.info())
+# print(df)
 
 # data=pd.read_csv("../data_regression/sgemm_product.csv")
 # data['Avg_Run'] = data[['Run1 (ms)', 'Run2 (ms)', 'Run3 (ms)', 'Run4 (ms)']].mean(axis=1)
@@ -26,43 +91,24 @@ from sklearn.preprocessing import StandardScaler
 # y=data[:,121]
 
 
-# data=pd.read_csv("../data_regression/parkinson_train_data.txt",delimiter=",")
-# print(data)
-# X=np.array(data.iloc[:,1:27])
+
+
+
+
+# labelencoder = LabelEncoder()
+# df["Type"] = labelencoder.fit_transform(df["Type"])
+# imp = SimpleImputer(missing_values=np.nan, strategy="mean")
+# X=df.iloc[:,0:16].values
+# X= imp.fit_transform(X)
 # print(X)
-# y=np.array(data.iloc[:,27])
-
-df = pd.read_csv("../data_regression/dataset_Facebook.csv", delimiter=';')
-print(df.info())
-# print(df)
-
-
-
-labelencoder = LabelEncoder()
-df["Type"] = labelencoder.fit_transform(df["Type"])
-imp = SimpleImputer(missing_values=np.nan, strategy="mean")
-X=df.iloc[:,0:16].values
-X= imp.fit_transform(X)
-print(X)
-y=df.iloc[:, 18].values
-print(y)
-y= imp.fit_transform(y.reshape(-1,1))
-y=y.flatten()
-print(y)
+# y=df.iloc[:, 18].values
+# print(y)
+# y= imp.fit_transform(y.reshape(-1,1))
+# y=y.flatten()
+# print(y)
 
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
-scaler = StandardScaler().fit(X_train)
-X_train = scaler.transform(X_train)
-X_test = scaler.transform(X_test)
 
-# Initialize linear regression model
-lModel = LinearRegression()
-
-# Train the model
-lModel.fit(X_train, y_train)
-lModel.predict(X_test)
-print(lModel.score(X_test, y_test))
 
 
 

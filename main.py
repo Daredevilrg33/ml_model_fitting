@@ -7,8 +7,14 @@ from models.logistic_reg_classifier import LogisticRegClassifier
 from models.decision_tree_classifier import DTClassifier
 from models.random_forest_classifier import RfClassifier
 from models.ada_boost_classifier import ABClassifier
+from models.gaussian_process_regressor import GaussianPrRegressor
+from models.svr_regression import SvrRegression
 from models.linear_regression import LinearReg
-from models.cifar_models import CifarModel
+from models.decision_tree_regression import DTRegression
+from models.random_forest_regressor import RfRegressor
+from models.mlp_regression import MlpRegression
+from models.ada_boost_regressor import ABRegressor
+# from models.cifar_models import CifarModel
 import warnings
 
 from sklearn.utils.testing import ignore_warnings
@@ -29,8 +35,8 @@ def __main__():
 		'./data/seismic-bumps.arff',
 		'./data/ThoraricSurgery.arff',
 		'./data/yeast.data',
-		'./data/default_of_credit_card_clients.xls',
 		'./data/adult.data',
+		'./data/default_of_credit_card_clients.xls',
 	]
 
 	regression_dataset_list = [
@@ -43,7 +49,13 @@ def __main__():
 		'./data_regression/sgemm_product.csv',
 		'./data_regression/student-por.csv',
 		'./data_regression/sgemm_product.csv',
-		'./data_regression/communities.data'
+		'./data_regression/communities.data',
+		'./data_regression/ACT2_competition_training.npz',
+		'./data_regression/ACT4_competition_training.npz',
+		'./data_regression/parkinson_train_data.txt'
+
+
+
 	]
 
 	for dataset in classification_dataset_list:
@@ -89,6 +101,30 @@ def __main__():
 
 		linear_regression = LinearReg(dataset)
 		model = Model(model_type=linear_regression, is_regression=True)
+		model.perform_experiments(dataset)
+
+		decision_tree_regressor = DTRegression(dataset)
+		model = Model(model_type=decision_tree_regressor,is_regression=True)
+		model.perform_experiments(dataset)
+
+		svr_regressor = SvrRegression(dataset)
+		model = Model(model_type=svr_regressor,is_regression=True)
+		model.perform_experiments(dataset)
+
+		gaussian_process_regressor = GaussianPrRegressor(dataset)
+		model = Model(model_type=gaussian_process_regressor,is_regression=True)
+		model.perform_experiments(dataset)
+
+		random_forest_regressor = RfRegressor(dataset)
+		model = Model(model_type=random_forest_regressor,is_regression=True)
+		model.perform_experiments(dataset)
+
+		mlp_regressor = MlpRegression(dataset)
+		model = Model(model_type=mlp_regressor,is_regression=True)
+		model.perform_experiments(dataset)
+
+		ab_regressor = ABRegressor(dataset)
+		model = Model(model_type=ab_regressor,is_regression=True)
 		model.perform_experiments(dataset)
 
 	cifar = CifarModel()
