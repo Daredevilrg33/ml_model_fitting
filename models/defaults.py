@@ -72,7 +72,10 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-
+				"n_estimators" : [10,40,60],
+				"max_depth" : [8, 15,20],
+				"min_samples_split" : [ 15, 50,60],
+				"min_samples_leaf" : [1, 2, 5],
 			}
 		},
 		'ab': {
@@ -154,7 +157,10 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-
+"n_estimators" : [10,40,60],
+				"max_depth" : [8, 15,20],
+				"min_samples_split" : [ 15, 50,60],
+				"min_samples_leaf" : [1, 2, 5],
 			}
 		},
 		'ab': {
@@ -236,6 +242,10 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+				"n_estimators": [10, 40, 60],
+				"max_depth": [8, 15, 20],
+				"min_samples_split": [5,10,15],
+				"min_samples_leaf": [1, 2, 5],
 
 			}
 		},
@@ -317,6 +327,10 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+				"n_estimators": [ 40, 60,70],
+				"max_depth": [6,8, 15],
+				"min_samples_split": [10,15, 20],
+				"min_samples_leaf": [1, 2, 5],
 
 			}
 		},
@@ -400,6 +414,10 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+				"n_estimators": [10, 60,70],
+				"max_depth": [8, 15, 20],
+				"min_samples_split": [10,15,20],
+				"min_samples_leaf": [1, 2, 5],
 
 			}
 		},
@@ -483,7 +501,10 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-
+				"n_estimators": [10, 40, 60],
+				"max_depth": [8, 15, 20],
+				"min_samples_split": [15, 50, 60],
+				"min_samples_leaf": [1, 2, 5],
 			}
 		},
 		'ab': {
@@ -566,6 +587,10 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+				"n_estimators": [10, 40, 60],
+				"max_depth": [8, 15, 20],
+				"min_samples_split": [15, 50, 60],
+				"min_samples_leaf": [1, 2, 5],
 
 			}
 		},
@@ -649,6 +674,10 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+				"n_estimators": [10, 40, 60],
+				"max_depth": [8, 15, 20],
+				"min_samples_split": [15, 50, 60],
+				"min_samples_leaf": [1, 2, 5],
 
 			}
 		},
@@ -733,6 +762,10 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+				"n_estimators": [10, 40, 60],
+				"max_depth": [8, 15, 20],
+				"min_samples_split": [15, 50, 60],
+				"min_samples_leaf": [1, 2, 5],
 
 			}
 		},
@@ -817,6 +850,10 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+				"n_estimators": [10, 40, 60],
+				"max_depth": [8, 15, 20],
+				"min_samples_split": [15, 50, 60],
+				"min_samples_leaf": [1, 2, 5],
 
 			}
 		},
@@ -874,6 +911,10 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+				"n_estimators": [40, 60, 70],
+				"max_depth": [6, 8, 15],
+				"min_samples_split": [10, 15, 20],
+				"min_samples_leaf": [1, 2, 5],
 
 			}
 		},
@@ -939,6 +980,10 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+				"n_estimators": [40, 60, 70],
+				"max_depth": [6, 8, 15],
+				"min_samples_split": [10, 15, 20],
+				"min_samples_leaf": [1, 2, 5],
 
 			}
 		},
@@ -983,7 +1028,9 @@ DEFAULTS = {
 		},
 		'svr': {
 			'defaults': {
-
+				'C':100,
+				'gamma':0.1,
+				'epsilon':.1
 			},
 			'param_grid': {
                 'C': [1, 10, 100, 1000],
@@ -1005,6 +1052,10 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+				"n_estimators": [40, 60, 70],
+				"max_depth": [6, 8, 15],
+				"min_samples_split": [10, 15, 20],
+				"min_samples_leaf": [1, 2, 5],
 
 			}
 		},
@@ -1045,7 +1096,9 @@ DEFAULTS = {
 		},
 		'svr': {
 			'defaults': {
-
+				'C':100,
+				'gamma':0.1,
+				'epsilon':.1
 			},
 			'param_grid': {
                 'C': [1, 10, 100, 1000],
@@ -1067,6 +1120,10 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+				"n_estimators": [40, 60, 70],
+				"max_depth": [6, 8, 15],
+				"min_samples_split": [10, 15, 20],
+				"min_samples_leaf": [1, 2, 5],
 
 			}
 		},
@@ -1090,6 +1147,7 @@ DEFAULTS = {
 	'./data_regression/Concrete_Data.xls': {
 		'linear_reg': {
 			'defaults': {
+				'random_state': [0],
 			},
 			'param_grid': {
 				'fit_intercept': [True, False],
@@ -1111,7 +1169,9 @@ DEFAULTS = {
 		},
 		'svr': {
 			'defaults': {
-
+				'C':100,
+				'gamma':0.1,
+				'epsilon':.1
 			},
 			'param_grid': {
                 'C': [1, 10, 100, 1000],
@@ -1133,6 +1193,10 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+				"n_estimators": [40, 60, 70],
+				"max_depth": [6, 8, 15],
+				"min_samples_split": [10, 15, 20],
+				"min_samples_leaf": [1, 2, 5],
 
 			}
 		},
@@ -1201,6 +1265,10 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+				"n_estimators": [70,80],
+				"max_depth": [6, 15,20],
+				"min_samples_split": [5,10, 15],
+				"min_samples_leaf": [1, 2, 3],
 
 			}
 		},
@@ -1245,7 +1313,9 @@ DEFAULTS = {
 		},
 		'svr': {
 			'defaults': {
-
+				'C':100,
+				'gamma':0.1,
+				'epsilon':.1
 			},
 			'param_grid': {
                 'C': [1, 10, 100],
@@ -1267,6 +1337,10 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+				"n_estimators": [60,70,80],
+				"max_depth": [6, 15,20],
+				"min_samples_split": [5,10, 12],
+				"min_samples_leaf": [1, 2, 3],
 
 			}
 		},
@@ -1321,7 +1395,9 @@ DEFAULTS = {
 		},
 		'svr': {
 			'defaults': {
-
+				'C':100,
+				'gamma':0.1,
+				'epsilon':.1
 			},
 			'param_grid': {
                 'C': [1, 10, 100, 1000],
@@ -1344,10 +1420,10 @@ DEFAULTS = {
 			},
 # https://towardsdatascience.com/hyperparameter-tuning-the-random-forest-in-python-using-scikit-learn-28d2aa77dd74
 			'param_grid': {
-                'max_depth': [ 40,  70,  100],
+                'max_depth': [ 40,  70,],
                 'min_samples_leaf': [1, 2, 4],
                 'min_samples_split': [2, 5, 10],
-                'n_estimators': [ 1800, 2000]}
+                'n_estimators': [ 40, 60, 70]}
 		},
 		'nn': {
 			'defaults': {
@@ -1412,6 +1488,10 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+				"n_estimators": [40, 60, 70],
+				"max_depth": [6, 8, 15],
+				"min_samples_split": [60,80,30],
+				"min_samples_leaf": [1, 2, 5],
 
 			}
 		},
@@ -1475,6 +1555,10 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+				"n_estimators": [40, 60, 70],
+				"max_depth": [6, 8, 15],
+				"min_samples_split": [10, 15, 20],
+				"min_samples_leaf": [1, 2, 5],
 
 			}
 		},
@@ -1541,6 +1625,10 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+				"n_estimators": [40, 60, 70],
+				"max_depth": [6, 8, 15],
+				"min_samples_split": [10, 15, 20],
+				"min_samples_leaf": [1, 2, 5],
 
 			}
 		},
@@ -1607,6 +1695,10 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
+				"n_estimators": [40, 60, 70],
+				"max_depth": [6, 8, 15],
+				"min_samples_split": [10, 15, 20],
+				"min_samples_leaf": [1, 2, 5],
 
 			}
 		},
