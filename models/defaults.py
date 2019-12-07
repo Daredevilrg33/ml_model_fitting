@@ -808,9 +808,7 @@ DEFAULTS = {
 				'random_state': 0, 'n_estimators': 100,
 			},
 			'param_grid': {
-				'n_estimators': [50, 100],
- 				'learning_rate' : [0.1,0.3,1],
- 				# 'loss' : ['linear', 'exponential']
+
 			}
 		}
 	},
@@ -1503,7 +1501,6 @@ DEFAULTS = {
 			'defaults': {
 
 			},
-# https://towardsdatascience.com/hyperparameter-tuning-the-random-forest-in-python-using-scikit-learn-28d2aa77dd74
 			'param_grid': {
                 'max_depth': [ 40,  70,],
                 'min_samples_leaf': [1, 2, 4],
