@@ -27,39 +27,39 @@ warnings.filterwarnings("ignore", category=FutureWarning)       # Ignore sklearn
 def __main__():
 	
 	classification_dataset_list = [
-		'./data/messidor_features.arff',
-		'./data/breast-cancer-wisconsin.data',
-		'./data/statlog-australian-credit-data.data',
-		'./data/statlog-german-credit-data.data',
-		'./data/steel-plates-faults.NNA',
-		'./data/seismic-bumps.arff',
-		'./data/ThoraricSurgery.arff',
-		'./data/yeast.data',
-		'./data/adult.data',
-		'./data/default_of_credit_card_clients.xls',
+		# './data/messidor_features.arff',
+		# './data/breast-cancer-wisconsin.data',
+		# './data/statlog-australian-credit-data.data',
+		# './data/statlog-german-credit-data.data',
+		# './data/steel-plates-faults.NNA',
+		# './data/seismic-bumps.arff',
+		# './data/ThoraricSurgery.arff',
+		# './data/yeast.data',
+		# './data/adult.data',
+		# './data/default_of_credit_card_clients.xls',
 	]
 
-	# regression_dataset_list = [
-	# 	'./data_regression/winequality-red.csv',
-	# 	'./data_regression/winequality-white.csv',
-	# 	'./data_regression/bike_sharing_hour.csv',
-	# 	'./data_regression/Concrete_Data.xls',
-	# 	'./data_regression/dataset_Facebook.csv',
-	# 	'./data_regression/qsar_aquatic_toxicity.csv',
-	# 	'./data_regression/sgemm_product.csv',
-	# 	'./data_regression/student-por.csv',
-	# 	'./data_regression/communities.data',
-	# 	'./data_regression/ACT2_competition_training.npz',
-	# 	'./data_regression/ACT4_competition_training.npz',
-	# 	'./data_regression/parkinson_train_data.txt'
-	#
-	#
-	#
-	# ]
+	regression_dataset_list = [
+		# './data_regression/winequality-red.csv',
+		# './data_regression/winequality-white.csv',
+		# './data_regression/bike_sharing_hour.csv',
+		#'./data_regression/Concrete_Data.xls',
+		#'./data_regression/dataset_Facebook.csv',
+		#'./data_regression/qsar_aquatic_toxicity.csv',
+		# './data_regression/sgemm_product.csv',
+		'./data_regression/student-por.csv',
+		'./data_regression/communities.data',
+		'./data_regression/ACT2_competition_training.npz',
+		'./data_regression/ACT4_competition_training.npz',
+		'./data_regression/parkinson_train_data.txt'
 
-	for dataset in classification_dataset_list:
-		print("\n\n******** {} data ***********\n".format(dataset.split('/')[-1]))
-		print("*******************************************\n")
+
+
+	]
+
+	# for dataset in classification_dataset_list:
+	# 	print("\n\n******** {} data ***********\n".format(dataset.split('/')[-1]))
+	# 	print("*******************************************\n")
 		#
 		# knn_classifier = KnnClassifier(dataset)
 		# model = Model(model_type=knn_classifier)
@@ -94,10 +94,10 @@ def __main__():
 		# model = Model(model_type=ada_boost_classifier)
 		# model.perform_experiments(dataset)
 
-	# for dataset in regression_dataset_list:
-	# 	print("\n\n******** {} data ***********\n".format(dataset.split('/')[-1]))
-	# 	print("*******************************************\n")
-		#
+	for dataset in regression_dataset_list:
+		print("\n\n******** {} data ***********\n".format(dataset.split('/')[-1]))
+		print("*******************************************\n")
+
 		# linear_regression = LinearReg(dataset)
 		# model = Model(model_type=linear_regression, is_regression=True)
 		# model.perform_experiments(dataset)
@@ -105,14 +105,14 @@ def __main__():
 		# decision_tree_regressor = DTRegression(dataset)
 		# model = Model(model_type=decision_tree_regressor,is_regression=True)
 		# model.perform_experiments(dataset)
-
+		#
 		# svr_regressor = SvrRegression(dataset)
 		# model = Model(model_type=svr_regressor,is_regression=True)
 		# model.perform_experiments(dataset)
-		#
-		# gaussian_process_regressor = GaussianPrRegressor(dataset)
-		# model = Model(model_type=gaussian_process_regressor,is_regression=True)
-		# model.perform_experiments(dataset)
+
+		gaussian_process_regressor = GaussianPrRegressor(dataset)
+		model = Model(model_type=gaussian_process_regressor,is_regression=True)
+		model.perform_experiments(dataset)
 
 		# random_forest_regressor = RfRegressor(dataset)
 		# model = Model(model_type=random_forest_regressor,is_regression=True)
@@ -125,7 +125,7 @@ def __main__():
 		# ab_regressor = ABRegressor(dataset)
 		# model = Model(model_type=ab_regressor,is_regression=True)
 		# model.perform_experiments(dataset)
-	#
+
 	# cifar = CifarModel()
 	# cifar.load_and_normalize_data() # load cifar data, combine batches data into single numpy array
 	# cifar.train_and_test_dt() # train and test decision tree

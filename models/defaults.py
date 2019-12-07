@@ -1654,10 +1654,6 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-				"n_estimators": [40, 60, 70],
-				"max_depth": [6, 8, 15],
-				"min_samples_split": [10, 15, 20],
-				"min_samples_leaf": [1, 2, 5],
 
 			}
 		},
