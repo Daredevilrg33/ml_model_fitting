@@ -1,7 +1,7 @@
 import numpy as np
 import random
 from sklearn.gaussian_process.kernels import ConstantKernel, RBF
-kernel = ConstantKernel(constant_value=1.0, constant_value_bounds=(5.0, 10.0)) * RBF(length_scale=0.5, length_scale_bounds=(5.0, 10.0)) + RBF(length_scale=2.0, length_scale_bounds=(5.0, 1.0))
+# kernel = ConstantKernel(constant_value=1.0, constant_value_bounds=(5.0, 10.0)) * RBF(length_scale=0.5, length_scale_bounds=(5.0, 10.0)) + RBF(length_scale=2.0, length_scale_bounds=(5.0, 1.0))
 DEFAULTS = {
 	'./data/messidor_features.arff': {
 		'knn': {
@@ -943,7 +943,8 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-				'kernel' : [kernel],
+				"alpha":[0.1,0.2,0.3,0.4],
+				"normalize_y":[True, False]
 			}
 		},
 		'rf': {
@@ -1016,7 +1017,8 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-				'kernel' : [kernel],
+				"alpha":[0.1,0.2,0.3,0.4],
+				"normalize_y":[True, False]
 			}
 		},
 		'rf': {
@@ -1094,7 +1096,8 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-				'kernel' : [kernel],
+				"alpha":[0.1,0.2,0.3,0.4],
+				"normalize_y":[True, False]
 			}
 		},
 		'rf': {
@@ -1168,7 +1171,7 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-				'kernel' : [kernel],
+
 			}
 		},
 		'rf': {
@@ -1246,7 +1249,8 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-				'kernel' : [kernel],
+				"alpha":[0.1,0.2,0.3,0.4],
+				"normalize_y":[True, False]
 			}
 		},
 		'rf': {
@@ -1323,7 +1327,8 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-				'kernel' : [kernel],
+				"alpha":[0.1,0.2,0.3,0.4],
+				"normalize_y":[True, False]
 			}
 		},
 		'rf': {
@@ -1401,7 +1406,8 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-				'kernel' : [kernel],
+				"alpha":[0.1,0.2,0.3,0.4],
+				"normalize_y":[True, False]
 			}
 		},
 		'rf': {
@@ -1489,7 +1495,8 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-				'kernel' : [kernel],
+				"alpha":[0.1,0.2,0.3,0.4],
+				"normalize_y":[True, False]
 			}
 		},
 		'rf': {
@@ -1564,7 +1571,8 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-				'kernel' : [kernel],
+				"alpha":[0.1,0.2,0.3,0.4],
+				"normalize_y":[True, False]
 			}
 		},
 		'rf': {
@@ -1637,7 +1645,8 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-				'kernel' : [kernel],
+				"alpha":[0.1,0.2,0.3,0.4],
+				"normalize_y":[True, False]
 			}
 		},
 		'rf': {
@@ -1713,7 +1722,8 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-				'kernel' : [kernel],
+				"alpha":[0.1,0.2,0.3,0.4],
+				"normalize_y":[True, False]
 			}
 		},
 		'rf': {
@@ -1789,7 +1799,8 @@ DEFAULTS = {
 
 			},
 			'param_grid': {
-				'kernel' : [kernel],
+				"alpha":[0.1,0.2,0.3,0.4],
+				"normalize_y":[True, False]
 			}
 		},
 		'rf': {
