@@ -88,7 +88,7 @@ DEFAULTS = {
 			'param_grid': {
 				'n_estimators': [50, 100],
  				'learning_rate' : [0.1,0.3,1],
- 				'loss' : ['linear', 'exponential']
+ 				# 'loss' : ['linear', 'exponential']
 			}
 		}
 	},
@@ -177,7 +177,7 @@ DEFAULTS = {
 			'param_grid': {
 				'n_estimators': [50, 100],
  				'learning_rate' : [0.1,0.3,1],
- 				'loss' : ['linear', 'exponential']
+ 				# 'loss' : ['linear', 'exponential']
 			}
 		}
 	},
@@ -267,7 +267,7 @@ DEFAULTS = {
 			'param_grid': {
 				'n_estimators': [50, 100],
  				'learning_rate' : [0.1,0.3,1],
- 				'loss' : ['linear', 'exponential']
+ 				# 'loss' : ['linear', 'exponential']
 			}
 		}
 	},
@@ -356,7 +356,7 @@ DEFAULTS = {
 			'param_grid': {
 				'n_estimators': [50, 100],
  				'learning_rate' : [0.1,0.3,1],
- 				'loss' : ['linear', 'exponential']
+ 				# 'loss' : ['linear', 'exponential']
 			}
 		}
 	},
@@ -447,7 +447,7 @@ DEFAULTS = {
 			'param_grid': {
 				'n_estimators': [50, 100],
  				'learning_rate' : [0.1,0.3,1],
- 				'loss' : ['linear', 'exponential']
+ 				# 'loss' : ['linear', 'exponential']
 			}
 		}
 	},
@@ -537,7 +537,7 @@ DEFAULTS = {
 			'param_grid': {
 				'n_estimators': [50, 100],
  				'learning_rate' : [0.1,0.3,1],
- 				'loss' : ['linear', 'exponential']
+ 				# 'loss' : ['linear', 'exponential']
 			}
 		}
 	},
@@ -628,7 +628,7 @@ DEFAULTS = {
 			'param_grid': {
 				'n_estimators': [50, 100],
  				'learning_rate' : [0.1,0.3,1],
- 				'loss' : ['linear', 'exponential']
+ 				# 'loss' : ['linear', 'exponential']
 			}
 		}
 	},
@@ -719,7 +719,7 @@ DEFAULTS = {
 			'param_grid': {
 				'n_estimators': [50, 100],
  				'learning_rate' : [0.1,0.3,1],
- 				'loss' : ['linear', 'exponential']
+ 				# 'loss' : ['linear', 'exponential']
 			}
 		}
 	},
@@ -810,7 +810,7 @@ DEFAULTS = {
 			'param_grid': {
 				'n_estimators': [50, 100],
  				'learning_rate' : [0.1,0.3,1],
- 				'loss' : ['linear', 'exponential']
+ 				# 'loss' : ['linear', 'exponential']
 			}
 		}
 	},
@@ -902,7 +902,7 @@ DEFAULTS = {
 			'param_grid': {
 				'n_estimators': [50, 100],
  				'learning_rate' : [0.1,0.3,1],
- 				'loss' : ['linear', 'exponential']
+ 				# 'loss' : ['linear', 'exponential']
 			}
 		}
 	},
