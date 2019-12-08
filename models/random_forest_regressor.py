@@ -6,7 +6,7 @@ class RfRegressor():
 
     def __init__(self,dataset):
         self.dataset = dataset
-        self.random_forest = RandomForestRegressor(**DEFAULTS[dataset]['rf']['defaults'])
+        self.random_forest = RandomForestRegressor(**DEFAULTS[dataset]['rf']['defaults'],random_state=0)
         print("""
     		**********************
     		Random Forest Regression

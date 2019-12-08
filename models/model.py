@@ -230,9 +230,9 @@ class Model():
 		labelencoder = LabelEncoder()
 		df["Type"] = labelencoder.fit_transform(df["Type"])
 		imp = SimpleImputer(missing_values=np.nan, strategy="mean")
-		X = df.iloc[:, 0:16].values
+		X = df.iloc[:, 0:7].values
 		self.X = imp.fit_transform(X)
-		y = df.iloc[:, 18].values
+		y = df.iloc[:, 10].values
 		y = imp.fit_transform(y.reshape(-1, 1))
 		self.y = y.flatten()
 
