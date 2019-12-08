@@ -13,24 +13,21 @@ torch.manual_seed(0)
 MODEL_PATH = '../cifar_net.pth'
 CIFAR_DATA_PATH = './cfar10/'
 
-BATCH_SIZE = 20
+BATCH_SIZE = 4
 MOMENTUM = 0.9
 LEARNING_RATE = 0.001
-EPOCH = 5
+EPOCH = 10
 ACTIVATION_MAP_CLASS = 6
 
 class SimpleNet(nn.Module):
 	def __init__(self):
 		super(SimpleNet, self).__init__()
-		# self.conv1 = nn.Conv2d(3, 6, 5)
 		self.conv1 = nn.Conv2d(3, 15, 3)
 		self.conv2 = nn.Conv2d(15, 25, 3)
 		self.pool = nn.MaxPool2d(2, 1)
 		self.pool2 = nn.MaxPool2d(2, 2)
-		# self.conv2 = nn.Conv2d(6, 16, 5)
 		self.conv3 = nn.Conv2d(25, 50, 3)
 		self.conv4 = nn.Conv2d(50, 50, 5)
-		# self.fc1 = nn.Linear(16 * 5 * 5, 120)
 		self.fc1 = nn.Linear(50 * 4 * 4, 120)
 		self.fc2 = nn.Linear(120, 84)
 		self.fc3 = nn.Linear(84, 10)
@@ -186,5 +183,4 @@ class CifarModel():
 
 		activation_image = X.detach().numpy().reshape(3,32,32).transpose(1,2,0)
 		activation_image = self.gray_conversion(activation_image)
-		# plt.imshow(activation_image, cmap = plt.get_cmap('gray'))
 		plt.imsave('{}_1.png'.format(classes[ACTIVATION_MAP_CLASS]), activation_image, cmap = plt.get_cmap('gray'))

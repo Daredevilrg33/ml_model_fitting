@@ -14,7 +14,7 @@ from models.decision_tree_regression import DTRegression
 from models.random_forest_regressor import RfRegressor
 from models.mlp_regression import MlpRegression
 from models.ada_boost_regressor import ABRegressor
-# from models.cifar_models import CifarModel
+from models.cifar_models import CifarModel
 import warnings
 
 from sklearn.utils.testing import ignore_warnings
@@ -53,9 +53,6 @@ def __main__():
 		'./data_regression/ACT2_competition_training.npz',
 		'./data_regression/ACT4_competition_training.npz',
 		'./data_regression/parkinson_train_data.txt'
-
-
-
 	]
 
 	for dataset in classification_dataset_list:
